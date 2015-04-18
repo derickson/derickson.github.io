@@ -19,7 +19,7 @@ body {
     line-height: $base-line-height;
     font-weight: 300;
     color: $text-color;
-    background-color: url(images/base/graph.jpg) repeat top;
+    background: url(../images/base/graph.jpg) repeat top;
     -webkit-text-size-adjust: 100%;
 }
 
@@ -154,7 +154,8 @@ pre {
  * Wrapper
  */
 .wrapper {
-    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
+    background-color: $background-color;
+	max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
     max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
     margin-right: auto;
     margin-left: auto;

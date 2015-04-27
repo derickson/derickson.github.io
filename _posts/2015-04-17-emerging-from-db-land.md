@@ -3,7 +3,7 @@ layout: post
 title:  "Back to the Full Stack"
 date:   2015-04-17 12:00:00
 categories: tech, blogging
-permalink: /:year/:month/:day/back-to-the-full-stack/ 
+permalink: /2015/04/17/back-to-the-full-stack/ 
 ---
 It's been a while, blog.  It's been too long.
 

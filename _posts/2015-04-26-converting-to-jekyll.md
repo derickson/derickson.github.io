@@ -3,7 +3,7 @@ layout: post
 title:  "Converting To Jekyll"
 date:   2015-04-26 12:00:00
 categories: work, tech, jekyll
-permalink: /:year/:month/:day/converting-to-jekyll/ 
+permalink: /2015/04/26/converting-to-jekyll/ 
 published: true
 ---
 

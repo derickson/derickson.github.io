@@ -10,7 +10,7 @@ published: true
 This blog started life as a Wordpress site backed by a LAMP server over at Hostmonster.  While the service was awesome, I decided to get more onboard with what the cool kids were doing and convert to a "compiled" static site rather than one backed by a database and CMS tool that would need constant patching, etc.  While that database was certainly useful five years ago for:
 
 * collaboration between multiple authors
-* having snapshots the site in case I messed something up
+* having snapshots of the site in case I messed something up
 * caching frequently used content in RAM rather than having go to disk every time
 
 honestly, having to triage spam commenters, update the Wordpress software, and the fear of losing access to the content was pretty annoying. The annoyance was compounded by the fact that flat fext files + git + someone else automating a distributed webcache would do just about the same thing if not better as every commit would be recoverable and all my content would be in markdown in a simple folder structure, which for my needs is fine for archival purposes.

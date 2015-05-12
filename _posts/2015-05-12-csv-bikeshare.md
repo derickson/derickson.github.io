@@ -304,4 +304,4 @@ I hope people just starting out with logstash find this useful.  There are a lot
 * [3] [Basic Grok Filters](https://github.com/elastic/logstash/blob/v1.4.2/patterns/grok-patterns)
 * [4] [Grok Regular Expressions](http://www.geocities.jp/kosako3/oniguruma/doc/RE.txt)
 * [5] [geoEnrich Filter Source](https://github.com/derickson/cabi/blob/master/logstash/filters/geoEnrich.rb)
-* [6] [bikeshareFormat1.conf][https://github.com/derickson/cabi/blob/master/bikeshareFormat1.conf] 
+* [6] [bikeshareFormat1.conf](https://github.com/derickson/cabi/blob/master/bikeshareFormat1.conf)

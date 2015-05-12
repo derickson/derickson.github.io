@@ -292,7 +292,7 @@ output {
 
 I make an alternate .conf file that adjusts for the differences in the 4 CSV formats and build a .sh script to load all my data samples. 
 
-Here's the full Logstash example for the first data format [bikeshareFormat1.conf][https://github.com/derickson/cabi/blob/master/bikeshareFormat1.conf] [6]
+Here's the full Logstash example for the first data format [bikeshareFormat1.conf](https://github.com/derickson/cabi/blob/master/bikeshareFormat1.conf) [6]
 
 And that's it!  I think the Logstash conf is much more readable than my hacky python script, and it's easier to adapt to different inputs and modular use cases where I want to reuse portions of the code and processing logic.
 

@@ -13,7 +13,7 @@ The results were fun.  I got to learn the ELK stack with real data and I even go
 
 ![Tweet](/images/posts/2015-05-12-cabiTweet.jpg "Bikeshare Tweet")
 
-Originally, I wrote the CSV to JSON conversion code in python.  This is typically the quickest approach to extract-transform-load (ETL) jobs for me.  As a dev, my scripting productivity outstrips the benefits of a more full fledged ETL library for small proof of concepts and demos.  But, as I've described before in this blog, custom scripts tend to be too  brittle and costly to maintain for a group project.  So, in the spirit of eating all the tasty dogfood, I decided to revisit the CSV loading to get some more hands on experience with (Logstash)(http://logstash.net/) [2], an open source log / data processing tool from Elastic. 
+Originally, I wrote the CSV to JSON conversion code in python.  This is typically the quickest approach to extract-transform-load (ETL) jobs for me.  As a dev, my scripting productivity outstrips the benefits of a more full fledged ETL library for small proof of concepts and demos.  But, as I've described before in this blog, custom scripts tend to be too  brittle and costly to maintain for a group project.  So, in the spirit of eating all the tasty dogfood, I decided to revisit the CSV loading to get some more hands on experience with [Logstash](http://logstash.net/) [2], an open source log / data processing tool from Elastic. 
 
 Below are the steps I used to process the CSV data with Logstash into Elasticsearch.  Hope you find it useful!
 

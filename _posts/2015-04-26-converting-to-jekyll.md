@@ -13,7 +13,7 @@ This blog started life as a Wordpress site backed by a LAMP server over at Hostm
 * having snapshots of the site in case I messed something up
 * caching frequently used content in RAM rather than having go to disk every time
 
-honestly, having to triage spam commenters, update the Wordpress software, and the fear of losing access to the content was pretty annoying. The annoyance was compounded by the fact that flat fext files + git + someone else automating a distributed webcache would do just about the same thing if not better as every commit would be recoverable and all my content would be in markdown in a simple folder structure, which for my needs is fine for archival purposes.
+honestly, having to triage spam commenters, update the Wordpress software, and the fear of losing access to the content was pretty annoying. The annoyance was compounded by the fact that flat text files + git + someone else automating a distributed webcache would do just about the same thing if not better as every commit would be recoverable and all my content would be in markdown in a simple folder structure, which for my needs is fine for archival purposes.
 
 ### Step zero: Picking a Tool
 

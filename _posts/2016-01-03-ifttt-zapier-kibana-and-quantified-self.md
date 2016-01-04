@@ -15,7 +15,7 @@ It is known that I love tracking things.  As an example: 3 years of my beer drin
 
 ![Untappd visualization](/images/posts/2016-01-03-beer.jpg "3 Years of Untappd data in Kibana")
 
-Dashboards and visualizations are fun, but to eat a bit more dogfood at work and as to truly embracing the point of live dashboarding my life I need these feeds to be *real time* rather than static data sets manually loaded.
+Dashboards and visualizations are fun, but in order to truly embrace life logging (and to eat a bit more dogfood at work) I need these feeds to be *real time* rather than static data sets manually loaded when I happen to have the time.
 
 ##Inspiration
 

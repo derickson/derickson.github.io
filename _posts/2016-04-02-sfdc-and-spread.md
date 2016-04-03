@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "Optics: Pulling Google Spreadsheet and Salesforce.com data into Elasticsearch"
-date:   2016-04-02 12:00:00
+date:   2016-04-03 12:00:00
 categories: projects, optics, python, elasticsearch
-permalink: /2016/04/02/optics-spreadsheets-sfdc/
+permalink: /2016/04/03/optics-spreadsheets-sfdc/
 published: true
 ---
 

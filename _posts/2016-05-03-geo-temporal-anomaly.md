@@ -16,7 +16,7 @@ published: true
 
 ## The problem with my old demo
 
-I love bikeshare data.  I've written a few posts in the last year using public data from the good folks at Washington DC's Capital Bikeshare program. ( [here](/2015/05/12/csv-bikeshare/) and [here](/2015/08/26/pulling-and-splitting-live-xml/) and if you've talked to me at a demo booth or presentation of Kibana you've probalby seen me show my dashboard of bikeshare rides in DC and zoom into the 4th of July to show the data anomaly right around the fireworks show.
+I love bikeshare data.  I've written a few posts in the last year using public data from the good folks at Washington DC's Capital Bikeshare program. ( [here](/2015/05/12/csv-bikeshare/) and [here](/2015/08/26/pulling-and-splitting-live-xml/)) and if you've talked to me at a demo booth or presentation of Kibana you've probalby seen me show my dashboard of bikeshare rides in DC and zoom into the 4th of July to show the data anomaly right around the fireworks show.
 
 ![Zooming in on the 4th](/images/posts/2016-05-03-zoom.gif "4th of july data anomaly")
 
@@ -24,9 +24,9 @@ I love this demo! The **problem** is that it requires one to already have the kn
 
 ## Elasticsearch features
 
-I'll need to use three key features of the Elasticsearch aggrewgations API.
+I'll need to use four key features of the Elasticsearch aggrewgations API.
 
-* Bucket aggregations (feature 1) and (feature 2)
+* Two kinds of bucket aggregations (feature 1) and (feature 2)
 * Nesting one aggregation inside another (feature 3)
 * Pipeline aggregations with seasonality adjusted moving averages (feature 4)
 
@@ -68,7 +68,7 @@ GET /bike-dc/_search?search_type=count
 
 
 ### 3) Nested Buckets
-The next part is where things get fun.  Elasticsearch lets you nest bucket aggregtion within other aggregations.  So we can combine the two bucket approaches above into a single analytic, asking Elasticsearch for histogram buckets **inside** a geo grid aggregation.  The result is a matrix of the event metrics over time for each grid of my map returned in a single rest call.
+The next part is where things get fun.  Elasticsearch lets you nest bucket aggregtion within other aggregations.  We can combine the two bucket approaches above into a single analytic, asking Elasticsearch for histogram buckets **inside** a geo grid aggregation.  The result is a matrix of the event metrics over time for each grid of my map returned in a single rest call.
 
 Here's a picture of bikeshare usage over several years to try to demonstrate the true meaning of the returned data.
 

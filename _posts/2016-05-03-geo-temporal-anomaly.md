@@ -24,7 +24,7 @@ I love this demo! The **problem** is that it requires one to already have the kn
 
 ## Elasticsearch features
 
-I'll need to use four key features of the Elasticsearch aggrewgations API.
+I'll need to use four key features of the Elasticsearch aggregations API.
 
 * Two kinds of bucket aggregations (feature 1) and (feature 2)
 * Nesting one aggregation inside another (feature 3)
@@ -102,7 +102,7 @@ Now for Each Bucket we can use the next power feature of Elasticsearch which is 
 
 Similar to Zach Tong's blog post we'll compute a "suprise" factor for each hour of data in each grid of geospatial area of DC.  We'll compute whether or not the number of bike rides departing from the area deviates from the general trend (moving average) of how many rides we expected to see depart from that station given general trends taking into account day of week and time of year.  This will help us differentiate between the **signal and the noise** which is a common problem in all analytics.
 
-There are [many kinds of moving averages](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-pipeline-movavg-aggregation.html) possible in Elasticsearch, but the one we are using will be Holt-Winters.  This "triple-exponential" moving average takes into account the current level, trend in that level, as well as a seasonality in it's computation of the moving average.  Because capitalbikeshare's major periodic patter is weekly, (every 7 days) we can ask for a moving average of bikeshare ridership and know if a spike is the normal monday morning bike commute or something more interesting like a fireworks show or a baseball game.  Holt-Winters can even do predictions into the future; which is cool, but since we are just looking for data outliers in the time range of the data that we have that won't be necessary.  Holt-Winters does require tweaking of coefficients for the relative weights of the three contributers to the "smart" average.  I played around and found I got the best results just using the auto-minimization function which tries to guess good coefficients through a simulated-annealing optimization algorithm.
+There are [many kinds of moving averages](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-pipeline-movavg-aggregation.html) possible in Elasticsearch, but the one we are using will be Holt-Winters.  This "triple-exponential" moving average takes into account the current level, trend in that level, as well as a seasonality in it's computation of the moving average.  Because capital bikeshare's major periodic pattern is weekly, (every 7 days) we can ask for a moving average of bikeshare ridership and know if a spike is the normal Monday morning bike commute or something more interesting like a fireworks show or a baseball game.  Holt-Winters can even do predictions into the future; which is cool, but since we are just looking for data outliers in the time range of the data that we have that won't be necessary.  Holt-Winters does require tweaking of coefficients for the relative weights of the three contributers to the "smart" average.  I played around and found I got the best results just using the auto-minimization function which tries to guess good coefficients through a simulated-annealing optimization algorithm.
 
 ## Putting it together
 
@@ -149,7 +149,7 @@ GET /bike-dc/_search?search_type=count
 }
 </pre>
 
-Kibana itself doesn't have pipeline aggregations yet or do much in the way of Geo-Temporal, so it won't run this type of query directly.  However, with a quick python script I can run the custom query, loop over buckets in the aggregated data and re-insert "roll-up" aggregated events as a different metric type that can be visualized side by side with the original data.  ([code](https://github.com/derickson/cabi2/blob/master/compute-geo-predict.py)).  The key line which computes the suprise factor:
+Kibana itself doesn't have pipeline aggregations yet or do much in the way of Geo-Temporal, so it won't run this type of query directly.  However, with a quick python script I can run the custom query, loop over buckets in the aggregated data and re-insert "roll-up" aggregated events as a different metric type that can be visualized side by side with the original data.  ([code](https://github.com/derickson/cabi2/blob/master/compute-geo-predict.py)).  The key line which computes the surprise factor:
 
 <pre>
 doc['surprise'] = max(0, 10.0 * (doc["the_count"] - doc["prediction"]) / doc["prediction"])

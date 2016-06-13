@@ -28,6 +28,6 @@ I'll go through the hardware set up with the shiny, new Raspberry Pi 3 in a futu
 
 Full code is [here](https://github.com/derickson/MMderickson)
 
-Teeuw's tutorial the update MagicMirror project does a fantastic job stepping a person through modifying the Rasperri Pi to disable screen savers and power saving functions as well as launching the electron app with pm2, a task persistence manager.  The raspberri pi portion of the project, which I was expecting to take most of the project time, actually only took a single morning given that Adafruit [packages their Raspberri Pi 3 kits](https://www.adafruit.com/products/3058) with a preinstalled OS on the included microSD card.
+Teeuw's tutorial the update MagicMirror project does a fantastic job stepping a person through modifying the Rasperri Pi to disable screen savers and power saving functions as well as launching the electron app with pm2, a task persistence manager.  The raspberri pi portion of the project, which I was expecting to take most of the project time, actually only took a single morning given that Adafruit [packages their Raspberri Pi 3 kits](https://www.adafruit.com/products/3058) with a preinstalled OS on the included microSD card. 
 
 

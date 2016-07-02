@@ -7,7 +7,7 @@ permalink: /2016/06/12/laptop-sticker-chaos/
 published: true
 ---
 
-The job has been stressful.  I've been taking a few things too seriously.  I visted some awesome dev and ops shops this week in New York City and by comparison I realized my laptop mathced my demeanor. It is time to *up my laptop sticker game*.  Since Elastic{on} 2016 I've run around with my laptop set up to show the new corp tech logos (a shift from the non-matching stickers of the ELK days):
+The job has been stressful.  I've been taking a few things too seriously.  I visted some awesome dev and ops shops this week in New York City and by comparison I realized my laptop matched my demeanor. It is time to *up my laptop sticker game*.  Since Elastic{on} 2016 I've run around with my laptop set up to show the new corp tech logos (a shift from the non-matching stickers of the ELK days):
 
 ![Too Corporate](/images/posts/2016-07-01-corp.jpg "Too Corporate")
 

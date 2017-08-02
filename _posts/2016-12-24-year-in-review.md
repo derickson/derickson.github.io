@@ -30,13 +30,13 @@ I track all my work and fun travel in [TripIt](tripit.com).  I took 25 trips in 
 
 ## Beer
 
-I track the beer's I drink in [Untappd](untappd.com).  My wife is something of a beer connoisseur, so we've picked up the fun hobby of trying to drink beer's we haven't had when we are out on the town or picking out mixer-six packs at the local craft beer shop to split at dinner.
+I track the beer I drink in [Untappd](untappd.com).  My wife is something of a beer connoisseur, so we've picked up the fun hobby of trying to drink beer we haven't had when we are out on the town or picking out mixer-six packs at the local craft beer shop to split at dinner.
 
-In the visualization you can see the week we took a cruise to the Carribean (and left the cell phone off) as well as the massive spike for the brewery toor we took in Charlottesville, VA right after getting married:
+In the visualization you can see the week we took a cruise to the Carribean (and left the cell phone off) as well as the massive spike for a brewery tour in Charlottesville, VA right after getting married:
 
 ![Beer Bar Graph](/images/posts/2016-12-24-beerBar.jpg)
 
-Here's a map of the locations where that beer was consumed:
+Here is a map of the locations where that beer was consumed:
 
 ![Beer Map](/images/posts/2016-12-24-beerMap.jpg)
 

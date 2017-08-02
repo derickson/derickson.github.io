@@ -61,7 +61,7 @@ user.nationality must be either Country1 OR Country2
 </pre>
 
 
-Notice this is [locical conjuction](https://en.wikipedia.org/wiki/Logical_conjunction) (aka a big AND) of smaller AND, OR, and scalar comparison statments.
+Notice this is a [logical conjuction](https://en.wikipedia.org/wiki/Logical_conjunction) (aka a big AND) of smaller AND, OR, and scalar comparison statments.
 
 
 ## Annotating Beer With Percolator

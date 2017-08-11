@@ -9,6 +9,8 @@ published: true
 
 ![Elastic stack docker](/images/posts/2017-08-10-diagram.png "docker diagram")
 
+Source: [https://github.com/derickson/docker-es](https://github.com/derickson/docker-es)
+
 I took a few minutes this morning and updated my end-to-end docker example of the Elastic stack to the 6.0 beta1 which released this week.  There are new official docker images for the 6.0 betas for Elasticsearch, Logstash, Kibana, and Filebeat (the last of which I have not yet incorporated)
 
 * [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/6.0/docker.html)

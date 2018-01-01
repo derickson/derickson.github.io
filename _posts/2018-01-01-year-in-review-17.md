@@ -11,7 +11,7 @@ Another year another Quantified Self blog post
 
 ## Weather
 
-My magic mirror logged the temperature to Elasticsearch every 10 minutes this year.  This is my quick visualization of actual vs predicted daily high and low temperatures.  The data source is underground.
+My magic mirror logged the temperature to Elasticsearch every 10 minutes this year.  This is my quick visualization of actual vs predicted daily high and low temperatures.  The data source is wunderground.
 
 ![Weather](/images/posts/2018-01-01-qs01.jpg)
 

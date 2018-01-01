@@ -60,7 +60,7 @@ I have an Automatic IOT sensor on my car, and log all car rides using an IFTTT t
 
 While I didn’t track these in real time, Fandango receipts and my viewing history from Netflix and Amazon video were enough to back-populate my letterboxd account.  I paid for the pro account to get their beautiful visualizations.  I’ve watched a lot of TV shows rather than movies in 2017.  Supposedly we live in the golden age of TV, so I’m still considering whether or not I want to track the TV I watch.  Hours of screen time with TV and which shows I liked might be better.
 
-https://letterboxd.com/azathought/year/2017/
+[https://letterboxd.com/azathought/year/2017/](https://letterboxd.com/azathought/year/2017/)
 
 ![Movie Stats](/images/posts/2018-01-01-qs13.jpg)
 

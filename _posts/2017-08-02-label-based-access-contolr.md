@@ -11,6 +11,8 @@ published: true
 
 *I have a beer dashboard, what if not all that personal information is 'safe for work' ?*
 
+**Update: Elasticsearch added many of the tools needed (and mentioned in the Further Work section below) to implement very clean ABAC policies in Elasticsearch 6.1.  This method below is out of date **
+
 RBAC is great, but doesn't fit the security policies I deal with at work.  HIPAA, Financial Services portfolio management, and multi-tenanted SaaS products all generate data that is sensitive enough to deserve Mandatory Access Controls (MAC) at the data layer and basic access control policies often don't cut it.  This isn't just a problem at work though ...
 
 The tech we wear, bolt to the walls of our homes, and even just walk by on the street generates a large amount of personalized infromation about our lives.  I aggregate a good amount of that in my Quantified Self project and have been showing my Untappd beer dashboard around now for a few years as a fun basic example of logging personal data in Elasticsearch and visualizing that data with Kibana.  It's fun and makes for a good demo!  However, one of the big challenges people face once all this data is aggregated is that it is now that much more publicly visible than when it was a csv file sitting on my private hard drive.  Not only can someone presumably glance around and learn things about me that I didn't want them to (my favorite bars, that I'm not a fan of IPAs) but they can learn things that I consider sensitive such as my exact home address. Even worse are the potential for misinterpretations.  In my beer dashboard when I check-in a flight of small-sized taster beers, it looks like I've had 4 whole pints of beer.

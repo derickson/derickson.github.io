@@ -8,7 +8,7 @@ img: posts/2017-08-10-diagram.png
 published: true
 ---
 
-**Update**: __with the release of Elastic 6.0 and 6.1 check the official documentation for all the updates to the official docker images __
+**Update**: __with the release of Elastic 6.0 and 6.1 check the official documentation for all the updates to the official docker images__
 
 
 **Update**: Also!!! check out this cool project.  It doesn't have security, but it's a super easy docker-compose file version of many of the official tools. [https://github.com/elastic/stack-docker](https://github.com/elastic/stack-docker)

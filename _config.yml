@@ -8,9 +8,9 @@ url: "http://www.front2backdev.com" # the base hostname & protocol for your site
 # Author Settings
 author: Dave Erickson # add your name
 author-img: caricature.png # add your photo
-about-author: A geek in Washington, DC. # add description
+about-author: Software Engineer # add description
 twitter: davebenigno # add your Twitter handle
-github: dericskon  
+github: derickson  
 
 # paging
 paginate: 8

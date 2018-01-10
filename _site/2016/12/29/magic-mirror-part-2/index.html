@@ -6,7 +6,7 @@
 	<meta name="description" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta property="og:image" content="">
+	<meta property="og:image" content="http://localhost:4000/assets/img/posts/2016-12-29-mirrordisplay.jpg">
 	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
 	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
@@ -39,11 +39,17 @@
 	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
 	      </div>
 	      <div class="author-name">Dave Erickson</div>
-	      <p>A geek in Washington, DC.</p>
+	      <p>Software Engineer</p>
 
 			<div class="navigation">
 				<input type="text" class="st-default-search-input page-link">
 				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/about/">About</a>
+			  	
+				  
 			
 			  
 			  	
@@ -99,6 +105,9 @@
 	        
 	        
 	        
+	          <li><a href="https://www.github.com/derickson" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+	        
+	        
 	        
 	      </ul>
 	    </section> <!-- End Section Contact -->
@@ -113,14 +122,16 @@
   <article class="article-page">
   <div class="page-content">
     
+    <div class="page-cover-image">
+      <img class="page-image" src=/images/posts/2016-12-29-mirrordisplay.jpg alt="Magic Mirror Part 2">
+    </div> <!-- End Page Cover Image -->
+    
     <div class="wrap-content">
       <header class="header-page">
         <h1 class="page-title">Magic Mirror Part 2</h1>
         <div class="page-date"><span>Dec 29, 2016&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
       </header>
-      <p><img src="/images/posts/2016-12-29-mirrordisplay.jpg" alt="Mirror Display" title="mirror" /></p>
-
-<p><em>The completed project along with a screenshot of the software display behind my Magic Mirror</em></p>
+      <p><em>The completed project along with a screenshot of the software display behind my Magic Mirror</em></p>
 
 <p>In <a href="/2016/06/12/magic-mirror-part-1/">part one of my D.I.Y. Magic Mirror blog post</a> I showed the software setup of custom modules for the excellent <a href="https://github.com/MichMich/MagicMirror">MagicMirror</a> project.  This post I’ll show the final hardware build out.</p>
 
@@ -143,6 +154,8 @@
 <p><img src="/images/posts/2016-12-29-kibana.jpg" alt="Kibana" title="kibana metrics" /></p>
 
 <p>As the mirror is pulling some interesting data that I want in my quantified-self dashboard project, I wrote some quick nodejs request code to POST commands to my <a href="https://github.com/derickson/metrics-rest-service">generic REST metrics endpoint</a> for visualizing data from my Magic Mirror in kibana (hosted in <a href="cloud.elastic.co">Elastic Cloud</a> of course.)</p>
+
+<p><img src="/images/posts/2016-12-29-mirrordisplay.jpg" alt="Mirror Display" title="mirror" /></p>
 
 
       <div class="page-footer">

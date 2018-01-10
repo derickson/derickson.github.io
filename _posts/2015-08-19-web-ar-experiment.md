@@ -2,7 +2,7 @@
 layout: post
 title:  "Web Augmented Reality Experiment"
 date:   2015-08-19 18:00:00
-categories: work, tech, WebAR, visualization
+tags: work tech WebAR visualization
 permalink: /2015/08/19/web-ar-experiment/ 
 published: true
 ---

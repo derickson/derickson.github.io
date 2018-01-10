@@ -2,7 +2,7 @@
 layout: post
 title:  "End-to-end docker-compose example for Elastic Stack 6 beta"
 date:   2017-08-10 8:00:00
-categories: elasticsearch, docker, beta
+tags: elasticsearch docker beta
 permalink: /2017/08/10/elastic6-beta1-docker/
 img: posts/2017-08-10-diagram.png
 published: true

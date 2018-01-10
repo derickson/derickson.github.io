@@ -2,7 +2,7 @@
 layout: post
 title:  "Label-based Access Control in Elasticsearch"
 date:   2017-08-02 12:00:00
-categories: elasticsearch, percolator, security, lbac
+tags: elasticsearch percolator security lbac
 permalink: /2017/08/02/label-based-access-control/
 published: true
 img: posts/2017-08-02-flight.jpg

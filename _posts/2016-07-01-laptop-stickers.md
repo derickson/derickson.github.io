@@ -2,7 +2,7 @@
 layout: post
 title:  "Laptop Sticker Chaos"
 date:   2016-07-01 12:00:00
-categories: stickers, tech, chaos
+tags: stickers tech chaos
 permalink: /2016/06/12/laptop-sticker-chaos/
 published: true
 ---

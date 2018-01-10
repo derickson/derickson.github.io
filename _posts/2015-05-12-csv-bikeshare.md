@@ -2,7 +2,7 @@
 layout: post
 title:  "Logstash CSV with Custom Geo-Enrichment"
 date:   2015-05-12 18:00:00
-categories: work, tech, logstash, bikeshare
+tags: work tech logstash bikeshare
 permalink: /2015/05/12/csv-bikeshare/ 
 published: true
 ---

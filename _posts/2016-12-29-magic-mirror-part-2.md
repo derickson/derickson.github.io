@@ -2,7 +2,7 @@
 layout: post
 title:  "Magic Mirror Part 2"
 date:   2016-12-29 12:00:00
-categories: nodejs, electron, quantified-self, diy, maker
+tags: nodejs electron quantified-self diy maker
 permalink: /2016/12/29/magic-mirror-part-2/
 published: true
 ---

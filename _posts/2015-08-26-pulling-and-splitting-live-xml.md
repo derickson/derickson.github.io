@@ -2,7 +2,7 @@
 layout: post
 title:  "Pulling and Splitting live XML with Logstash"
 date:   2015-08-26 18:00:00
-categories: work, tech, logstash, xml
+tags: work tech logstash xml
 permalink: /2015/08/26/pulling-and-splitting-live-xml/ 
 published: true
 ---

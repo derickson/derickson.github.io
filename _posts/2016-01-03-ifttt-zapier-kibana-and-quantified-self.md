@@ -2,7 +2,7 @@
 layout: post
 title:  "Quantified Self: IFTTT, Zapier, and Elasticsearch"
 date:   2016-01-03 18:00:00
-categories: tech, iot, projects, quantified_self, elasticsearch, found
+tags: tech iot projects quantified-self elasticsearch found
 permalink: /2016/01/03/quantified-self-ifttt-zapier-elasticsearch/
 published: true
 ---

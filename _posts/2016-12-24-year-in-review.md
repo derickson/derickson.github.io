@@ -2,7 +2,7 @@
 layout: post
 title:  "2016 Quantified Year in Review"
 date:   2016-12-24 12:00:00
-categories: quantified self, visualization
+tags: quantified-self visualization
 permalink: /2016/12/24/quantified-year-review/
 published: true
 ---

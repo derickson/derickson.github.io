@@ -2,7 +2,7 @@
 layout: post
 title:  "Magic Mirror Part 1"
 date:   2016-06-12 12:00:00
-categories: nodejs, electron, diy, maker
+tags: nodejs electron diy maker
 permalink: /2016/06/12/magic-mirror-part-1/
 published: true
 ---

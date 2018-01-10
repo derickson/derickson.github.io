@@ -2,7 +2,7 @@
 layout: post
 title:  "Quantified Self: Week two progress and 'Near Real-Time' Fitibit activity"
 date:   2016-01-09 18:00:00
-categories: projects
+tags: projects
 permalink: /2016/01/09/quantified-self-week-two-and-fitbit/
 published: true
 ---

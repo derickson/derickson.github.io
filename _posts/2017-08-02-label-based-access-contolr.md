@@ -5,21 +5,21 @@ date:   2017-08-02 12:00:00
 categories: elasticsearch, percolator, security, lbac
 permalink: /2017/08/02/label-based-access-control/
 published: true
+img: posts/2017-08-02-flight.jpg
 ---
 
-![Securing Sensitive Data](/images/posts/2017-08-02-beforeafter.jpg "securing sensitive data")
 
-*I have a beer dashboard, what if not all that personal information is 'safe for work' ?*
+**Update**: __Elasticsearch added many of the tools needed (and mentioned in the Further Work section below) to implement very clean ABAC policies in Elasticsearch 6.1.  This method below is out of date__
 
-**Update: Elasticsearch added many of the tools needed (and mentioned in the Further Work section below) to implement very clean ABAC policies in Elasticsearch 6.1.  This method below is out of date **
+
+{% include image.html url="posts/2017-08-02-beforeafter.jpg" description="Securing Sensitive Data" caption="Securing Sensitive Data" %}
+
 
 RBAC is great, but doesn't fit the security policies I deal with at work.  HIPAA, Financial Services portfolio management, and multi-tenanted SaaS products all generate data that is sensitive enough to deserve Mandatory Access Controls (MAC) at the data layer and basic access control policies often don't cut it.  This isn't just a problem at work though ...
 
 The tech we wear, bolt to the walls of our homes, and even just walk by on the street generates a large amount of personalized infromation about our lives.  I aggregate a good amount of that in my Quantified Self project and have been showing my Untappd beer dashboard around now for a few years as a fun basic example of logging personal data in Elasticsearch and visualizing that data with Kibana.  It's fun and makes for a good demo!  However, one of the big challenges people face once all this data is aggregated is that it is now that much more publicly visible than when it was a csv file sitting on my private hard drive.  Not only can someone presumably glance around and learn things about me that I didn't want them to (my favorite bars, that I'm not a fan of IPAs) but they can learn things that I consider sensitive such as my exact home address. Even worse are the potential for misinterpretations.  In my beer dashboard when I check-in a flight of small-sized taster beers, it looks like I've had 4 whole pints of beer.
 
-![Flight](/images/posts/2017-08-02-flight.jpg "flight")
-
-*Throwing off my analytics with it's deliciousness (Freemont Brewing Company in Seattle, WA)*
+{% include image.html url="posts/2017-08-02-flight.jpg" description="Flight" caption="Throwing off my analytics with it's deliciousness (Freemont Brewing Company in Seattle, WA)" %}
 
 Okay, I'm not so worried about flights of beer, but let's use this as a test data set for creating a fine grained access control policy in Elasticsearch that will enforce data protection in any analytic app or UI, including unmodified Kibana.  Rather that working to create a complex Document-level security query that secures data (remember the RDBMS stored procedures that secured data and how difficult to maintain they were) let's take a Label-based approach with my beer data as a way of explaining the how and why this approach is so important to some users of data systems like Elasticsearch.
 
@@ -43,7 +43,6 @@ POST /health_sensors/temp/1
 }
 </pre>
 
-
 In an LBAC model, I now can grant the "patientId_123456789" and "EPHI" roles to a users and this information should be accessible.  Having a role-per-label in RBAC won't work because roles are implicitly OR'd and any single role will give access to the document.  Equally policies my have other restrictions or dimension in some cases.  If you want a complex example, check out all the complex different dimentions of [CAPCO markings](https://www.dni.gov/files/documents/FOIA/Public_CAPCO_Register%20and%20Manual%20v5.1.pdf) which can be simplied down to 
 
 <pre>
@@ -57,10 +56,12 @@ To access this document, the user must satisfy:
 <pre>
 user.security_level >= SECURITY_LEVEL
 AND
-user.security_compartments  must contain both COMPARTMENT1 AND COMPARTMENT2
+user.security_compartments must contain both 
+    COMPARTMENT1 AND COMPARTMENT2
 AND
 user.nationality must be either Country1 OR Country2
 </pre>
+
 
 
 Notice this is a [logical conjuction](https://en.wikipedia.org/wiki/Logical_conjunction) (aka a big AND) of smaller AND, OR, and scalar comparison statments.
@@ -171,24 +172,35 @@ If the user had all three tags the logic would look like this:
 <pre>
 (Beer AND securityTag_Count == 1)
 OR
-(DomesticBeer AND securityTag_Count == 1)
+(DomesticBeer AND 
+    securityTag_Count == 1)
 OR
-(HomeDrinking AND securityTag_Count == 1)
+(HomeDrinking AND 
+    securityTag_Count == 1)
 OR
-(Beer AND DomesticBeer AND securityTag_Count == 2)
+(Beer AND 
+    DomesticBeer AND 
+    securityTag_Count == 2)
 OR
-(Beer AND HomeDrinking AND securityTag_Count == 2)
+(Beer AND 
+    HomeDrinking AND 
+    securityTag_Count == 2)
 OR
-(DomesticBeer AND HomeDrinking AND securityTag_Count == 2)
+(DomesticBeer AND 
+    HomeDrinking AND 
+    securityTag_Count == 2)
 OR
-(Beer AND DomesticBeer AND HomeDrinking AND securityTag_Count == 3)
+(Beer AND 
+    DomesticBeer AND 
+    HomeDrinking AND 
+    securityTag_Count == 3)
 </pre>
 
 Our lives would be easier if there was some syntactic sugar (and later in-server optimization) for an array coverage query, but we can do the above logic with Elasticsearch's bool query
 
-```
+
 {'bool': {'should': [[{'bool': {'must': [[{'term': {'securityTags': 'Beer'}}, {'term': {'securityTag_Count': 1}}]]}}, {'bool': {'must': [[{'term': {'securityTags': 'DomesticBeer'}}, {'term': {'securityTag_Count': 1}}]]}}, {'bool': {'must': [[{'term': {'securityTags': 'HomeDrinking'}}, {'term': {'securityTag_Count': 1}}]]}}, {'bool': {'must': [[{'term': {'securityTags': 'Beer'}}, {'term': {'securityTags': 'DomesticBeer'}}, {'term': {'securityTag_Count': 2}}]]}}, {'bool': {'must': [[{'term': {'securityTags': 'Beer'}}, {'term': {'securityTags': 'HomeDrinking'}}, {'term': {'securityTag_Count': 2}}]]}}, {'bool': {'must': [[{'term': {'securityTags': 'DomesticBeer'}}, {'term': {'securityTags': 'HomeDrinking'}}, {'term': {'securityTag_Count': 2}}]]}}, {'bool': {'must': [[{'term': {'securityTags': 'Beer'}}, {'term': {'securityTags': 'DomesticBeer'}}, {'term': {'securityTags': 'HomeDrinking'}}, {'term': {'securityTag_Count': 3}}]]}}]]}}
-```
+
 
 or with nice json indenting: [pretty json version](https://gist.github.com/derickson/ef9c25fdc325340df034856b52b5806e)
 
@@ -298,5 +310,8 @@ My queries could probably use some tuning work to make sure filter caches are ki
 Clever people reading this may have realized it's faster to check for 'must_not' have HomeDriking than it is to check for all the combiantions of the other tags.  A good discussion of use-case by use-case optimization of LDAP using knowledge of the tags, tag cardnality etc can be found here:  [Discuss conversation from 2016](https://discuss.elastic.co/t/matching-by-array-elements/39530/2)
 
 My general hope is that LBAC can help people implement better security controls in Elasticsearch.  It's important to keep private data under control in an easy to maintain fashion and I'm going to continue working on this example in the future to make operationalizing LBAC easier and easier for implementers.
+
+
+
 
 

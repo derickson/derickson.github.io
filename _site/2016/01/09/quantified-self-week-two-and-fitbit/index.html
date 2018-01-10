@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Quantified Self: Week two progress and 'Near Real-Time' Fitibit activity - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>A geek in Washington, DC.</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    <div class="page-cover-image">
+      <img class="page-image" src=/images/ alt="Quantified Self: Week two progress and 'Near Real-Time' Fitibit activity">
+    </div> <!-- End Page Cover Image -->
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Quantified Self: Week two progress and 'Near Real-Time' Fitibit activity</h1>
+        <div class="page-date"><span>Jan 09, 2016&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p><img src="/images/posts/2016-01-09-dash.jpg" alt="Dashboard" title="Qantified Self Dashboard" /></p>
+
+<p>I’m about a week into quantified self tracking.  At this point my IFTTT and Zapier feeds are stable and I have good trust that the new data will have arrived in my Kibana dashboard each morning.  None of my behaviors and habits have changed of course.  Activity level-wise, they’ve probably gotten worse with all the hacking I’ve been doing to set up the heroku metrics service.  At least I’ll have the data to show improvement from a hacking baseline.  ;)</p>
+
+<h2 id="pulling-fitbit-data-in-real-time">Pulling Fitbit data in real time</h2>
+
+<p>I spent time this week pulling data from from Fitbit’s APIs and had to get deeper on Oauth2 integration.  Once my production site has a token I can use transfer it to my local dev setup and use it for about an hour, which was a good discovery.  I’d like to thank <a href="https://github.com/peebles">@Peebles</a> for the excellent example of simple Oauth2 registration for personal fitbit data with auto-token refresh built in: <a href="https://github.com/peebles/fitbit-oauth2">fitbit-oauth2 code</a> [1].  The result of the work is a <a href="https://github.com/derickson/metrics-rest-service/blob/86ba54a271b93a9869be90ec5bc1538cfc5f2c67/fitbitApp.js">fitbit module</a> [2] for my metrics-rest-service for polling fitbit services  backed by a <a href="https://github.com/derickson/metrics-rest-service/blob/86ba54a271b93a9869be90ec5bc1538cfc5f2c67/fitbit-oauth2/Fitbit.js">modification of Peeples’ project</a> [3] with a bug fixed.</p>
+
+<p>Fitbit only offers fine grained activity data for personal projects and close commerical partners.  As someone who works in the opens source space but is more of a Maker in my spare time want to applaud Fitbit for making their APIs so Maker approachable.  It’s easy to have everything locked down and unapproachable except to the koolaid drinkers or deeply integrating partners.  Having an open platform where data can both go in <em>AND</em> out is such a big deal.</p>
+
+<blockquote>
+  <p>“Fitbit is very supportive of non-profit research and personal projects.”</p>
+
+  <p>– Fitbit documentation on personal data feeds: <a href="https://dev.fitbit.com/docs/activity/#get-activity-intraday-time-series">link</a> [4]</p>
+</blockquote>
+
+<p>It’s quotes like that that make people want to work with your stuff. So thanks Fitbit.</p>
+
+<p><img src="/images/posts/2016-01-09-steps.jpg" alt="Fitbit data" title="Intra-day data from Fitbit" /></p>
+
+<p>I found through experimentation that Fitibit has about a 10 minute latency for making data that has been posted by your devices/phone to their services available to the fine grained APIs.  It will falsely report 0 steps for recent mintues.  This is a problem as I want to do an append only write workload to Elasticsearch if possible.  Going back over old data isn’t a huge problem, but I’d like to avoid it and as a result I have my code set up to not ask for data less than 20 minutes old and only check for data every 10 minutes or so.  The algorithm for doing this and backfilling data to the beginning of the year took a bit of event-based / asynchronous thinking.</p>
+
+<p>Every time I start hacking with NodeJS I have to get back into asynchronous thinking.  The biggest productivity pauses were all related to double-callback mistakes (some in borrowed code) and flooding connection pools by things not being serialized enough.  This is similar to me having to teach myself python again every year.  I need an async.map equivalent with a pooled job maximum so I stop flooding my Elasticsearch instance with concurrent connections.  I’ve probably found one before and just forgotten about it.  I’ll have to go back through my old code.</p>
+
+<p>Links:</p>
+
+<ul>
+  <li>[1] <a href="https://github.com/peebles/fitbit-oauth2">@Peeble’s fitbit-oauth2 code example</a></li>
+  <li>[2] and [3] <a href="https://github.com/derickson/metrics-rest-service/tree/86ba54a271b93a9869be90ec5bc1538cfc5f2c67">Snapshot of metrics serivce with fitbit ouath2 added</a></li>
+  <li>[4] <a href="https://dev.fitbit.com/docs/activity/#get-activity-intraday-time-series">fitbit manual for intraday data</a></li>
+</ul>
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Quantified Self: Week two progress and 'Near Real-Time' Fitibit activity&url=http://localhost:4000/2016/01/09/quantified-self-week-two-and-fitbit/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2016/01/09/quantified-self-week-two-and-fitbit/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2016/01/09/quantified-self-week-two-and-fitbit/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Maps and Profiling Performance - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>A geek in Washington, DC.</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    <div class="page-cover-image">
+      <img class="page-image" src=/images/ alt="Maps and Profiling Performance">
+    </div> <!-- End Page Cover Image -->
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Maps and Profiling Performance</h1>
+        <div class="page-date"><span>Dec 07, 2011&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>Kurt Cagle over at XML Today <a href="http://www.xmltoday.org/content/map-maker-map-maker-make-me-map">posted a great blog</a> about the map:map library in MarkLogic.  <a href="http://developer.marklogic.com/pubs/5.0/apidocs/map.html">map:map</a> is a hashtable-like map implementation inside MarkLogic that has measurable performance advantages over raw sequences and predicates in XQuery.  Wait … performance advantages?  How can one tell?  The quickest way is to punch up a code example in XQuery and run it in CQ or the new MarkLogic5 Query Console using the “Profile” mode.  You’ll get the runtime and a breakdown of each step of the XQuery evaluation and how it contributed to the total time.</p>
+
+<p>Here’s a trick with maps that Kurt didn’t mention.  You can subtract two maps quickly <em>diff</em> two lists of information.  First the slower XQuery sequences approach:</p>
+
+<pre>let $a := for $i in (1 to 10000) return xs:string($i)
+let $b := for $i in (1 to 10000) return if (xdmp:random(1000) &gt; 990) then () else xs:string($i)
+return
+$a[ fn:not( . = $b ) ]</pre>
+
+<p>This has around a 2.8 to 3 second run time on my laptop using the Query Console profile feature.  There are probably better ways to do this with XQuery, but I’m trying to demonstrate how cool maps are, so I’ll let that go for now.</p>
+
+<p>Here is the same code implemented with maps.  This has about a 0.1 second average run time my laptop.  The performance divide just gets wider as I increase the size of the lists being compared.</p>
+
+<pre>let $a := for $i in (1 to 10000) return xs:string($i)
+let $b := for $i in (1 to 10000) return if (xdmp:random(1000) &gt; 990) then () else xs:string($i)
+let $mapa := map:map()
+let $mapb := map:map()
+let $_ := for $av in $a return map:put($mapa, $av, $av)
+let $_ := for $bv in $b return map:put($mapb, $bv, $bv)
+return
+map:keys( $mapa - $mapb )</pre>
+
+<p> </p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Maps and Profiling Performance&url=http://localhost:4000/2011/12/07/maps-and-profiling-performance/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2011/12/07/maps-and-profiling-performance/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2011/12/07/maps-and-profiling-performance/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#map" class="tag">&#35; map</a>
+          
+            <a href="/tags#MarkLogic" class="tag">&#35; MarkLogic</a>
+          
+            <a href="/tags#performance" class="tag">&#35; performance</a>
+          
+            <a href="/tags#profiling" class="tag">&#35; profiling</a>
+          
+            <a href="/tags#XQuery" class="tag">&#35; XQuery</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Obstacle Course Tutorial 1: Loading public API data into ML - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>A geek in Washington, DC.</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    <div class="page-cover-image">
+      <img class="page-image" src=/images/ alt="Obstacle Course Tutorial 1: Loading public API data into ML">
+    </div> <!-- End Page Cover Image -->
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Obstacle Course Tutorial 1: Loading public API data into ML</h1>
+        <div class="page-date"><span>May 11, 2012&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <div id="attachment_436" class="wp-caption alignnone" style="width: 500px">
+  <a href="/wp-content/uploads/2012/05/obstacle.jpg"><img class="size-full wp-image-436" title="obstacle" src="/wp-content/uploads/2012/05/obstacle.jpg" alt="" width="500" height="285" /></a>
+  
+  <p class="wp-caption-text">
+    U.S. Air Force photo/Benjamin Faske
+  </p>
+</div>
+
+<p>I’ve written a tutorial or two for this site, but I’m going to take a shot at a different way of putting out training materials.  Call it, “training by obstacle course.”  I believe there is an audience for training that appreciates learning by challenge rather than copy-paste.  Personally I learn by doing, so in order to internalize a technology I prefer to figure things out myself using the existing API documentation and a push in the right direction.  Let me know what you think!</p>
+
+<h3 id="loading-public-data-into-ml-challenge">Loading public data into ML challenge:</h3>
+
+<p>Objective:</p>
+
+<ul>
+  <li>Periodically populate a MarkLogic database with interesting full text content from NPR</li>
+  <li>Get used to looking up XQuery and MarkLogic functions in the API documentation</li>
+</ul>
+
+<p>Prerequisitess:</p>
+
+<ul>
+  <li><a href="http://www.front2backdev.com/2012/05/03/introducing-developers-to-xquery-in-marklogic/">Introductory XQuery knowledge</a></li>
+  <li>A locally installed copy of MarkLogic (like the free Express edition!)</li>
+</ul>
+
+<p>Go to the <a href="http://www.npr.org/api/index">National Public Radio API</a> site and register a user account.  You can now get an API key to use their story API services.  These will get you an XML representation of stories in specific topics as well as full text transcriptions.  Play around with their query builders.  I decided to work on news stories from Afghanistan</p>
+
+<ul>
+  <li>http://api.npr.org/query?id=1149&amp;apiKey=PUT_YOUR_KEY_HERE</li>
+</ul>
+
+<p>Using your MarkLogic admin console (port 8001), create a new database called NPR.  You’ll have to create and attach a forest to this database before you’ll be able to use it.</p>
+
+<p>Using your query console (http://HOSTNAME:8000/qconsole/) pull data from NPR’s API into your NPR database</p>
+
+<ul>
+  <li>Don’t forget to set the Query Console content source to the NPR database</li>
+  <li>Check out the xmp:http-get() method from the <a href="http://community.marklogic.com/pubs/5.0/apidocs/All.html">MarkLogic XQuery API docs</a>.  (<a href="http://api.xqueryhacker.com/">Alternate searchable version</a>) This will pull data from NPR’s HTTP based API.</li>
+  <li>Note: xdmp:http-get returns two items.  The second item returned is the retrieved XML.</li>
+  <li>Insert the data into the NPR database using the xdmp:document-insert() function</li>
+</ul>
+
+<p>If you are using the NPR “query” API like I did, the returned XML has <story> tags which have inside them <transcript> tags that include links to secondary API calls for retrieving transcripts of the audio content.  You have the option of using the story tags as they are, deciding to follow the links to the transcripts, or both!</transcript></story></p>
+
+<ul>
+  <li>Modify your code to pull the same query, but now loop through the stories and possibly the embedded transcripts ( you could use a FLWOR statement )</li>
+  <li>For each story optionally retrieve the referenced transcript from the web and insert it into MarkLogic.  The URI you insert the file into should probably involved the unique story Id from within the retrieved data.</li>
+  <li>Check to see if the document exists already using fn:doc-available().  If the document is already there, just skip the write action ( you could use an IF / ELSE statement )</li>
+</ul>
+
+<p>Congrats!  You have now loaded data into MarkLogic as-is from a public API.  As a next step, deploying this code as a module</p>
+
+<ul>
+  <li>Make the above code an .xqy script and place it on the your file system.</li>
+  <li>Create an HTTP server on an open port which gets its data from the NPR database and the module from the file system with the “root” option set to the absolute path of  your folder containing the module.</li>
+  <li>Hitting this “deployed” script with a web browser at http://HOSTNAME:PORT/SCRIPTNAME.xqy will now execute the data loading module.</li>
+</ul>
+
+<p>Alternatively you could now configure a MarkLogic scheduled task to load live data from the NPR data feed on a regular cycle.  The scheduled task controls are in the admin console under <strong>Configure &gt; Groups &gt; group_name &gt; Scheduled Task</strong> inside the “Create”.  Tip: you’ll probably need to run the scheduled task as your admin user for now.  In a production situation you might consider creating a separate user with only the permissions needed to write to your database.</p>
+
+<p>Congratulations, you are now pulling in semi-real time data to MarkLogic.  (The only more real time would be if you could get a content provider to push you data as it happens rather than polling for it on a schedule)  Any search app we build on this data will now be instantly more interesting as it will have new data each time you visit it!</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Obstacle Course Tutorial 1: Loading public API data into ML&url=http://localhost:4000/2012/05/11/obstacle-course-tutorial-1-loading-public-api-data-into-ml/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2012/05/11/obstacle-course-tutorial-1-loading-public-api-data-into-ml/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2012/05/11/obstacle-course-tutorial-1-loading-public-api-data-into-ml/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#loading" class="tag">&#35; loading</a>
+          
+            <a href="/tags#MarkLogic" class="tag">&#35; MarkLogic</a>
+          
+            <a href="/tags#scheduled task" class="tag">&#35; scheduled task</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

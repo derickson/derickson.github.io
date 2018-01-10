@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Detecting Geo-Temporal Events with Elasticsearch Pipeline Aggregations - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>A geek in Washington, DC.</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    <div class="page-cover-image">
+      <img class="page-image" src=/images/ alt="Detecting Geo-Temporal Events with Elasticsearch Pipeline Aggregations">
+    </div> <!-- End Page Cover Image -->
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Detecting Geo-Temporal Events with Elasticsearch Pipeline Aggregations</h1>
+        <div class="page-date"><span>May 03, 2016&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p><img src="/images/posts/2016-05-03-predict.jpg" alt="Predicitons" title="Predictions" /></p>
+
+<p><em>Above: A temporal prediction of a one dimensional metric in Timelion.</em></p>
+
+<p><em>Worth noting, this talk is very much influenced by Zach Tong’s excellent series on <a href="https://www.elastic.co/blog/implementing-a-statistical-anomaly-detector-part-1">implementing a statistical Anomaly detector</a> with Elasticsearch. That’s a great place to start when reading on this topic.</em></p>
+
+<h2 id="the-problem-with-my-old-demo">The problem with my old demo</h2>
+
+<p>I love bikeshare data.  I’ve written a few posts in the last year using public data from the good folks at Washington DC’s Capital Bikeshare program. ( <a href="/2015/05/12/csv-bikeshare/">here</a> and <a href="/2015/08/26/pulling-and-splitting-live-xml/">here</a>) and if you’ve talked to me at a demo booth or presentation of Kibana you’ve probalby seen me show my dashboard of bikeshare rides in DC and zoom into the 4th of July to show the data anomaly right around the fireworks show.</p>
+
+<p><img src="/images/posts/2016-05-03-zoom.gif" alt="Zooming in on the 4th" title="4th of july data anomaly" /></p>
+
+<p>I love this demo! The <strong>problem</strong> is that it requires one to already have the knowledge of the data anomaly.  <em>What if Elasticsearch could help us find outliers and anomalies in the data automatically?</em>  Well, it can do that and it can even help us spot them happening in real time.  Let’s see if it can help us spot other events around the city.</p>
+
+<h2 id="elasticsearch-features">Elasticsearch features</h2>
+
+<p>I’ll need to use four key features of the Elasticsearch aggregations API.</p>
+
+<ul>
+  <li>Two kinds of bucket aggregations (feature 1) and (feature 2)</li>
+  <li>Nesting one aggregation inside another (feature 3)</li>
+  <li>Pipeline aggregations with seasonality adjusted moving averages (feature 4)</li>
+</ul>
+
+<p>The first part is being able to spot outliers in the data that are isolated to certain time and geo aspects of the data.  These are basic histograms and geo-grid couts of event occurrances.  There are direct calls to Elasticsearch’s aggregation APIs and directly related to queries visualized in Kibana.</p>
+
+<h3 id="1-geo-buckets">1) Geo Buckets</h3>
+<p><img src="/images/posts/2016-05-03-geobucketed.jpg" alt="Geo Buckets" /></p>
+
+<pre>
+GET /bike-dc/_search?search_type=count
+{
+  "aggs": {
+    "mygrid": {
+      "geohash_grid": {
+        "field": "startLocation",
+        "precision": 7
+      }
+    }
+  }
+}
+</pre>
+
+<h3 id="2-histogram-buckets">2) Histogram Buckets</h3>
+<p><img src="/images/posts/2016-05-03-histbucketed.jpg" alt="Time Buckets" /></p>
+
+<pre>
+GET /bike-dc/_search?search_type=count
+{
+  "aggs": {
+    "myhisto": {
+      "date_histogram": {
+        "field": "startDate",
+        "interval": "month"
+      }
+    }
+  }
+}
+</pre>
+
+<h3 id="3-nested-buckets">3) Nested Buckets</h3>
+<p>The next part is where things get fun.  Elasticsearch lets you nest bucket aggregtion within other aggregations.  We can combine the two bucket approaches above into a single analytic, asking Elasticsearch for histogram buckets <strong>inside</strong> a geo grid aggregation.  The result is a matrix of the event metrics over time for each grid of my map returned in a single rest call.</p>
+
+<p>Here’s a picture of bikeshare usage over several years to try to demonstrate the true meaning of the returned data.</p>
+
+<p><img src="/images/posts/2016-05-03-nestedbucketed.png" alt="Nested Buckets" /></p>
+
+<pre>
+GET /bike-dc/_search?search_type=count
+{
+  "aggs": {
+    "mygrid": {
+      "geohash_grid": {
+        "field": "startLocation",
+        "precision": 4
+      },
+      "aggs": {
+        "ingridhist": {
+          "date_histogram": {
+            "field": "startDate",
+            "interval": "year"
+          }
+        }
+      }
+    }
+  }
+}
+</pre>
+
+<h3 id="4-seasonal-moving-averages">4) Seasonal Moving Averages</h3>
+
+<p>Now for Each Bucket we can use the next power feature of Elasticsearch which is pipeline aggregations.  Colin Goodheart-Smithe wrote a <a href="https://www.elastic.co/blog/out-of-this-world-aggregations">great blog post</a> on computing derivatives with pipeline aggs, but what we’ll focus on moving averages.</p>
+
+<p>Similar to Zach Tong’s blog post we’ll compute a “suprise” factor for each hour of data in each grid of geospatial area of DC.  We’ll compute whether or not the number of bike rides departing from the area deviates from the general trend (moving average) of how many rides we expected to see depart from that station given general trends taking into account day of week and time of year.  This will help us differentiate between the <strong>signal and the noise</strong> which is a common problem in all analytics.</p>
+
+<p>There are <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-pipeline-movavg-aggregation.html">many kinds of moving averages</a> possible in Elasticsearch, but the one we are using will be Holt-Winters.  This “triple-exponential” moving average takes into account the current level, trend in that level, as well as a seasonality in it’s computation of the moving average.  Because capital bikeshare’s major periodic pattern is weekly, (every 7 days) we can ask for a moving average of bikeshare ridership and know if a spike is the normal Monday morning bike commute or something more interesting like a fireworks show or a baseball game.  Holt-Winters can even do predictions into the future; which is cool, but since we are just looking for data outliers in the time range of the data that we have that won’t be necessary.  Holt-Winters does require tweaking of coefficients for the relative weights of the three contributers to the “smart” average.  I played around and found I got the best results just using the auto-minimization function which tries to guess good coefficients through a simulated-annealing optimization algorithm.</p>
+
+<h2 id="putting-it-together">Putting it together</h2>
+
+<p>Here’s the final query I used to compute regionalized Geo-Temporal Seasonality adjusted moving averages.</p>
+
+<pre>
+GET /bike-dc/_search?search_type=count
+{
+  "aggs": {
+    "mygrid": {
+      "geohash_grid": {
+        "field": "startLocation",
+        "precision": 4
+      },
+      "aggs": {
+        "ingridhist": {
+          "date_histogram": {
+            "field": "startDate",
+            "interval": "hour"
+          },
+          "aggs": {
+            "the_count": {
+              "value_count": {
+                "field": "memberType"
+              }
+            },
+            "prediction": {
+              "moving_avg": {
+                "buckets_path": "the_count",
+                "window": 672,
+                "model": "holt_winters",
+                "minimize": true,
+                "settings": {
+                  "type": "mult",
+                  "period": 168
+                }
+              }  
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</pre>
+
+<p>Kibana itself doesn’t have pipeline aggregations yet or do much in the way of Geo-Temporal, so it won’t run this type of query directly.  However, with a quick python script I can run the custom query, loop over buckets in the aggregated data and re-insert “roll-up” aggregated events as a different metric type that can be visualized side by side with the original data.  (<a href="https://github.com/derickson/cabi2/blob/master/compute-geo-predict.py">code</a>).  The key line which computes the surprise factor:</p>
+
+<pre>
+doc['surprise'] = max(0, 10.0 * (doc["the_count"] - doc["prediction"]) / doc["prediction"])
+</pre>
+
+<p>This means that when the actual event count for an hour of bike rides in a grid on the map surpasses the general moving average count that would have been the prediction, we are guessing that there may be a data anomaly.</p>
+
+<p>Each grid of the geo graph effectively becomes a single metric time series with a prediction.  We can map the surprise value separately from the event density.</p>
+
+<p><img src="/images/posts/2016-05-03-predictdash.jpg" alt="Anomaly Dashboard" /></p>
+
+<h2 id="verifying-results">Verifying Results</h2>
+
+<p>If we zoom in on an area we’ll get a quick view of the ride event spike anomalies.  To test the accuracy with real world events, I’ll look for something I can get a difinitive event history for.  Zooming in on the baseball stadium on the in May of 2015 we see the following:</p>
+
+<p><img src="/images/posts/2016-05-03-basballmap.png" alt="Baseball Stadium Anomalies" /></p>
+
+<p>There were spikes above the trending moving average on the 4th, 5th, 6th, 8th, 9th, and a to a lesser degree (small suprise factor) on the 10th.</p>
+
+<p>Compare this to the Washington Nationals Away/Home schedule <a href="http://washington.nationals.mlb.com/schedule/?c_id=was#y=2015&amp;m=5&amp;calendar=DEFAULT">that week</a> and you’ll see we got it right.</p>
+
+<p><img src="/images/posts/2016-05-03-sched.jpg" alt="DC's baseball schedule" /></p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Detecting Geo-Temporal Events with Elasticsearch Pipeline Aggregations&url=http://localhost:4000/2016/05/03/geo-temporal-anomaly/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2016/05/03/geo-temporal-anomaly/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2016/05/03/geo-temporal-anomaly/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

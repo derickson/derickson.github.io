@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>2016 Quantified Year in Review - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>A geek in Washington, DC.</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    <div class="page-cover-image">
+      <img class="page-image" src=/images/ alt="2016 Quantified Year in Review">
+    </div> <!-- End Page Cover Image -->
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">2016 Quantified Year in Review</h1>
+        <div class="page-date"><span>Dec 24, 2016&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p><img src="/images/posts/2016-12-24-beerBar.jpg" alt="Beer Bar Graph" /></p>
+
+<p>At the beginning of the year I set out on a <a href="/2016/01/03/quantified-self-ifttt-zapier-elasticsearch/">Quantified Self challenge</a>.  Some tracking activities dropped off after only a few weeks (like movie and tv tracking).  I blame the manual entry required during couch time when I don’t feel like pulling out my phone. On the other hand, checking in all my beers to Untappd was easy to keep up, and the main reason was that I had a near-real-time visualization service running all year long to help reinforce the completionist part of my brain that wanted the visualization to be accurate … or just funny due to the hilarious beer names.</p>
+
+<p>Only the data sources that logged without me having to take extra action or had instant gratification dashboards lasted the whole year.  I suspect this will inform my Quantified Self efforts for 2017.</p>
+
+<h2 id="steps">Steps</h2>
+
+<p>I started the year actually wearing two “smart-watches”, putting on both a first generation Apple Watch and my Fitbit Charge HR.  The Apple watch became the watch I wanted to have on my wrist, but getting step data off the apple watch given the privacy protections and complete lack of non-native app APIs to access apple health data proved extremely difficult. So the Apple watch became my watch with fitbit being my real-time tracker.  Due to app synching issues, halfway into the year I stopped pulling my steps in real time or even daily.  These days I only wear the Apple watch, whcih means the following graphs are generated by manually (yuck) pulling the data off my phone using <a href="https://itunes.apple.com/us/app/qs-access/id920297614">QS Access</a>, proccessing the data with a small python program, and loading into my Elastic cluster.</p>
+
+<p><img src="/images/posts/2016-12-24-steps.jpg" alt="Steps" /></p>
+
+<p>Depsite being a data black whole, and having no out-of-the-box support for moving data from one phone to another, the one advantage of Apple devices is that the watch’s step counter and phone’s acceleromater step counter are merged by the apple health app.  Even on days when I didn’t wear the apple watch I’ll get some data from the phone’s sensor’s directly.</p>
+
+<h2 id="travel">Travel</h2>
+
+<p>I track all my work and fun travel in <a href="tripit.com">TripIt</a>.  I took 25 trips in 2016.  That’s leaving home every other week.  Most of the trips were to cover my cusomters, who range up and down US East.</p>
+
+<p><img src="/images/posts/2016-12-24-travel.jpg" alt="Travel" /></p>
+
+<h2 id="beer">Beer</h2>
+
+<p>I track the beer I drink in <a href="untappd.com">Untappd</a>.  My wife is something of a beer connoisseur, so we’ve picked up the fun hobby of trying to drink beer we haven’t had when we are out on the town or picking out mixer-six packs at the local craft beer shop to split at dinner.</p>
+
+<p>In the visualization you can see the week we took a cruise to the Carribean (and left the cell phone off) as well as the massive spike for a brewery tour in Charlottesville, VA right after getting married:</p>
+
+<p><img src="/images/posts/2016-12-24-beerBar.jpg" alt="Beer Bar Graph" /></p>
+
+<p>Here is a map of the locations where that beer was consumed:</p>
+
+<p><img src="/images/posts/2016-12-24-beerMap.jpg" alt="Beer Map" /></p>
+
+<p>And here is the impact on my waistline, the data from my <a href="https://www.fitbit.com/aria">fitbit scale</a>:</p>
+
+<p><img src="/images/posts/2016-12-24-weight.jpg" alt="Fitbit scale" /></p>
+
+<h2 id="bicycle">Bicycle</h2>
+
+<p>I transferred all my data from Endomondo to <a href="strava.com">Strava</a> this year. The visualizations aren’t as good but Strava is the app people I know seem to be using, so I’ve gone with my social network.  I’ll ride more when the weather gets better so I look forward to trying Strava’s features tracking improvement for sections of one’s common routes.</p>
+
+<p><img src="/images/posts/2016-12-24-bike.jpg" alt="Travel" /></p>
+
+<h2 id="car">Car</h2>
+
+<p>I use an <a href="https://www.automatic.com/">Automatic</a> IOT sensor on my car.  The app does all the data tracking for me and spits out some fun visualizations</p>
+
+<p><img src="/images/posts/2016-12-24-drivingNum.jpg" alt="Travel" /></p>
+
+<p><img src="/images/posts/2016-12-24-driving.jpg" alt="Travel" /></p>
+
+<h2 id="other-stats">Other Stats</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Stat</th>
+      <th style="text-align: center">Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Roller Derby Games Officiated</td>
+      <td style="text-align: center">10</td>
+    </tr>
+    <tr>
+      <td>Role Playing Game Sessions Run</td>
+      <td style="text-align: center">3</td>
+    </tr>
+  </tbody>
+</table>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=2016 Quantified Year in Review&url=http://localhost:4000/2016/12/24/quantified-year-review/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2016/12/24/quantified-year-review/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2016/12/24/quantified-year-review/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

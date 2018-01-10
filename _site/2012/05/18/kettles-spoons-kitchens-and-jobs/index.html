@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Kettles, Spoons, Kitchens, and Jobs - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>A geek in Washington, DC.</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    <div class="page-cover-image">
+      <img class="page-image" src=/images/ alt="Kettles, Spoons, Kitchens, and Jobs">
+    </div> <!-- End Page Cover Image -->
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Kettles, Spoons, Kitchens, and Jobs</h1>
+        <div class="page-date"><span>May 18, 2012&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p><em>Using Kettle – Spoon ETL tool to move data from an RDBMS to MarkLogic</em></p>
+
+<p>Don’t get me wrong.  My ETL-fu is strong.  Give me some SQL, XQuery, Java, Perl, and Python and I am a dangerous man when it comes to rapidly taking data out of your beloved RDBMS silo and putting it into a NoSQL database.  However scaling that ETL process to a large IT program that handles dozens of databases with thousands of tables can be a schedule and maintenance cost nightmare.  In this blog post I’m exploring an approach that I haven’t really tackled in a few years … using a visual ETL tool to pull data from a relational database, transform it into XML, and then upload it into a NoSQL database. (in this case MarkLogic)</p>
+
+<p>I’ve had several bad experiences with open source ETL so I’ve come to demand two things:</p>
+
+<ol>
+  <li>I need to be able to run the ETL jobs that I create in the tool outside of the IDE without upgrading to an enterprise edition</li>
+  <li>The software needs to pass the open source “sniff test.”  By that I mean that I need to be able to download it from the internet, install it, and get a HelloWorld! working within 30 minutes.</li>
+</ol>
+
+<p>I was able to get a basic example working with <a href="http://kettle.pentaho.com/">Kettle Spoon</a> 4.2.0 (related to Pentaho Data Integration), but I had to give up on two or three other tools, before feeling like I had enough to feel justified writing a blog post.</p>
+
+<h3 id="setup">Setup</h3>
+
+<p>I have MarkLogic 5.0 and PostgreSQL 9.1 running on one laptop and Spoon running on a second Windows laptop (it wouldn’t open on my Mac, though most people’s Youtube tutorial videos seem to be on Macs).  My PostgreSQL server has a database named “dave” with a table named “call” to represent call log information:</p>
+
+<p><a href="/wp-content/uploads/2012/05/postgre.jpg"><img class="alignnone size-full wp-image-454" title="postgre" src="/wp-content/uploads/2012/05/postgre.jpg" alt="PostgreSQL source data" width="734" height="582" /></a></p>
+
+<h3 id="etl-design">ETL Design</h3>
+
+<p>I’m going to pull data from a single PostgreSQL table using a JDBC connection from my ETL tool, map it’s columns to elements of a schema-less XML file, and then POST the file to a waiting HTTP accessible service (POX more than REST) over on my MarkLogic.  Ideally the MarkLogic endpoint would insert the file into a database, but for demo purposes I am just logging the received XML:</p>
+
+<pre>xquery version "1.0-ml";
+xdmp:log(xdmp:quote(xdmp:get-request-body("xml")))</pre>
+
+<h3 id="spoon-transform">Spoon Transform</h3>
+
+<p>After creating a pretty generic JDBC connection to my PostgreSQL database, the first step was to create a Spoon Tranform</p>
+
+<p><a href="/wp-content/uploads/2012/05/pg2ml.jpg"><img class="alignnone size-full wp-image-455" title="pg2ml" src="/wp-content/uploads/2012/05/pg2ml.jpg" alt="transform" width="803" height="402" /></a></p>
+
+<p>The first widget here is an Input &gt; Table input running a SQL call of</p>
+
+<pre>SELECT * from call</pre>
+
+<p>against my database connection.  The second widget is a Transform &gt; Add XML tool which takes the row data from the table and, with some clicking, auto maps it to a flat XML structure.  The phone number integer from the call table was outputting with commas until I switched it to have a formatting pattern of #.</p>
+
+<p><a href="/wp-content/uploads/2012/05/xmlcolumn.jpg"><img class="alignnone size-full wp-image-456" title="xmlcolumn" src="/wp-content/uploads/2012/05/xmlcolumn.jpg" alt="Add XML Column widget" width="612" height="646" /></a></p>
+
+<p>The last step is a Lookup &gt; Rest Client.  This appears to be a relatively new feature added to support all the NoSQL databases being used out there that use REST as their primary connection mechanism.  I just have to target a HTTP exposed XQuery module with a POST call and make sure I pass the output variable the Add XML step modified.</p>
+
+<p>A test run results in the following on my MarkLogic ErrorLog.txt file (the expected result of the xdmp:log call)</p>
+
+<pre>Info: 6099-pentaho: &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+Info: 6099-pentaho: &lt;call xml:lang="en"&gt;&lt;id&gt;1&lt;/id&gt;&lt;phone&gt;3235551234&lt;/phone&gt;&lt;comments&gt;Called Home&lt;/comments&gt;&lt;name&gt;Dave's Family&lt;/name&gt;&lt;/call&gt;
+Info: 6099-pentaho: &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+Info: 6099-pentaho: &lt;call xml:lang="en"&gt;&lt;id&gt;2&lt;/id&gt;&lt;phone&gt;3235551234&lt;/phone&gt;&lt;comments&gt;Called Home Again&lt;/comments&gt;&lt;name&gt;Dave's Family&lt;/name&gt;&lt;/call&gt;
+Info: 6099-pentaho: &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+ …</pre>
+
+<p>As a final step I export the Transform to the filesyetm as a .ktr file using the Export file menu item. This will help when trying to run the ETL process from the command line.</p>
+
+<h3 id="configuring-a-job-for-the-transform">Configuring a job for the transform</h3>
+
+<p>Kettle has a concept of a Job, which allows control from a flow composed of Transforms.  The following is a simple Job whose only purpose is exposing the Transform we made above.  The transform step is configured run the .ktr file we made above.</p>
+
+<p>I then export this job to a .kjb using the same Export feature</p>
+
+<h3 id="running-from-the-command-line">Running from the Command Line</h3>
+
+<p>And now the most important part!  Being able to run the ETL from outside of the client GUI.   This part is absolutely essential because it allows me to use the ETL as a scheduled job or in a continous integration cycle.</p>
+
+<p>The following is the command I run from the Windows command line to run my job:</p>
+
+<pre>kitchen.bat /file:.\mytransform\job.kjb /level:Minimal</pre>
+
+<p>If I were to get my Mac version of Kettle working, this is what I would run:</p>
+
+<pre>./kitchen.sh -file=./mytransform/job.kjb -level=Minimal</pre>
+
+<h3 id="next-experiments">Next Experiments</h3>
+
+<p>Now I have to figure out if the tool can be used to export hierarchical XML obtained from a join across tables in the relational database.  I’ll leave that for another time.</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Kettles, Spoons, Kitchens, and Jobs&url=http://localhost:4000/2012/05/18/kettles-spoons-kitchens-and-jobs/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2012/05/18/kettles-spoons-kitchens-and-jobs/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2012/05/18/kettles-spoons-kitchens-and-jobs/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#ETL" class="tag">&#35; ETL</a>
+          
+            <a href="/tags#Kettle" class="tag">&#35; Kettle</a>
+          
+            <a href="/tags#MarkLogic" class="tag">&#35; MarkLogic</a>
+          
+            <a href="/tags#Pentaho" class="tag">&#35; Pentaho</a>
+          
+            <a href="/tags#PostgreSQL" class="tag">&#35; PostgreSQL</a>
+          
+            <a href="/tags#RDBMS" class="tag">&#35; RDBMS</a>
+          
+            <a href="/tags#Spoon" class="tag">&#35; Spoon</a>
+          
+            <a href="/tags#XML" class="tag">&#35; XML</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

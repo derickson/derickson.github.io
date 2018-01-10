@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Pulling and Splitting live XML with Logstash - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>A geek in Washington, DC.</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    <div class="page-cover-image">
+      <img class="page-image" src=/images/ alt="Pulling and Splitting live XML with Logstash">
+    </div> <!-- End Page Cover Image -->
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Pulling and Splitting live XML with Logstash</h1>
+        <div class="page-date"><span>Aug 26, 2015&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p><img src="/images/posts/2015-08-26-live.jpg" alt="Live Kibana Demo" title="Live Kibana Demo" /></p>
+
+<p>As someone who demos Elasticsearch and Kibana quite a bit, the new “http_poller” input to Logstash [1] is probably the most useful tool I have yet run into for quickly cooking up real-time demos for Elasticsearch that use <em>live</em> data.</p>
+
+<p>Here’s a quick outline of what I’m going to do in logstash:</p>
+
+<pre>
+## Outline
+input {
+  http_poller {  }
+}
+
+filter {
+  xml {  }
+  split {  }
+  mutate {  }
+  date {  }
+}
+
+output {
+  stdout { codec =&gt; dots }
+  elasticsearch {  }
+}
+</pre>
+
+<p><img src="/images/posts/2015-08-26-live2.jpg" alt="Architecture" title="Architecture" /></p>
+
+<p>We start with the poller.  This is the part I love.  No more writing cron jobs and tiny python scripts just to get get data from the web on a schedule.  In order for this to work you have to install the plugin using Logstash’s new ruby gem based plugin install feature.  In this case I’m grabbing the Captial Bikeshare station avaialability XML web endpoint every 60 seconds.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">input</span> <span class="p">{</span>
+  <span class="c1">## pull data from Capital Bikeshare every 60 seconds</span>
+  <span class="n">http_poller</span> <span class="p">{</span>
+    <span class="n">urls</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="n">bikeshare_dc</span> <span class="o">=&gt;</span> <span class="s2">"https://www.capitalbikeshare.com/data/stations/bikeStations.xml"</span>
+    <span class="p">}</span>
+    <span class="n">request_timeout</span> <span class="o">=&gt;</span> <span class="mi">30</span>
+    <span class="n">interval</span> <span class="o">=&gt;</span> <span class="mi">60</span>
+    <span class="n">codec</span> <span class="o">=&gt;</span> <span class="s2">"plain"</span>
+    <span class="n">metadata_target</span> <span class="o">=&gt;</span> <span class="s2">"http_poller_metadata"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Each pull is a huge XML file.  Inside this file is a list of enumerated station data inside a series of tags all called &lt;station&gt; .  You can do a one time pull with your web browser by hitting the following link:</p>
+
+<p><a href="https://www.capitalbikeshare.com/data/stations/bikeStations.xml">https://www.capitalbikeshare.com/data/stations/bikeStations.xml</a></p>
+
+<p>the format is something like this:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  <span class="nt">&lt;stations&gt;</span>
+    <span class="nt">&lt;station&gt;</span> ... <span class="nt">&lt;/station&gt;</span>
+    <span class="nt">&lt;station&gt;</span> ... <span class="nt">&lt;/station&gt;</span>
+    <span class="nt">&lt;station&gt;</span> ... <span class="nt">&lt;/station&gt;</span>
+    ...</code></pre></figure>
+
+<p>At this point in our logstash pipeline, the XML payload is entirely in the “message” field as a string.  The first step is to tell Logstash to interpret that string as XML and put the deserialized data into a field called “parsed”.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="c1">## interpret the message payload as XML</span>
+  <span class="n">xml</span> <span class="p">{</span>
+    <span class="n">source</span> <span class="o">=&gt;</span> <span class="s2">"message"</span>
+    <span class="n">target</span> <span class="o">=&gt;</span> <span class="s2">"parsed"</span>
+  <span class="p">}</span></code></pre></figure>
+
+<p>Next we split the big XML event into a separate event per station with the split command.  Rather than keep everything in there, we’ll just pull out a couple of specific values that I want.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="c1">## Split out each "station" record in the XML into a different event</span>
+  <span class="nb">split</span> <span class="p">{</span>
+    <span class="n">field</span> <span class="o">=&gt;</span> <span class="s2">"[parsed][station]"</span>
+    <span class="n">add_field</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">## generate a unique id for the station # X the sensor time to prevent duplicates</span>
+      <span class="nb">id</span>                  <span class="o">=&gt;</span> <span class="s2">"%{[parsed][station][id]}-%{[parsed][station][lastCommWithServer]}"</span>
+      <span class="n">stationName</span>                <span class="o">=&gt;</span> <span class="s2">"%{[parsed][station][name]}"</span>
+      <span class="n">lastCommWithServer</span>  <span class="o">=&gt;</span> <span class="s2">"%{[parsed][station][lastCommWithServer]}"</span>
+      <span class="n">lat</span>                 <span class="o">=&gt;</span> <span class="s2">"%{[parsed][station][lat]}"</span>
+      <span class="n">long</span>                <span class="o">=&gt;</span> <span class="s2">"%{[parsed][station][long]}"</span>
+      <span class="n">numBikes</span>             <span class="o">=&gt;</span> <span class="s2">"%{[parsed][station][nbBikes]}"</span>
+      <span class="n">numEmptyDocks</span>        <span class="o">=&gt;</span> <span class="s2">"%{[parsed][station][nbEmptyDocks]}"</span>
+    <span class="p">}</span>
+  <span class="p">}</span></code></pre></figure>
+
+<p>Next we do some type correction, correct formatting for the geospatial point, and interpretation of the source date.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="n">mutate</span> <span class="p">{</span>
+    <span class="c1">## Convert the numeric fileds to the appropriate data type from strings</span>
+    <span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="s2">"numBikes"</span>       <span class="o">=&gt;</span> <span class="s2">"integer"</span>
+      <span class="s2">"numEmptyDocks"</span>  <span class="o">=&gt;</span> <span class="s2">"integer"</span>
+      <span class="s2">"lat"</span>           <span class="o">=&gt;</span> <span class="s2">"float"</span>
+      <span class="s2">"long"</span>          <span class="o">=&gt;</span> <span class="s2">"float"</span>
+    <span class="p">}</span>
+    <span class="c1">## put the geospatial value in the correct [ longitude, latitude ] format</span>
+    <span class="n">add_field</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">"location"</span> <span class="o">=&gt;</span> <span class="p">[</span> <span class="s2">"%{[long]}"</span><span class="p">,</span> <span class="s2">"%{[lat]}"</span> <span class="p">]}</span>
+    <span class="c1">## get rid of the extra fields we don't need</span>
+    <span class="n">remove_field</span> <span class="o">=&gt;</span> <span class="p">[</span> <span class="s2">"message"</span><span class="p">,</span> <span class="s2">"parsed"</span><span class="p">,</span> <span class="s2">"lat"</span><span class="p">,</span> <span class="s2">"long"</span><span class="p">,</span> <span class="s2">"host"</span><span class="p">,</span> <span class="s2">"http_poller_metadata"</span><span class="p">]</span>
+  <span class="p">}</span>
+ 
+<span class="c1">## use the embedded Unix timestamp </span>
+ <span class="n">date</span> <span class="p">{</span>
+    <span class="n">match</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"lastCommWithServer"</span><span class="p">,</span> <span class="s2">"UNIX_MS"</span><span class="p">]</span>
+    <span class="n">remove_field</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"lastCommWithServer"</span><span class="p">]</span>
+  <span class="p">}</span></code></pre></figure>
+
+<p>And we wrap up by inserting the result into Elasticsearch</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">output</span> <span class="p">{</span>
+  <span class="c1"># stdout { codec =&gt; rubydebug }</span>
+  <span class="n">stdout</span> <span class="p">{</span> <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">dots</span> <span class="p">}</span>
+  <span class="n">elasticsearch</span> <span class="p">{</span>
+    <span class="c1">## use a time aware index name</span>
+    <span class="n">index</span> <span class="o">=&gt;</span> <span class="s2">"bikestatus-dc-%{+YYYY.MM.dd}"</span>
+    <span class="n">protocol</span> <span class="o">=&gt;</span> <span class="s2">"http"</span>
+    <span class="c1">## not super important, but it makes sense to override the default which is "log"</span>
+    <span class="n">document_type</span> <span class="o">=&gt;</span> <span class="s2">"bikestatus"</span>
+    <span class="c1">## use the generated id as the document id to prevent duplicates</span>
+    <span class="n">document_id</span> <span class="o">=&gt;</span> <span class="s2">"%{[id]}"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>It’s super important to set up the Elasticsearch mapping before indexing and data (a.k.a. running logstash with this config file).  The following mapping template tells Logstash what kind of mapping to set up every time logstash starts an index for a new date.  Note the special handling on the geospatial value to make sure we use the latest and greates features of Elasticsearch 1.5.2+ .  The setting “geohash”: true is especially important.  Without that we won’t really being doing any geo-indexing.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">PUT</span> <span class="nx">_template</span><span class="o">/</span><span class="nx">bikestatus</span>
+<span class="p">{</span>
+  <span class="s2">"template"</span><span class="p">:</span> <span class="s2">"bikestatus-*"</span><span class="p">,</span>
+  <span class="s2">"settings"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"number_of_shards"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"number_of_replicas"</span><span class="p">:</span> <span class="mi">0</span>
+  <span class="p">},</span>
+  <span class="s2">"mappings"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"_default_"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"dynamic_templates"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">"string_fields"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"mapping"</span><span class="p">:</span> <span class="p">{</span>
+              <span class="s2">"index"</span><span class="p">:</span> <span class="s2">"not_analyzed"</span><span class="p">,</span>
+              <span class="s2">"omit_norms"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+              <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"string"</span><span class="p">,</span>
+              <span class="s2">"doc_values"</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">},</span>
+            <span class="s2">"match_mapping_type"</span><span class="p">:</span> <span class="s2">"string"</span><span class="p">,</span>
+            <span class="s2">"match"</span><span class="p">:</span> <span class="s2">"*"</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="s2">"_all"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"enabled"</span><span class="p">:</span> <span class="kc">false</span>
+      <span class="p">},</span>
+      <span class="s2">"properties"</span><span class="p">:</span> <span class="p">{</span>
+         <span class="s2">"@timestamp"</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"date"</span><span class="p">,</span>
+          <span class="s2">"format"</span><span class="p">:</span> <span class="s2">"dateOptionalTime"</span><span class="p">,</span>
+          <span class="s2">"doc_values"</span><span class="p">:</span> <span class="kc">true</span>
+         <span class="p">},</span>
+        <span class="s2">"location"</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"geo_point"</span><span class="p">,</span>
+          <span class="s2">"geohash"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+          <span class="s2">"fielddata"</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"format"</span> <span class="p">:</span> <span class="s2">"compressed"</span><span class="p">,</span>
+            <span class="s2">"precision"</span> <span class="p">:</span> <span class="s2">"20m"</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">"numBikes"</span><span class="p">:</span> <span class="p">{</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"integer"</span><span class="p">,</span><span class="s2">"doc_values"</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>
+        <span class="s2">"numEmptyDocks"</span><span class="p">:</span> <span class="p">{</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"integer"</span><span class="p">,</span><span class="s2">"doc_values"</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>and to make Kibana more intelligent about looking at recent data, we’ll use a time based index pattern when making our index pattern in Kibana</p>
+
+<pre>
+[bikestatus-dc-]YYYY.MM.DD
+</pre>
+
+<p>the complete code can be found here [2]</p>
+
+<ul>
+  <li>[1] <a href="https://www.elastic.co/guide/en/logstash/current/plugins-inputs-http_poller.html">http_poller</a></li>
+  <li>[2] <a href="https://gist.github.com/derickson/83022e9c5154165ff975">full source code</a></li>
+</ul>
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Pulling and Splitting live XML with Logstash&url=http://localhost:4000/2015/08/26/pulling-and-splitting-live-xml/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2015/08/26/pulling-and-splitting-live-xml/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2015/08/26/pulling-and-splitting-live-xml/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-01-10T09:49:30-05:00</updated><id>http://localhost:4000/</id><title type="html">Front2BackDev</title><subtitle>The Full Stack tech explorations of Dave Erickson.  
+</subtitle><author><name>Dave Erickson</name></author><entry><title type="html">2017 Quantified Year in Review</title><link href="http://localhost:4000/2018/01/01/year-in-review-17/" rel="alternate" type="text/html" title="2017 Quantified Year in Review" /><published>2018-01-01T07:00:00-05:00</published><updated>2018-01-01T07:00:00-05:00</updated><id>http://localhost:4000/2018/01/01/year-in-review-17</id><content type="html" xml:base="http://localhost:4000/2018/01/01/year-in-review-17/">&lt;p&gt;Another year another Quantified Self blog post&lt;/p&gt;
+
+&lt;h2 id=&quot;weather&quot;&gt;Weather&lt;/h2&gt;
+
+&lt;p&gt;My magic mirror logged the temperature to Elasticsearch every 10 minutes this year.  This is my quick visualization of actual vs predicted daily high and low temperatures.  The data source is wunderground.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2018-01-01-qs01.jpg&quot; alt=&quot;Weather&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can even see the affect of the partial solar eclipse that happened in North America on August 21st, 2017&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2018-01-01-qs02.jpg&quot; alt=&quot;Weather Eclipse&quot; /&gt;￼&lt;/p&gt;
+
+&lt;h2 id=&quot;weight&quot;&gt;Weight&lt;/h2&gt;
+
+&lt;p&gt;I ended the year heavier than I started it, having spent the summer slightly lighter.  I use an Fitbit Aria scale connected to my Elasticsearch cluster with IFTTT&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2018-01-01-qs03.jpg&quot; alt=&quot;Weight&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;travel&quot;&gt;Travel&lt;/h2&gt;
+
+&lt;p&gt;Adding up the hours I spent 6 days in the air this year.  I track my travel in Tripit and used jetitup.com’s tools for visualization and summarization&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2018-01-01-qs04.jpg&quot; alt=&quot;Travel Map&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2018-01-01-qs05.jpg&quot; alt=&quot;Travel Stats&quot; /&gt;
+￼&lt;/p&gt;
+
+&lt;h2 id=&quot;beer&quot;&gt;Beer&lt;/h2&gt;
+
+&lt;p&gt;I taste a lot of beer and log all the beer I drink with the Untappd mobile app.  I use a custom app running in Heroku to poll my Untappd API for new checkins and log the data to Elasticsearch.  While many of these checkins are half beers tasted with my wife of part of flights while visiting a brewery, it still represents a solid pattern of calorie consumption I’m going to need to change if I want to drop some weight.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2018-01-01-qs06.jpg&quot; alt=&quot;Beer daily average&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2018-01-01-qs07.jpg&quot; alt=&quot;Beer per week&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2018-01-01-qs08.jpg&quot; alt=&quot;Beer around the world&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2018-01-01-qs09.jpg&quot; alt=&quot;Beer top breweries&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;driving&quot;&gt;Driving&lt;/h2&gt;
+
+&lt;p&gt;I have an Automatic IOT sensor on my car, and log all car rides using an IFTTT trigger to a google spreadsheet which I then parse into Elasticsearch.  The visualizations out the standard dashboards are so pretty though, so I’ll just put up my favorites here.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2018-01-01-qs10.jpg&quot; alt=&quot;Driving Stats&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2018-01-01-qs11.jpg&quot; alt=&quot;Driving Large Map&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2018-01-01-qs12.jpg&quot; alt=&quot;Driving Area Map&quot; /&gt;
+￼&lt;/p&gt;
+&lt;h2 id=&quot;movies&quot;&gt;Movies&lt;/h2&gt;
+
+&lt;p&gt;While I didn’t track these in real time, Fandango receipts and my viewing history from Netflix and Amazon video were enough to back-populate my letterboxd account.  I paid for the pro account to get their beautiful visualizations.  I’ve watched a lot of TV shows rather than movies in 2017.  Supposedly we live in the golden age of TV, so I’m still considering whether or not I want to track the TV I watch.  Hours of screen time with TV and which shows I liked might be better.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://letterboxd.com/azathought/year/2017/&quot;&gt;https://letterboxd.com/azathought/year/2017/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2018-01-01-qs13.jpg&quot; alt=&quot;Movie Stats&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2018-01-01-qs14.jpg&quot; alt=&quot;Movie Tops&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;books&quot;&gt;Books&lt;/h2&gt;
+
+&lt;p&gt;I read lots of comic books this year using the Marvel Unlimited service.  I really only read 6 real Books in 2017, so I’ve set a goal for next year of 12 and will use GoodReads to track my progress&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Artemis by Andy Weir&lt;/li&gt;
+  &lt;li&gt;Who Thought This Was a Good Idea?: And Other Questions You Should Have Answers to When You Work in the White House by Alyssa Mastromonaco&lt;/li&gt;
+  &lt;li&gt;French Revolutions For Beginners by Michael J LaMonica&lt;/li&gt;
+  &lt;li&gt;What If?: Serious Scientific Answers to Absurd Hypothetical Questions by Randall Munroe&lt;/li&gt;
+  &lt;li&gt;Leviathan Wakes by James S.A. Corey&lt;/li&gt;
+  &lt;li&gt;Armada by Ernest Cline&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Dave Erickson</name></author><summary type="html">Another year another Quantified Self blog post</summary></entry><entry><title type="html">End-to-end docker-compose example for Elastic Stack 6 beta</title><link href="http://localhost:4000/2017/08/10/elastic6-beta1-docker/" rel="alternate" type="text/html" title="End-to-end docker-compose example for Elastic Stack 6 beta" /><published>2017-08-10T04:00:00-04:00</published><updated>2017-08-10T04:00:00-04:00</updated><id>http://localhost:4000/2017/08/10/elastic6-beta1-docker</id><content type="html" xml:base="http://localhost:4000/2017/08/10/elastic6-beta1-docker/">&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: __with the release of Elastic 6.0 and 6.1 check the official documentation for all the updates to the official docker images __&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: Also!!! check out this cool project.  It doesn’t have security, but it’s a super easy docker-compose file version of many of the official tools. &lt;a href=&quot;https://github.com/elastic/stack-docker&quot;&gt;https://github.com/elastic/stack-docker&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Source for this project: &lt;a href=&quot;https://github.com/derickson/docker-es&quot;&gt;https://github.com/derickson/docker-es&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I took a few minutes this morning and updated my end-to-end docker example of the Elastic stack to the 6.0 beta1 which released this week.  There are new official docker images for the 6.0 betas for Elasticsearch, Logstash, Kibana, and Filebeat (the last of which I have not yet incorporated)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/6.0/docker.html&quot;&gt;Elasticsearch&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/kibana/6.0/_configuring_kibana_on_docker.html&quot;&gt;Kibana&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/logstash/6.0/docker.html&quot;&gt;Logstash&lt;/a&gt; (instructions somewhat sparse)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/filebeat/6.0/running-on-docker.html&quot;&gt;Filebeat&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note that I’ve had to enable &lt;code class=&quot;highlighter-rouge&quot;&gt;xpack.security.enabled=false&lt;/code&gt; as ES 6 has new bootstrap checks for security.  Consider this example a dev only playground.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2017-08-10-diagram.png&quot; alt=&quot;Elastic stack docker&quot; title=&quot;docker diagram&quot; /&gt;&lt;/p&gt;</content><author><name>Dave Erickson</name></author><summary type="html">Update: __with the release of Elastic 6.0 and 6.1 check the official documentation for all the updates to the official docker images __</summary></entry><entry><title type="html">Label-based Access Control in Elasticsearch</title><link href="http://localhost:4000/2017/08/02/label-based-access-control/" rel="alternate" type="text/html" title="Label-based Access Control in Elasticsearch" /><published>2017-08-02T08:00:00-04:00</published><updated>2017-08-02T08:00:00-04:00</updated><id>http://localhost:4000/2017/08/02/label-based-access-contolr</id><content type="html" xml:base="http://localhost:4000/2017/08/02/label-based-access-control/">&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: &lt;strong&gt;Elasticsearch added many of the tools needed (and mentioned in the Further Work section below) to implement very clean ABAC policies in Elasticsearch 6.1.  This method below is out of date&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;post-image&quot;&gt;
+	&lt;img src=&quot;/assets/img/posts/2017-08-02-beforeafter.jpg&quot; alt=&quot;Securing Sensitive Data&quot; /&gt;&lt;br /&gt;
+	&lt;em&gt;Securing Sensitive Data&lt;/em&gt;
+&lt;/div&gt;
+
+&lt;p&gt;RBAC is great, but doesn’t fit the security policies I deal with at work.  HIPAA, Financial Services portfolio management, and multi-tenanted SaaS products all generate data that is sensitive enough to deserve Mandatory Access Controls (MAC) at the data layer and basic access control policies often don’t cut it.  This isn’t just a problem at work though …&lt;/p&gt;
+
+&lt;p&gt;The tech we wear, bolt to the walls of our homes, and even just walk by on the street generates a large amount of personalized infromation about our lives.  I aggregate a good amount of that in my Quantified Self project and have been showing my Untappd beer dashboard around now for a few years as a fun basic example of logging personal data in Elasticsearch and visualizing that data with Kibana.  It’s fun and makes for a good demo!  However, one of the big challenges people face once all this data is aggregated is that it is now that much more publicly visible than when it was a csv file sitting on my private hard drive.  Not only can someone presumably glance around and learn things about me that I didn’t want them to (my favorite bars, that I’m not a fan of IPAs) but they can learn things that I consider sensitive such as my exact home address. Even worse are the potential for misinterpretations.  In my beer dashboard when I check-in a flight of small-sized taster beers, it looks like I’ve had 4 whole pints of beer.&lt;/p&gt;
+
+&lt;div class=&quot;post-image&quot;&gt;
+	&lt;img src=&quot;/assets/img/posts/2017-08-02-flight.jpg&quot; alt=&quot;Flight&quot; /&gt;&lt;br /&gt;
+	&lt;em&gt;Throwing off my analytics with it's deliciousness (Freemont Brewing Company in Seattle, WA)&lt;/em&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Okay, I’m not so worried about flights of beer, but let’s use this as a test data set for creating a fine grained access control policy in Elasticsearch that will enforce data protection in any analytic app or UI, including unmodified Kibana.  Rather that working to create a complex Document-level security query that secures data (remember the RDBMS stored procedures that secured data and how difficult to maintain they were) let’s take a Label-based approach with my beer data as a way of explaining the how and why this approach is so important to some users of data systems like Elasticsearch.&lt;/p&gt;
+
+&lt;h2 id=&quot;label-based-vs-document-level-rbac&quot;&gt;Label-based vs. Document-level RBAC&lt;/h2&gt;
+
+&lt;p&gt;Document-Level Role Based Access Control (RBAC) can be expressed with a simple forward query in X-Pack Security (&lt;a href=&quot;https://www.elastic.co/blog/getting-started-with-shield-document-level-security-in-elasticsearch&quot;&gt;Example&lt;/a&gt;, &lt;a href=&quot;https://www.elastic.co/guide/en/x-pack/current/field-and-document-access-control.html&quot;&gt;Documentation&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;This is fine, but is error prone and hard to maintain or modify if you aren’t a developer.  The number of RDBMS data silos that exist in this world for no reason other than no one still employed at the company knows how to modify the PL/SQL that secures the data is shameful.&lt;/p&gt;
+
+&lt;p&gt;Label-based controls (LBAC) are a specific implementation of Mandatory Access Control (MAC) that takes the principle of least privilege (no label –&amp;gt; no access) and allows security policies that reqire a user to have an AND (union) and possilbly and AND of OR’s.  A basic example&lt;/p&gt;
+
+&lt;p&gt;Imagine I have a document with sensitive health information for a patient.  To access that data, a user must be on the medical team that cares for that specific patient AND someone on the team that has a need to see personal health information.  Just one of these being true isn’t enough.  A user needs both to be able to search, retrieve, and aggregate this data in our use case.&lt;/p&gt;
+
+&lt;pre&gt;
+POST /health_sensors/temp/1
+{
+  &quot;@timestamp&quot;: &quot;2017-08-02T00:00:12Z&quot;,
+  &quot;patientId&quot;: &quot;123456789&quot;,
+  &quot;bodyTempF&quot;: 98.5,
+  &quot;tags&quot;: [&quot;patientId_123456789&quot;, &quot;EPHI&quot;]
+}
+&lt;/pre&gt;
+
+&lt;p&gt;In an LBAC model, I now can grant the “patientId_123456789” and “EPHI” roles to a users and this information should be accessible.  Having a role-per-label in RBAC won’t work because roles are implicitly OR’d and any single role will give access to the document.  Equally policies my have other restrictions or dimension in some cases.  If you want a complex example, check out all the complex different dimentions of &lt;a href=&quot;https://www.dni.gov/files/documents/FOIA/Public_CAPCO_Register%20and%20Manual%20v5.1.pdf&quot;&gt;CAPCO markings&lt;/a&gt; which can be simplied down to&lt;/p&gt;
+
+&lt;pre&gt;
+SECURITY_LEVEL//COMPARTMENT1/COMPARTMENT2//REL TO Country1, Country2
+&lt;/pre&gt;
+
+&lt;p&gt;or logically&lt;/p&gt;
+
+&lt;p&gt;To access this document, the user must satisfy:&lt;/p&gt;
+
+&lt;pre&gt;
+user.security_level &amp;gt;= SECURITY_LEVEL
+AND
+user.security_compartments must contain both 
+    COMPARTMENT1 AND COMPARTMENT2
+AND
+user.nationality must be either Country1 OR Country2
+&lt;/pre&gt;
+
+&lt;p&gt;Notice this is a &lt;a href=&quot;https://en.wikipedia.org/wiki/Logical_conjunction&quot;&gt;logical conjuction&lt;/a&gt; (aka a big AND) of smaller AND, OR, and scalar comparison statments.&lt;/p&gt;
+
+&lt;h2 id=&quot;annotating-beer-with-percolator&quot;&gt;Annotating Beer With Percolator&lt;/h2&gt;
+
+&lt;p&gt;To secure my beer data I’ll want to annotate each document with labels that manufacture some categories for the sensitivity of the data.   I’d define 3 tags.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Beer&lt;/strong&gt; - this is a ganeric label that will exist on all beer checkins.  Every beer will have it.  Without access to the BEER lablel, Elasticsearch will not admit that I’ve ever checked in a beer.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;DomesticBeer&lt;/strong&gt; – all beers manufactured in the United States.  A good test label to validate that LBAC filtering is working as it will show up plainly in all my dashboards.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;HomeDrinking&lt;/strong&gt; – Beers checkedin near my home address.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’ll now define three pecolation queries and reload my beer data tagging the data model with security lavels.  The full source code for my python data loader is &lt;a href=&quot;https://gist.github.com/derickson/ff0aeb22630433008372d19487725f89&quot;&gt;here&lt;/a&gt;, but the key percolation queries look like this:&lt;/p&gt;
+
+&lt;pre&gt;
+allBeerMatcher = {
+    SECURITY_TAGS_FIELD: &quot;Beer&quot;,
+    PERCOLATE_FIELD: {
+        &quot;match_all&quot;: {}
+    }
+}
+
+domesticMatcher = {
+    SECURITY_TAGS_FIELD: &quot;DomesticBeer&quot;,
+    PERCOLATE_FIELD : {
+        &quot;match&quot;: { 
+            &quot;brewery_country&quot;: &quot;United States&quot;
+        }
+    }
+}
+
+homeLocation = [LON, LAT]  ## the thing I am trying to protect
+
+homeMatcher = {
+    SECURITY_TAGS_FIELD: &quot;HomeDrinking&quot;,
+    PERCOLATE_FIELD : {
+        &quot;geo_distance&quot;: {
+            &quot;distance&quot;: &quot;100m&quot;,
+            &quot;location&quot;: homeLocation
+        }
+    }
+}
+&lt;/pre&gt;
+
+&lt;p&gt;When the data is ingested, it looks like this&lt;/p&gt;
+
+&lt;pre&gt;
+{
+    &quot;beer_ibu&quot;: 10,
+    &quot;serving_type&quot;: &quot;&quot;,
+    &quot;venue_name&quot;: &quot;Colony Club&quot;,
+    &quot;beer_name&quot;: &quot;Oberon Ale&quot;,
+    &quot;beer_url&quot;: &quot;https://untappd.com/beer/16581&quot;,
+    &quot;flavor_profiles&quot;: &quot;&quot;,
+    &quot;venue_state&quot;: &quot;D.C.&quot;,
+    &quot;securityTags&quot;: [
+      &quot;Beer&quot;,
+      &quot;DomesticBeer&quot;
+    ],
+    &quot;venue_city&quot;: &quot;Washington&quot;,
+    &quot;brewery_state&quot;: &quot;MI&quot;,
+    &quot;created_at&quot;: &quot;2016-08-11 20:10:18&quot;,
+    &quot;beer_abv&quot;: 5.8,
+    &quot;brewery_name&quot;: &quot;Bell's Brewery&quot;,
+    &quot;rating_score&quot;: &quot;&quot;,
+    &quot;comment&quot;: &quot;&quot;,
+    &quot;@timestamp&quot;: &quot;2016-08-11T20:10:18&quot;,
+    &quot;venue_lat&quot;: &quot;38.9296&quot;,
+    &quot;venue_country&quot;: &quot;United States&quot;,
+    &quot;checkin_url&quot;: &quot;https://untappd.com/c/347180969&quot;,
+    &quot;purchase_venue&quot;: &quot;&quot;,
+    &quot;beer_type&quot;: &quot;Pale Wheat Ale - American&quot;,
+    &quot;brewery_city&quot;: &quot;Galesburg&quot;,
+    &quot;location&quot;: [
+      -77.0236,
+      38.9296
+    ],
+    &quot;brewery_url&quot;: &quot;https://untappd.com/brewery/2507&quot;,
+    &quot;securityTag_Count&quot;: 2,
+    &quot;brewery_country&quot;: &quot;United States&quot;,
+    &quot;venue_lng&quot;: &quot;-77.0236&quot;
+  }
+&lt;/pre&gt;
+
+&lt;h2 id=&quot;the-missing-array-match-query&quot;&gt;The Missing Array Match Query&lt;/h2&gt;
+
+&lt;p&gt;The next step is to build a simple test query.  If a user has rights to “Beer” and “DomesticBeer” but not “HomeDrinking” then the query needs to check that the user’s labels provide full coverage of the required tags per-document.  Unfortunately no such query operator exists in Elasticsearch’s query DSL, so we’ll have to create it with some extra data modeling and combinatorial logic.  I call this the combinatorial array match query.&lt;/p&gt;
+
+&lt;p&gt;Inside the data we encoded an extra piece of information, the length of the security tag array:&lt;/p&gt;
+
+&lt;pre&gt;
+&quot;securityTag_Count&quot;: 2
+&lt;/pre&gt;
+
+&lt;p&gt;this allows us to write the basic logical expression&lt;/p&gt;
+
+&lt;pre&gt;
+(Beer AND securityTag_Count == 1)
+OR
+(DomesticBeer AND securityTag_Count == 1)
+OR
+(Beer AND DomesticBeer securityTag_Count == 2)
+&lt;/pre&gt;
+
+&lt;p&gt;If the user had all three tags the logic would look like this:&lt;/p&gt;
+
+&lt;pre&gt;
+(Beer AND securityTag_Count == 1)
+OR
+(DomesticBeer AND 
+    securityTag_Count == 1)
+OR
+(HomeDrinking AND 
+    securityTag_Count == 1)
+OR
+(Beer AND 
+    DomesticBeer AND 
+    securityTag_Count == 2)
+OR
+(Beer AND 
+    HomeDrinking AND 
+    securityTag_Count == 2)
+OR
+(DomesticBeer AND 
+    HomeDrinking AND 
+    securityTag_Count == 2)
+OR
+(Beer AND 
+    DomesticBeer AND 
+    HomeDrinking AND 
+    securityTag_Count == 3)
+&lt;/pre&gt;
+
+&lt;p&gt;Our lives would be easier if there was some syntactic sugar (and later in-server optimization) for an array coverage query, but we can do the above logic with Elasticsearch’s bool query&lt;/p&gt;
+
+&lt;p&gt;{‘bool’: {‘should’: [[{‘bool’: {‘must’: [[{‘term’: {‘securityTags’: ‘Beer’}}, {‘term’: {‘securityTag_Count’: 1}}]]}}, {‘bool’: {‘must’: [[{‘term’: {‘securityTags’: ‘DomesticBeer’}}, {‘term’: {‘securityTag_Count’: 1}}]]}}, {‘bool’: {‘must’: [[{‘term’: {‘securityTags’: ‘HomeDrinking’}}, {‘term’: {‘securityTag_Count’: 1}}]]}}, {‘bool’: {‘must’: [[{‘term’: {‘securityTags’: ‘Beer’}}, {‘term’: {‘securityTags’: ‘DomesticBeer’}}, {‘term’: {‘securityTag_Count’: 2}}]]}}, {‘bool’: {‘must’: [[{‘term’: {‘securityTags’: ‘Beer’}}, {‘term’: {‘securityTags’: ‘HomeDrinking’}}, {‘term’: {‘securityTag_Count’: 2}}]]}}, {‘bool’: {‘must’: [[{‘term’: {‘securityTags’: ‘DomesticBeer’}}, {‘term’: {‘securityTags’: ‘HomeDrinking’}}, {‘term’: {‘securityTag_Count’: 2}}]]}}, {‘bool’: {‘must’: [[{‘term’: {‘securityTags’: ‘Beer’}}, {‘term’: {‘securityTags’: ‘DomesticBeer’}}, {‘term’: {‘securityTags’: ‘HomeDrinking’}}, {‘term’: {‘securityTag_Count’: 3}}]]}}]]}}&lt;/p&gt;
+
+&lt;p&gt;or with nice json indenting: &lt;a href=&quot;https://gist.github.com/derickson/ef9c25fdc325340df034856b52b5806e&quot;&gt;pretty json version&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is the recursive python code for quickly creating the combinatorial set query: &lt;a href=&quot;https://gist.github.com/derickson/5fd8bda0172382753d2f13baba8b4dd8&quot;&gt;code link&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-a-per-person-x-pack-security-role&quot;&gt;Creating a Per-Person X-Pack Security Role&lt;/h2&gt;
+
+&lt;p&gt;For the person with these roles we then create a role that represents the combo of the two document.  Technically you only need to create a role for each unique combination of tags that exists in your user base.  People implementing this in production generally create a per-user role or per-distinct combination role when the user logs in after checking the central authority story for user rights.&lt;/p&gt;
+
+&lt;pre&gt;
+POST /_xpack/security/role/beer_safe_for_work
+{
+    &quot;cluster&quot;: [],
+    &quot;indices&quot;: [
+      {
+        &quot;names&quot;: [
+          &quot;beer&quot;
+        ],
+        &quot;privileges&quot;: [
+          &quot;read&quot;
+        ],
+        &quot;query&quot;: {
+            &quot;bool&quot;: {
+                &quot;should&quot;: [
+                    [
+                        {
+                            &quot;bool&quot;: {
+                                &quot;must&quot;: [
+                                    [
+                                        {
+                                            &quot;term&quot;: {
+                                                &quot;securityTags&quot;: &quot;Beer&quot;
+                                            }
+                                        },
+                                        {
+                                            &quot;term&quot;: {
+                                                &quot;securityTag_Count&quot;: 1
+                                            }
+                                        }
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            &quot;bool&quot;: {
+                                &quot;must&quot;: [
+                                    [
+                                        {
+                                            &quot;term&quot;: {
+                                                &quot;securityTags&quot;: &quot;DomesticBeer&quot;
+                                            }
+                                        },
+                                        {
+                                            &quot;term&quot;: {
+                                                &quot;securityTag_Count&quot;: 1
+                                            }
+                                        }
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            &quot;bool&quot;: {
+                                &quot;must&quot;: [
+                                    [
+                                        {
+                                            &quot;term&quot;: {
+                                                &quot;securityTags&quot;: &quot;Beer&quot;
+                                            }
+                                        },
+                                        {
+                                            &quot;term&quot;: {
+                                                &quot;securityTags&quot;: &quot;DomesticBeer&quot;
+                                            }
+                                        },
+                                        {
+                                            &quot;term&quot;: {
+                                                &quot;securityTag_Count&quot;: 2
+                                            }
+                                        }
+                                    ]
+                                ]
+                            }
+                        }
+                    ]
+                ]
+            }
+        }
+      }
+    ],
+    &quot;run_as&quot;: [],
+    &quot;metadata&quot;: {},
+    &quot;transient_metadata&quot;: {
+      &quot;enabled&quot;: true
+    }
+}
+&lt;/pre&gt;
+
+&lt;h2 id=&quot;future-work-and-reading&quot;&gt;Future Work and Reading&lt;/h2&gt;
+
+&lt;p&gt;To make this as easy as possible for implementers I’d love to see the combinatorial set code built into Elasticsearch itself so that we can use the role query templating function to generate all roles dynamically from a single templated role.  (That will make the CAPCO example a lot easier)&lt;/p&gt;
+
+&lt;p&gt;My queries could probably use some tuning work to make sure filter caches are kicking in (there aren’t as many distinct combinations of user rights as the possbible combinatorial explosion) and I’m not wasting time scoring documents etc.&lt;/p&gt;
+
+&lt;p&gt;Clever people reading this may have realized it’s faster to check for ‘must_not’ have HomeDriking than it is to check for all the combiantions of the other tags.  A good discussion of use-case by use-case optimization of LDAP using knowledge of the tags, tag cardnality etc can be found here:  &lt;a href=&quot;https://discuss.elastic.co/t/matching-by-array-elements/39530/2&quot;&gt;Discuss conversation from 2016&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;My general hope is that LBAC can help people implement better security controls in Elasticsearch.  It’s important to keep private data under control in an easy to maintain fashion and I’m going to continue working on this example in the future to make operationalizing LBAC easier and easier for implementers.&lt;/p&gt;</content><author><name>Dave Erickson</name></author><summary type="html">Update: Elasticsearch added many of the tools needed (and mentioned in the Further Work section below) to implement very clean ABAC policies in Elasticsearch 6.1. This method below is out of date</summary></entry><entry><title type="html">Magic Mirror Part 2</title><link href="http://localhost:4000/2016/12/29/magic-mirror-part-2/" rel="alternate" type="text/html" title="Magic Mirror Part 2" /><published>2016-12-29T07:00:00-05:00</published><updated>2016-12-29T07:00:00-05:00</updated><id>http://localhost:4000/2016/12/29/magic-mirror-part-2</id><content type="html" xml:base="http://localhost:4000/2016/12/29/magic-mirror-part-2/">&lt;p&gt;&lt;img src=&quot;/images/posts/2016-12-29-mirrordisplay.jpg&quot; alt=&quot;Mirror Display&quot; title=&quot;mirror&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;The completed project along with a screenshot of the software display behind my Magic Mirror&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;In &lt;a href=&quot;/2016/06/12/magic-mirror-part-1/&quot;&gt;part one of my D.I.Y. Magic Mirror blog post&lt;/a&gt; I showed the software setup of custom modules for the excellent &lt;a href=&quot;https://github.com/MichMich/MagicMirror&quot;&gt;MagicMirror&lt;/a&gt; project.  This post I’ll show the final hardware build out.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-12-29-arch.jpg&quot; alt=&quot;Software architecture&quot; title=&quot;software architecture&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Basic software architecture.  The mirror pulls data and pushes metrics logs to Elastic Cloud for later visualization&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I moved to a new home recently, so the I swapped out the capital bikeshare feed with an incidents feed for the DC metro system.  I live near a bus line, which I find I’m using more often, so I’ll probably try to figure out how to get bus ETAs from the WMATA apis as a later project.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-12-29-behindmirror.jpg&quot; alt=&quot;Wiring Photo&quot; title=&quot;wiring photo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;My Ugly wiring behind the mirror&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The hardware build out only took a few minutes once I had a plastic one-way mirror that fit my frame.  I recommend picking a picture frame you like first and then ordering a plastic mirror that fits it rather than the other way around.  (Especially if you are like me and don’t have access to the space or woodworking tools necessary to build your own frame).  My mirror is held together by electrical tape, which isn’t ideal.  I’m a software engineer, not an electrical engineer, so I’m excused.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-12-29-mirrorwires.jpg&quot; alt=&quot;Wiring Diagram&quot; title=&quot;wiring diagram&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here’s a cleaned-up diagram of what’s going on behind all that electrical tape.  I’m using a Raspberry Pi 3 and a “HDMI 4 Pi - 10.1 Display 1280x800 IPS - HDMI/VGA/NTSC/PAL” from adafruit (&lt;a href=&quot;https://www.adafruit.com/products/1287&quot;&gt;link&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-12-29-kibana.jpg&quot; alt=&quot;Kibana&quot; title=&quot;kibana metrics&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As the mirror is pulling some interesting data that I want in my quantified-self dashboard project, I wrote some quick nodejs request code to POST commands to my &lt;a href=&quot;https://github.com/derickson/metrics-rest-service&quot;&gt;generic REST metrics endpoint&lt;/a&gt; for visualizing data from my Magic Mirror in kibana (hosted in &lt;a href=&quot;cloud.elastic.co&quot;&gt;Elastic Cloud&lt;/a&gt; of course.)&lt;/p&gt;</content><author><name>Dave Erickson</name></author><summary type="html"></summary></entry><entry><title type="html">2016 Quantified Year in Review</title><link href="http://localhost:4000/2016/12/24/quantified-year-review/" rel="alternate" type="text/html" title="2016 Quantified Year in Review" /><published>2016-12-24T07:00:00-05:00</published><updated>2016-12-24T07:00:00-05:00</updated><id>http://localhost:4000/2016/12/24/year-in-review</id><content type="html" xml:base="http://localhost:4000/2016/12/24/quantified-year-review/">&lt;p&gt;&lt;img src=&quot;/images/posts/2016-12-24-beerBar.jpg&quot; alt=&quot;Beer Bar Graph&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;At the beginning of the year I set out on a &lt;a href=&quot;/2016/01/03/quantified-self-ifttt-zapier-elasticsearch/&quot;&gt;Quantified Self challenge&lt;/a&gt;.  Some tracking activities dropped off after only a few weeks (like movie and tv tracking).  I blame the manual entry required during couch time when I don’t feel like pulling out my phone. On the other hand, checking in all my beers to Untappd was easy to keep up, and the main reason was that I had a near-real-time visualization service running all year long to help reinforce the completionist part of my brain that wanted the visualization to be accurate … or just funny due to the hilarious beer names.&lt;/p&gt;
+
+&lt;p&gt;Only the data sources that logged without me having to take extra action or had instant gratification dashboards lasted the whole year.  I suspect this will inform my Quantified Self efforts for 2017.&lt;/p&gt;
+
+&lt;h2 id=&quot;steps&quot;&gt;Steps&lt;/h2&gt;
+
+&lt;p&gt;I started the year actually wearing two “smart-watches”, putting on both a first generation Apple Watch and my Fitbit Charge HR.  The Apple watch became the watch I wanted to have on my wrist, but getting step data off the apple watch given the privacy protections and complete lack of non-native app APIs to access apple health data proved extremely difficult. So the Apple watch became my watch with fitbit being my real-time tracker.  Due to app synching issues, halfway into the year I stopped pulling my steps in real time or even daily.  These days I only wear the Apple watch, whcih means the following graphs are generated by manually (yuck) pulling the data off my phone using &lt;a href=&quot;https://itunes.apple.com/us/app/qs-access/id920297614&quot;&gt;QS Access&lt;/a&gt;, proccessing the data with a small python program, and loading into my Elastic cluster.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-12-24-steps.jpg&quot; alt=&quot;Steps&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Depsite being a data black whole, and having no out-of-the-box support for moving data from one phone to another, the one advantage of Apple devices is that the watch’s step counter and phone’s acceleromater step counter are merged by the apple health app.  Even on days when I didn’t wear the apple watch I’ll get some data from the phone’s sensor’s directly.&lt;/p&gt;
+
+&lt;h2 id=&quot;travel&quot;&gt;Travel&lt;/h2&gt;
+
+&lt;p&gt;I track all my work and fun travel in &lt;a href=&quot;tripit.com&quot;&gt;TripIt&lt;/a&gt;.  I took 25 trips in 2016.  That’s leaving home every other week.  Most of the trips were to cover my cusomters, who range up and down US East.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-12-24-travel.jpg&quot; alt=&quot;Travel&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;beer&quot;&gt;Beer&lt;/h2&gt;
+
+&lt;p&gt;I track the beer I drink in &lt;a href=&quot;untappd.com&quot;&gt;Untappd&lt;/a&gt;.  My wife is something of a beer connoisseur, so we’ve picked up the fun hobby of trying to drink beer we haven’t had when we are out on the town or picking out mixer-six packs at the local craft beer shop to split at dinner.&lt;/p&gt;
+
+&lt;p&gt;In the visualization you can see the week we took a cruise to the Carribean (and left the cell phone off) as well as the massive spike for a brewery tour in Charlottesville, VA right after getting married:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-12-24-beerBar.jpg&quot; alt=&quot;Beer Bar Graph&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is a map of the locations where that beer was consumed:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-12-24-beerMap.jpg&quot; alt=&quot;Beer Map&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And here is the impact on my waistline, the data from my &lt;a href=&quot;https://www.fitbit.com/aria&quot;&gt;fitbit scale&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-12-24-weight.jpg&quot; alt=&quot;Fitbit scale&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;bicycle&quot;&gt;Bicycle&lt;/h2&gt;
+
+&lt;p&gt;I transferred all my data from Endomondo to &lt;a href=&quot;strava.com&quot;&gt;Strava&lt;/a&gt; this year. The visualizations aren’t as good but Strava is the app people I know seem to be using, so I’ve gone with my social network.  I’ll ride more when the weather gets better so I look forward to trying Strava’s features tracking improvement for sections of one’s common routes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-12-24-bike.jpg&quot; alt=&quot;Travel&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;car&quot;&gt;Car&lt;/h2&gt;
+
+&lt;p&gt;I use an &lt;a href=&quot;https://www.automatic.com/&quot;&gt;Automatic&lt;/a&gt; IOT sensor on my car.  The app does all the data tracking for me and spits out some fun visualizations&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-12-24-drivingNum.jpg&quot; alt=&quot;Travel&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-12-24-driving.jpg&quot; alt=&quot;Travel&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;other-stats&quot;&gt;Other Stats&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Stat&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Count&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Roller Derby Games Officiated&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;10&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Role Playing Game Sessions Run&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</content><author><name>Dave Erickson</name></author><summary type="html"></summary></entry><entry><title type="html">Laptop Sticker Chaos</title><link href="http://localhost:4000/2016/06/12/laptop-sticker-chaos/" rel="alternate" type="text/html" title="Laptop Sticker Chaos" /><published>2016-07-01T08:00:00-04:00</published><updated>2016-07-01T08:00:00-04:00</updated><id>http://localhost:4000/2016/06/12/laptop-stickers</id><content type="html" xml:base="http://localhost:4000/2016/06/12/laptop-sticker-chaos/">&lt;p&gt;The job has been stressful.  I’ve been taking a few things too seriously.  I visted some awesome dev and ops shops this week in New York City and by comparison I realized my laptop matched my demeanor. It is time to &lt;em&gt;up my laptop sticker game&lt;/em&gt;.  Since Elastic{on} 2016 I’ve run around with my laptop set up to show the new corp tech logos (a shift from the non-matching stickers of the ELK days):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-07-01-corp.jpg&quot; alt=&quot;Too Corporate&quot; title=&quot;Too Corporate&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This now needs to change. Compare to my laptop case decked out with much more personal stuff from when I worked at MarkLogic:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-07-01-old.jpg&quot; alt=&quot;Old Personal Style&quot; title=&quot;Old Personal Style&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ve collected a bunch of cool stickers in the time I’ve been working at Elatic.  I get to do a lot of fun things and play with some awesome tech, so it is time for a bit more chaos.  June 2016 laptop sticker redo:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-07-01-chaos.jpg&quot; alt=&quot;Embrace the Chaos&quot; title=&quot;Embrace the Chaos&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I only left one off.  It’s going proudly on my molskine:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-07-01-zero.jpg&quot; alt=&quot;Zero Fs&quot; title=&quot;Zero Fs&quot; /&gt;&lt;/p&gt;</content><author><name>Dave Erickson</name></author><summary type="html">The job has been stressful. I’ve been taking a few things too seriously. I visted some awesome dev and ops shops this week in New York City and by comparison I realized my laptop matched my demeanor. It is time to up my laptop sticker game. Since Elastic{on} 2016 I’ve run around with my laptop set up to show the new corp tech logos (a shift from the non-matching stickers of the ELK days):</summary></entry><entry><title type="html">Magic Mirror Part 1</title><link href="http://localhost:4000/2016/06/12/magic-mirror-part-1/" rel="alternate" type="text/html" title="Magic Mirror Part 1" /><published>2016-06-12T08:00:00-04:00</published><updated>2016-06-12T08:00:00-04:00</updated><id>http://localhost:4000/2016/06/12/magic-mirror-part-1</id><content type="html" xml:base="http://localhost:4000/2016/06/12/magic-mirror-part-1/">&lt;p&gt;&lt;img src=&quot;/images/posts/2016-06-12-mirror.jpg&quot; alt=&quot;Magic Mirror&quot; title=&quot;mirror&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;The software display of my Magic Mirror, with custom widgets.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;With a number of other things behind me there is a home DIY project I want to take a crack at.  A &lt;a href=&quot;https://www.raspberrypi.org/blog/magic-mirror/&quot;&gt;Magic Mirror&lt;/a&gt; is a home information display showing a clock and useful data readouts from various web services.  Michael Teeuw came up with the concept and put out an &lt;a href=&quot;https://github.com/MichMich/MagicMirror&quot;&gt;open source project&lt;/a&gt; showing how he did it.  Teeuw’s first version was a web app built to run on a raspberry pi with a local Chromium browser put in full screen mode.  The pi is attached to a stripped down flat screen monitor placed behind a piece of one way mirror.&lt;/p&gt;
+
+&lt;p&gt;Several others followed suit making their own alterate versions including &lt;a href=&quot;https://learn.adafruit.com/android-smart-home-mirror/overview&quot;&gt;Hannah Mitt on Adafruit&lt;/a&gt; using a native Adroid app and an old Nexus 7 tablet.    The Android looked like an attractive place to get started, expecially since I happen to have an spare Nexus 7 tablet from an old mobile web test rig.  The native app gives full control over disabling power-off and full screen.  Comparatively trying to get a browser on an android to be both full screen&lt;/p&gt;
+
+&lt;p&gt;Fast forward a few months and Teeuw has updated the code to be more modular and easy to extend as well as making it into an &lt;a href=&quot;http://electron.atom.io/&quot;&gt;Electron&lt;/a&gt; application.  This is basically a way of packaging a linux, windows, or mac standalone app using HTML, JS, and CSS rather than having to learn a platform specific web framework.  I decided to go this way so that I could build skills that would stay in the ballpark of other technology projects that I want to look into this year.&lt;/p&gt;
+
+&lt;p&gt;I’ll go through the hardware set up with the shiny, new Raspberry Pi 3 in a future post.  But my first version has a few new modules for the info that I want to have hanging on my wall by my front door:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The current date and time (using the default)&lt;/li&gt;
+  &lt;li&gt;The current weather from weather underground&lt;/li&gt;
+  &lt;li&gt;A weather forecast from weather underground&lt;/li&gt;
+  &lt;li&gt;The predicted time for an UberX and the current UberX surcharge&lt;/li&gt;
+  &lt;li&gt;The current status of the bikeshare station near my apartment&lt;/li&gt;
+  &lt;li&gt;The current platform train times of my local DC Metro stop.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Full code is &lt;a href=&quot;https://github.com/derickson/MMderickson&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Teeuw’s tutorial the update MagicMirror project does a fantastic job stepping a person through modifying the Rasperri Pi to disable screen savers and power saving functions as well as launching the electron app with pm2, a task persistence manager.  The raspberri pi portion of the project, which I was expecting to take most of the project time, actually only took a single morning given that Adafruit &lt;a href=&quot;https://www.adafruit.com/products/3058&quot;&gt;packages their Raspberri Pi 3 kits&lt;/a&gt; with a preinstalled OS on the included microSD card.&lt;/p&gt;</content><author><name>Dave Erickson</name></author><summary type="html"></summary></entry><entry><title type="html">Detecting Geo-Temporal Events with Elasticsearch Pipeline Aggregations</title><link href="http://localhost:4000/2016/05/03/geo-temporal-anomaly/" rel="alternate" type="text/html" title="Detecting Geo-Temporal Events with Elasticsearch Pipeline Aggregations" /><published>2016-05-03T08:00:00-04:00</published><updated>2016-05-03T08:00:00-04:00</updated><id>http://localhost:4000/2016/05/03/geo-temporal-anomaly</id><content type="html" xml:base="http://localhost:4000/2016/05/03/geo-temporal-anomaly/">&lt;p&gt;&lt;img src=&quot;/images/posts/2016-05-03-predict.jpg&quot; alt=&quot;Predicitons&quot; title=&quot;Predictions&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Above: A temporal prediction of a one dimensional metric in Timelion.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Worth noting, this talk is very much influenced by Zach Tong’s excellent series on &lt;a href=&quot;https://www.elastic.co/blog/implementing-a-statistical-anomaly-detector-part-1&quot;&gt;implementing a statistical Anomaly detector&lt;/a&gt; with Elasticsearch. That’s a great place to start when reading on this topic.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-problem-with-my-old-demo&quot;&gt;The problem with my old demo&lt;/h2&gt;
+
+&lt;p&gt;I love bikeshare data.  I’ve written a few posts in the last year using public data from the good folks at Washington DC’s Capital Bikeshare program. ( &lt;a href=&quot;/2015/05/12/csv-bikeshare/&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;/2015/08/26/pulling-and-splitting-live-xml/&quot;&gt;here&lt;/a&gt;) and if you’ve talked to me at a demo booth or presentation of Kibana you’ve probalby seen me show my dashboard of bikeshare rides in DC and zoom into the 4th of July to show the data anomaly right around the fireworks show.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-05-03-zoom.gif&quot; alt=&quot;Zooming in on the 4th&quot; title=&quot;4th of july data anomaly&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I love this demo! The &lt;strong&gt;problem&lt;/strong&gt; is that it requires one to already have the knowledge of the data anomaly.  &lt;em&gt;What if Elasticsearch could help us find outliers and anomalies in the data automatically?&lt;/em&gt;  Well, it can do that and it can even help us spot them happening in real time.  Let’s see if it can help us spot other events around the city.&lt;/p&gt;
+
+&lt;h2 id=&quot;elasticsearch-features&quot;&gt;Elasticsearch features&lt;/h2&gt;
+
+&lt;p&gt;I’ll need to use four key features of the Elasticsearch aggregations API.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Two kinds of bucket aggregations (feature 1) and (feature 2)&lt;/li&gt;
+  &lt;li&gt;Nesting one aggregation inside another (feature 3)&lt;/li&gt;
+  &lt;li&gt;Pipeline aggregations with seasonality adjusted moving averages (feature 4)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The first part is being able to spot outliers in the data that are isolated to certain time and geo aspects of the data.  These are basic histograms and geo-grid couts of event occurrances.  There are direct calls to Elasticsearch’s aggregation APIs and directly related to queries visualized in Kibana.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-geo-buckets&quot;&gt;1) Geo Buckets&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-05-03-geobucketed.jpg&quot; alt=&quot;Geo Buckets&quot; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;
+GET /bike-dc/_search?search_type=count
+{
+  &quot;aggs&quot;: {
+    &quot;mygrid&quot;: {
+      &quot;geohash_grid&quot;: {
+        &quot;field&quot;: &quot;startLocation&quot;,
+        &quot;precision&quot;: 7
+      }
+    }
+  }
+}
+&lt;/pre&gt;
+
+&lt;h3 id=&quot;2-histogram-buckets&quot;&gt;2) Histogram Buckets&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-05-03-histbucketed.jpg&quot; alt=&quot;Time Buckets&quot; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;
+GET /bike-dc/_search?search_type=count
+{
+  &quot;aggs&quot;: {
+    &quot;myhisto&quot;: {
+      &quot;date_histogram&quot;: {
+        &quot;field&quot;: &quot;startDate&quot;,
+        &quot;interval&quot;: &quot;month&quot;
+      }
+    }
+  }
+}
+&lt;/pre&gt;
+
+&lt;h3 id=&quot;3-nested-buckets&quot;&gt;3) Nested Buckets&lt;/h3&gt;
+&lt;p&gt;The next part is where things get fun.  Elasticsearch lets you nest bucket aggregtion within other aggregations.  We can combine the two bucket approaches above into a single analytic, asking Elasticsearch for histogram buckets &lt;strong&gt;inside&lt;/strong&gt; a geo grid aggregation.  The result is a matrix of the event metrics over time for each grid of my map returned in a single rest call.&lt;/p&gt;
+
+&lt;p&gt;Here’s a picture of bikeshare usage over several years to try to demonstrate the true meaning of the returned data.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-05-03-nestedbucketed.png&quot; alt=&quot;Nested Buckets&quot; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;
+GET /bike-dc/_search?search_type=count
+{
+  &quot;aggs&quot;: {
+    &quot;mygrid&quot;: {
+      &quot;geohash_grid&quot;: {
+        &quot;field&quot;: &quot;startLocation&quot;,
+        &quot;precision&quot;: 4
+      },
+      &quot;aggs&quot;: {
+        &quot;ingridhist&quot;: {
+          &quot;date_histogram&quot;: {
+            &quot;field&quot;: &quot;startDate&quot;,
+            &quot;interval&quot;: &quot;year&quot;
+          }
+        }
+      }
+    }
+  }
+}
+&lt;/pre&gt;
+
+&lt;h3 id=&quot;4-seasonal-moving-averages&quot;&gt;4) Seasonal Moving Averages&lt;/h3&gt;
+
+&lt;p&gt;Now for Each Bucket we can use the next power feature of Elasticsearch which is pipeline aggregations.  Colin Goodheart-Smithe wrote a &lt;a href=&quot;https://www.elastic.co/blog/out-of-this-world-aggregations&quot;&gt;great blog post&lt;/a&gt; on computing derivatives with pipeline aggs, but what we’ll focus on moving averages.&lt;/p&gt;
+
+&lt;p&gt;Similar to Zach Tong’s blog post we’ll compute a “suprise” factor for each hour of data in each grid of geospatial area of DC.  We’ll compute whether or not the number of bike rides departing from the area deviates from the general trend (moving average) of how many rides we expected to see depart from that station given general trends taking into account day of week and time of year.  This will help us differentiate between the &lt;strong&gt;signal and the noise&lt;/strong&gt; which is a common problem in all analytics.&lt;/p&gt;
+
+&lt;p&gt;There are &lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-pipeline-movavg-aggregation.html&quot;&gt;many kinds of moving averages&lt;/a&gt; possible in Elasticsearch, but the one we are using will be Holt-Winters.  This “triple-exponential” moving average takes into account the current level, trend in that level, as well as a seasonality in it’s computation of the moving average.  Because capital bikeshare’s major periodic pattern is weekly, (every 7 days) we can ask for a moving average of bikeshare ridership and know if a spike is the normal Monday morning bike commute or something more interesting like a fireworks show or a baseball game.  Holt-Winters can even do predictions into the future; which is cool, but since we are just looking for data outliers in the time range of the data that we have that won’t be necessary.  Holt-Winters does require tweaking of coefficients for the relative weights of the three contributers to the “smart” average.  I played around and found I got the best results just using the auto-minimization function which tries to guess good coefficients through a simulated-annealing optimization algorithm.&lt;/p&gt;
+
+&lt;h2 id=&quot;putting-it-together&quot;&gt;Putting it together&lt;/h2&gt;
+
+&lt;p&gt;Here’s the final query I used to compute regionalized Geo-Temporal Seasonality adjusted moving averages.&lt;/p&gt;
+
+&lt;pre&gt;
+GET /bike-dc/_search?search_type=count
+{
+  &quot;aggs&quot;: {
+    &quot;mygrid&quot;: {
+      &quot;geohash_grid&quot;: {
+        &quot;field&quot;: &quot;startLocation&quot;,
+        &quot;precision&quot;: 4
+      },
+      &quot;aggs&quot;: {
+        &quot;ingridhist&quot;: {
+          &quot;date_histogram&quot;: {
+            &quot;field&quot;: &quot;startDate&quot;,
+            &quot;interval&quot;: &quot;hour&quot;
+          },
+          &quot;aggs&quot;: {
+            &quot;the_count&quot;: {
+              &quot;value_count&quot;: {
+                &quot;field&quot;: &quot;memberType&quot;
+              }
+            },
+            &quot;prediction&quot;: {
+              &quot;moving_avg&quot;: {
+                &quot;buckets_path&quot;: &quot;the_count&quot;,
+                &quot;window&quot;: 672,
+                &quot;model&quot;: &quot;holt_winters&quot;,
+                &quot;minimize&quot;: true,
+                &quot;settings&quot;: {
+                  &quot;type&quot;: &quot;mult&quot;,
+                  &quot;period&quot;: 168
+                }
+              }  
+            }
+          }
+        }
+      }
+    }
+  }
+}
+&lt;/pre&gt;
+
+&lt;p&gt;Kibana itself doesn’t have pipeline aggregations yet or do much in the way of Geo-Temporal, so it won’t run this type of query directly.  However, with a quick python script I can run the custom query, loop over buckets in the aggregated data and re-insert “roll-up” aggregated events as a different metric type that can be visualized side by side with the original data.  (&lt;a href=&quot;https://github.com/derickson/cabi2/blob/master/compute-geo-predict.py&quot;&gt;code&lt;/a&gt;).  The key line which computes the surprise factor:&lt;/p&gt;
+
+&lt;pre&gt;
+doc['surprise'] = max(0, 10.0 * (doc[&quot;the_count&quot;] - doc[&quot;prediction&quot;]) / doc[&quot;prediction&quot;])
+&lt;/pre&gt;
+
+&lt;p&gt;This means that when the actual event count for an hour of bike rides in a grid on the map surpasses the general moving average count that would have been the prediction, we are guessing that there may be a data anomaly.&lt;/p&gt;
+
+&lt;p&gt;Each grid of the geo graph effectively becomes a single metric time series with a prediction.  We can map the surprise value separately from the event density.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-05-03-predictdash.jpg&quot; alt=&quot;Anomaly Dashboard&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;verifying-results&quot;&gt;Verifying Results&lt;/h2&gt;
+
+&lt;p&gt;If we zoom in on an area we’ll get a quick view of the ride event spike anomalies.  To test the accuracy with real world events, I’ll look for something I can get a difinitive event history for.  Zooming in on the baseball stadium on the in May of 2015 we see the following:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-05-03-basballmap.png&quot; alt=&quot;Baseball Stadium Anomalies&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There were spikes above the trending moving average on the 4th, 5th, 6th, 8th, 9th, and a to a lesser degree (small suprise factor) on the 10th.&lt;/p&gt;
+
+&lt;p&gt;Compare this to the Washington Nationals Away/Home schedule &lt;a href=&quot;http://washington.nationals.mlb.com/schedule/?c_id=was#y=2015&amp;amp;m=5&amp;amp;calendar=DEFAULT&quot;&gt;that week&lt;/a&gt; and you’ll see we got it right.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-05-03-sched.jpg&quot; alt=&quot;DC's baseball schedule&quot; /&gt;&lt;/p&gt;</content><author><name>Dave Erickson</name></author><summary type="html"></summary></entry><entry><title type="html">Optics: Pulling Google Spreadsheet and Salesforce.com data into Elasticsearch</title><link href="http://localhost:4000/2016/04/03/optics-spreadsheets-sfdc/" rel="alternate" type="text/html" title="Optics: Pulling Google Spreadsheet and Salesforce.com data into Elasticsearch" /><published>2016-04-03T08:00:00-04:00</published><updated>2016-04-03T08:00:00-04:00</updated><id>http://localhost:4000/2016/04/03/sfdc-and-spread</id><content type="html" xml:base="http://localhost:4000/2016/04/03/optics-spreadsheets-sfdc/">&lt;p&gt;&lt;img src=&quot;/images/posts/2016-04-03-arch.jpg&quot; alt=&quot;Basic Architecture&quot; title=&quot;Basic Architecture&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Above: The basic architecture of what I build as part of this blogpost.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I’m not trying to knock Salesforce.com (SFDC) reporting.  My last three companies have used SFDC to track our software sales business and we love the hell out of it.  The problem is we are staring to expect &lt;em&gt;way&lt;/em&gt; more out of our data, and Elatic’s  Solutions Architects (who I have the pleasure of being part of) are no exception.  I was given a challenge:  &lt;em&gt;Help your team mates get insight and optics into our performance data&lt;/em&gt;.  Working at Elastic I knew just the tool, &lt;strong&gt;Kibana!&lt;/strong&gt;.  Now the only challenge would be getting data out of the various Google spreadsheets and SFDC “objects” and into an Elasticsearch instance.&lt;/p&gt;
+
+&lt;p&gt;Side note: “why didn’t I just use &lt;a href=&quot;https://www.elastic.co/guide/en/logstash/current/plugins-inputs-salesforce.html&quot;&gt;logstash-input-salesforce&lt;/a&gt;?”.  I didn’t really have a handy place to put a logstash instance and my SFDC admin didn’t give me the ability to register a new API app.  The approach below allows me to run using raw REST through the a python SFDC client, which I found quicker for my needs (especially since my full version does all kinds of enrichment, pivoting, and extra full traversals of the data in-memory, whoch wouldn’t be possible in logstash)&lt;/p&gt;
+
+&lt;h2 id=&quot;step-1-provision-elasticsearch-and-kibana-elk-in-the-cloud&quot;&gt;Step 1: Provision Elasticsearch and Kibana (ELK) in the cloud.&lt;/h2&gt;
+
+&lt;p&gt;This is actually the easiest step.  Using &lt;a href=&quot;https://www.elastic.co/cloud&quot;&gt;Elastic Cloud&lt;/a&gt; (the recently rebranded Found.no) I can provision the latest Elastic stack and be up and running with and SSL secured private instance of Elasticsearch (2.3.0 at the time of writing) and Kibana (4.5.0) with Shield, Marvel, Graph, etc for abotu $45 a month.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-04-03-cloud.jpg&quot; alt=&quot;Cloud provisioning&quot; title=&quot;Cloud provisioning&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Above: The id of the report is in the address bar.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;step-2-get-your-salesforce-tokens&quot;&gt;Step 2: Get your Salesforce Tokens&lt;/h2&gt;
+
+&lt;p&gt;We are going to get data from SFDC using a python library called &lt;a href=&quot;https://pypi.python.org/pypi/simple-salesforce&quot;&gt;simple-salesforce&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This was actually quite difficult to figure out.  The SFDC API documentation (along with just about everything else on the planet) assumes you are making a 3rd party app acting on behalf of a user rather than just an internal script to to get your own company’s data.  I like OAuth just fine, but when speed is of the essence I like cheating and doing direct pulls with the simpler authentication handshakes given I’m not trying to repackage a 3rd party app as a SFDC ecosystem product.&lt;/p&gt;
+
+&lt;p&gt;The answer I was looking for was in the &lt;a href=&quot;https://success.salesforce.com/answers?id=90630000000glADAAY&quot;&gt;comments of this knowledgebase artical&lt;/a&gt;.  In SFDC an individual can generate a security token that can be used to programatically pull data as that user by going to: My Settings &amp;gt; Personal  &amp;gt;  Reset My Security Token&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-04-03-token.jpg&quot; alt=&quot;Get a security token&quot; title=&quot;Get a security token&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Above: The page in SFDC to get your security token.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;To programatically pull data you’ll need your account’s email address, password, your comapany’s subdomain (something like MYCOMPANY.my.salesforce.com) and your security token&lt;/p&gt;
+
+&lt;h2 id=&quot;step-3-get-your-google-spreadsheet-api-keys&quot;&gt;Step 3: Get your Google Spreadsheet API keys&lt;/h2&gt;
+
+&lt;p&gt;We are going to get data from Google spreadsheets using the libraries &lt;a href=&quot;https://github.com/burnash/gspread&quot;&gt;gspread&lt;/a&gt; and &lt;a href=&quot;http://gspread.readthedocs.org/en/latest/oauth2.html&quot;&gt;oauth2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The Oauth2 link above has good instructions for getting your API key in JSON form.  This will in effect create a new account email that can you can &lt;em&gt;“share”&lt;/em&gt; a spreadsheet to make it readable by a python script.&lt;/p&gt;
+
+&lt;h2 id=&quot;step-4-accessing-a-sfdc-report-from-python&quot;&gt;Step 4: Accessing a SFDC report from python&lt;/h2&gt;
+
+&lt;p&gt;First of all, every SFDC report has an ID in the address bar that can be used in the SFDC apis.  The simple-salesforce python library has all kinds of helper methods to get to standard SFDC objects, but we’ll just use it to get an authenticated session id and pull whole reports at a time throught the request API and the handy python requests library.&lt;/p&gt;
+
+&lt;p&gt;The folllowing is the report I’ll grab.  Note the ID in the address bar.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-04-03-report.jpg&quot; alt=&quot;Reports to Python&quot; title=&quot;Reports to Python&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Above: The id of the report is in the address bar.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Below is my code for accessing the report in python:&lt;/p&gt;
+
+&lt;pre&gt;
+import csv
+from simple_salesforce import Salesforce
+import requests
+import base64
+import cStringIO
+import json
+
+sf_instance_name = 'ORG.my.salesforce.com'
+sf_user		= 'SF_USER'
+sf_pw		= 'SF_PW'
+sf_token	= 'SF_TOKEN'
+
+sf = Salesforce(username=sf_user, password=sf_pw, security_token=sf_token)
+sf_sid = sf.session_id
+
+
+## take a dictionary and print it's pretty json representation
+def prettyPrint(doc):
+	print json.dumps(doc, indent=4, sort_keys=True)
+
+## Function to go get a SFDC report by id and return a csvreader
+## has a built in caching against disk so as not to spam SFDC service during development
+## returns csvReader
+def sFDCReportToCSVReader( sfdc_report_id, sfdc_obj, sfdc_instance_name, sfdc_sid, useCache, cacheData ):
+	if not useCache:
+		r = requests.get(&quot;https://&quot;+sfdc_instance_name+&quot;/&quot;+sfdc_report_id+&quot;?view=d&amp;amp;snip&amp;amp;export=1&amp;amp;enc=UTF-8&amp;amp;xf=json&amp;amp;includeDetails=true&quot;, headers = sfdc_obj.headers, cookies = {'sid' : sfdc_sid})
+		r.encoding = 'utf-8'
+		requestCSVText =  r.text.encode('utf-8')
+		if cacheData:
+			outFile = open(sfdc_report_id+&quot;.csv&quot;, &quot;w&quot;)
+			outFile.write(requestCSVText)
+			outFile.close()
+		buf = cStringIO.StringIO(requestCSVText)
+		return csv.DictReader(buf)
+	else:
+		my_file =  open(sfdc_report_id+&quot;.csv&quot;, &quot;r&quot;)
+		return csv.DictReader(my_file)
+
+## Load report from SFDC to a python dictionary
+territoryMappings = {}
+report_id = &quot;00Ob0000004IQJt&quot;
+csvreader = sFDCReportToCSVReader( report_id, sf, sf_instance_name, sf_sid, False, False )
+counter = 0
+for row in csvreader:
+	fullName = row[&quot;Full Name&quot;]
+
+	## check for a valid name, CSV export from SFDC has metadata at the end
+	if(fullName != None):
+		counter = counter + 1
+
+		_id = row[&quot;Label&quot;]
+		doc = {
+			&quot;territoryId&quot;: row[&quot;Territory Model ID&quot;],
+			&quot;label&quot;: _id,
+			&quot;fullName&quot;: fullName
+		}
+
+    	if( _id in territoryMappings):
+    		territoryMappings[_id].append(doc)
+    	else:
+    		territoryMappings[_id] = [ doc ]
+
+prettyPrint(territoryMappings)
+&lt;/pre&gt;
+
+&lt;p&gt;And the result:&lt;/p&gt;
+
+&lt;pre&gt;
+$ python test.py 
+{
+    &quot;AMER - C - LACA&quot;: [
+        {
+            &quot;fullName&quot;: &quot;REDACTED&quot;, 
+            &quot;label&quot;: &quot;AMER - C - LACA&quot;, 
+            &quot;territoryId&quot;: &quot;0MAb00000008ORb&quot;
+        }, 
+        {
+            &quot;fullName&quot;: &quot;REDACTED&quot;, 
+            &quot;label&quot;: &quot;AMER - C - LACA&quot;, 
+            &quot;territoryId&quot;: &quot;0MAb00000008ORb&quot;
+        }, 
+        {
+            &quot;fullName&quot;: &quot;REDACTED&quot;, 
+            &quot;label&quot;: &quot;AMER - C - LACA&quot;, 
+            &quot;territoryId&quot;: &quot;0MAb00000008ORb&quot;
+        }, 
+...
+&lt;/pre&gt;
+
+&lt;p&gt;As we can see SFDC’s APIs make it easy to get any report as a CSV.  From that point on it’s just data and we are golden.  Companies with higher transacational business may need to page and scroll through huge report tables, but as a company that sells larger ‘enterprise’-y things, I can get the full history of the compay in a single REST call.&lt;/p&gt;
+
+&lt;p&gt;Aside: it’s worth noting that all these huge exports are backed by a large Oracle deployment at SFDC.  Good on you Oracle.&lt;/p&gt;
+
+&lt;h2 id=&quot;step-5-getting-google-spreadsheet-data&quot;&gt;Step 5: Getting Google Spreadsheet data&lt;/h2&gt;
+
+&lt;p&gt;Create a new spreadsheet in google dive (a.k.a google sheets, a.k.a. google spreadsheets, a.k.a. google docs, somebody has a naming problem).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-04-03-spread.jpg&quot; alt=&quot;Example Sheet&quot; title=&quot;Example sheet&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Above: Sample data.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Google Forms can save their data to Google Spreadsheets, becoming a poor primary data store for data to later be indexed in Elasticsearch.  If you go to the sharing options and share the sheet to the email adrress from your API key in step 3.&lt;/p&gt;
+
+&lt;p&gt;The following code then helps grab a google spreadsheet and convert it to a python dictionary:&lt;/p&gt;
+
+&lt;pre&gt;
+import json
+import gspread
+from oauth2client.client import SignedJwtAssertionCredentials
+
+
+keyFilePath = &quot;ESGSpreadsheetPull-HASHHASHHASH.json&quot;
+spreadsheetKey = &quot;1n2ivenC_fb34xX6asWe9IDDXyp50oiMbpYS7rOhpIls&quot;
+worksheetName = &quot;Sheet1&quot;
+
+
+json_key = json.load(open(keyFilePath))
+scope = ['https://spreadsheets.google.com/feeds']
+credentials = SignedJwtAssertionCredentials(json_key['client_email'], json_key['private_key'], scope)
+gc = gspread.authorize(credentials)
+sh = gc.open_by_key(spreadsheetKey)
+ws = sh.worksheet(worksheetName)
+
+list_of_lists = ws.get_all_values()
+
+
+def prettyPrint(doc):
+	print json.dumps(doc, indent=4, sort_keys=True)
+
+rows = []
+counter = 0
+for row in list_of_lists:
+
+    if(counter == 0):
+        counter = counter + 1
+        continue
+
+    doc = {
+        &quot;A&quot;:                 str(row[0]),
+        &quot;B&quot;:                 str(row[1]),
+        &quot;C&quot;:                 str(row[2])
+    }
+
+    rows.append(doc)
+
+
+    counter = counter + 1
+
+
+for row in rows:
+	prettyPrint(row)
+&lt;/pre&gt;
+
+&lt;p&gt;and the result:&lt;/p&gt;
+
+&lt;pre&gt;
+$ python test2.py 
+{
+    &quot;A&quot;: &quot;1&quot;, 
+    &quot;B&quot;: &quot;2&quot;, 
+    &quot;C&quot;: &quot;3&quot;
+}
+{
+    &quot;A&quot;: &quot;4&quot;, 
+    &quot;B&quot;: &quot;5&quot;, 
+    &quot;C&quot;: &quot;6&quot;
+}
+&lt;/pre&gt;
+
+&lt;h2 id=&quot;step-6-exporting-to-elasticsearch&quot;&gt;Step 6: Exporting to Elasticsearch&lt;/h2&gt;
+
+&lt;p&gt;I’ll leave this step to the reader.  Looping through objects in a dictionary and exporting to Elasticsearch using the &lt;a href=&quot;http://elasticsearch-py.readthedocs.org/en/master/&quot;&gt;Elasticsearch client for python&lt;/a&gt; isn’t too difficult.&lt;/p&gt;
+
+&lt;h2 id=&quot;step-7-running-the-code-on-a-schedule-inside-heroku&quot;&gt;Step 7: Running the code on a schedule inside Heroku&lt;/h2&gt;
+
+&lt;p&gt;Go through the first few steps of the &lt;a href=&quot;https://devcenter.heroku.com/articles/getting-started-with-python#introduction&quot;&gt;Heroku getting started guide for python&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Create a new project folder and create a &lt;code class=&quot;highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt; file with your python code’s dependencies:&lt;/p&gt;
+
+&lt;pre&gt;
+APScheduler==3.1.0
+elasticsearch==1.4.0
+moment==0.2.2
+simple-salesforce==0.68.1
+requests==2.7.0
+requests-oauthlib==0.6.0
+gspread==0.2.5
+oauth2==1.9.0.post1
+oauth2client==1.4.12
+oauthlib==1.0.3
+&lt;/pre&gt;
+
+&lt;p&gt;Create a &lt;code class=&quot;highlighter-rouge&quot;&gt;Procfile&lt;/code&gt; declaring a background job that calls a &lt;code class=&quot;highlighter-rouge&quot;&gt;main.py&lt;/code&gt; script&lt;/p&gt;
+
+&lt;pre&gt;
+background: python main.py
+&lt;/pre&gt;
+
+&lt;p&gt;Put wrapper code around your SFDC and Google spreadsheet code (main.py):&lt;/p&gt;
+
+&lt;pre&gt;
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+from apscheduler.schedulers.blocking import BlockingScheduler
+sched = BlockingScheduler()
+
+
+### IMPORTS GO HERE
+
+def runSFDCJob():
+	print &quot;Run SFDC Jobs&quot;
+	## CODE GOES HERE
+
+dev runGSJob():
+	print &quot;Run Google Spreadsheet Job&quot;
+	## Code GOES HERE
+
+
+@sched.scheduled_job('interval', minutes=10)
+def timed_sfdc_job():
+	print('Starting Timed SFDC Job')
+	runSFDCJob() 
+
+
+
+@sched.scheduled_job('interval', minutes=10)
+def timed_gs_job():
+	print('Starting Timed Google Spreadsheet Job')
+	runGSJob() 
+
+print &quot;Running jobs once each before starting the scheduler&quot;
+runSFDCJob()
+runGSJob()
+
+## start the scheduler, which is a blocking action, 
+## so no point having code after the start line
+print &quot;Starting Scheduler&quot;
+sched.start()
+&lt;/pre&gt;
+
+&lt;p&gt;create a new heroku project
+&lt;code class=&quot;highlighter-rouge&quot;&gt;heroku create&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Give the heroku project a dyno
+&lt;code class=&quot;highlighter-rouge&quot;&gt;heroku ps:scale background=1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;And push the code to heroku
+&lt;code class=&quot;highlighter-rouge&quot;&gt;git push heroku master&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you should have your SFDC and Google spreadsheet data pushing to your Elastic Cloud instance!  The major benefit of course being far superior discovery and charting with Kibana&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-04-03-dash.jpg&quot; alt=&quot;SFDC Data in Kibana&quot; title=&quot;SFDC Data in Kibana&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Above: reporting on an audit trail on Opportunities, showing in what stage my team ‘tags’ themselves on deals.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2016-04-03-graph.jpg&quot; alt=&quot;SFDC Data in Kibana Graph&quot; title=&quot;SFDC Data in Kibana Graph&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Above: a graph analysis of Solutions Architects who collaborate on deals together; because we are all about team work&lt;/em&gt;&lt;/p&gt;</content><author><name>Dave Erickson</name></author><summary type="html"></summary></entry><entry><title type="html">Quantified Self: Week three progress and real time beer events using Untappd</title><link href="http://localhost:4000/2016/01/17/quantified-self-three-untappd-beer/" rel="alternate" type="text/html" title="Quantified Self: Week three progress and real time beer events using Untappd" /><published>2016-01-16T19:00:00-05:00</published><updated>2016-01-16T19:00:00-05:00</updated><id>http://localhost:4000/2016/01/17/quantified-self-three-untappd-beer</id><content type="html" xml:base="http://localhost:4000/2016/01/17/quantified-self-three-untappd-beer/">&lt;p&gt;&lt;img src=&quot;/images/posts/2016-01-17-beer.jpg&quot; alt=&quot;Beer in my dashboard&quot; title=&quot;Beer Dashboard&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Untappd beer data turned out to be very easy to add to my quantified self dashboard.  Registerring an app on their api page gives you a client ID and key useable for 100 REST calls an hour without any kind of OAuth trickery (all untapped data is pretty wide open).  I programmed two rest services.  The first a recurisve decent through untappd’s /v4/user/checkins/ api and the second using the min_id parameter of the same api to check for recent checkins after the last checkin_id stored in elasticsearch (which is retrievable with sorted, size=1 call using an elasticsearch _search api from nodejs).&lt;/p&gt;
+
+&lt;p&gt;I learned while on a trip to the west coast that fitbit’s APIs give data back in a timezone-less fashion, probably to keep information around daily achievement badges intelligible.  This makes life problematic when my tracker and server are in different time zones and caused problems until I returned to the east coast.  I think I’m going to have to add support for data source directed _ids so that i can update old time sections when I know the data source is updated irregularly by apps that work so asynchronously like Fitbit’s phone app.  My daily steps are still a few off even when I’m on the east coast, so there’s a bug in there somewhere.  It would may be interesting to use the subtraction feature in Timelion to find the data discrepancy.&lt;/p&gt;</content><author><name>Dave Erickson</name></author><summary type="html"></summary></entry></feed>

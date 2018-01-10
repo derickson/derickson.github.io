@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Tutorial: Mobile Shakespeare (Part 2 &#8211; The Reskin) - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>Software Engineer</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/about/">About</a>
+			  	
+				  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	          <li><a href="https://www.github.com/derickson" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Tutorial: Mobile Shakespeare (Part 2 &#8211; The Reskin)</h1>
+        <div class="page-date"><span>Dec 14, 2011&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p><a href="/wp-content/uploads/2011/12/blogtutorial2banner.png"><img class="aligncenter size-full wp-image-232" title="blogtutorial2banner" src="/wp-content/uploads/2011/12/blogtutorial2banner.png" alt="" width="700" height="340" /></a></p>
+
+<p> </p>
+
+<p>In the <a href="http://www.front2backdev.com/2011/12/10/tutorial-mobile-shakespeare-part-1/">first part of this tutorial</a> we put together a quick JQuery Mobile App and used XQuery to render our HTML5 dynamically from XML.  Now let’s take “Mobile Shakespeare” one step further by investigating some tools and web design steps to personalize the site and help users have a rewarding and memorable experience using the program.</p>
+
+<p>Right now the site is too generic.  Users are dropped straight into a list of Shakespeare play titles, and may not understand what the app is about or what it can do.  Also, we are still using the JQuery Mobile default theme!  The site has no identity and probably won’t be remembered by users the next time they want to look up their favorite Shakespeare quotes (or want to follow an XQuery tutorial).</p>
+
+<p>A good first step in any web reskin is to build a pencil prototype.  The idea is to make a basic line drawing of your website that focuses on big picture content, behavior, and flow.  Because we are starting with such low-fidelity rendering of the website we can avoid getting stuck in the details and even show it to sample users or stakeholders without having to worry about customers arguing about fonts and colors in committee.  You can do a pencil prototype with physical pencil and paper, but I prefer using a prototyping tool because they allow me to quickly distribute samples and incorporate feedback.  These were made with <a href="http://www.balsamiq.com/products/mockups">Balsamiq</a>, but I know people who use the free “Pencil” Firefox pluging, Omigraffle, Visio, or even just PowerPoint.</p>
+
+<p><a href="/wp-content/uploads/2011/12/balsamiq.jpg"><img class="aligncenter size-full wp-image-185" title="balsamiq" src="/wp-content/uploads/2011/12/balsamiq.jpg" alt="UI mockups" width="600" height="354" /></a></p>
+
+<p>I want to have a line portrait of the Bard in the background, so I’ll make a set of semi-transparent PNG files in Photoshop in various sizes.  I will use CSS3 media queries to customize the appearance of the app depending on the mobile or desktop browser size.</p>
+
+<p>Let’s get started.  First we’ll ditch the default JQuery Mobile blue button theme and make our own over at <a href="http://jquerymobile.com/themeroller/">JQuery Mobile Themeroller</a>.  As of writing this, the Themeroller program is still generating templates made for a slightly older version of JQuery Mobile (1.0 RC2) so I’ll just cross my fingers and hope that downgrading slightly doesn’t introduce errors that have been fixed in the latest JQuery Mobile release.</p>
+
+<p><a href="/wp-content/uploads/2011/12/themeroll.jpg"><img class="aligncenter size-full wp-image-186" title="themeroll" src="/wp-content/uploads/2011/12/themeroll.jpg" alt="Making a new theme in ThemeRoller" width="698" height="569" /></a></p>
+
+<p>Because I want the Shakespeare head to look like a faded print on a piece of parchment, I do the following steps in Photoshop (I’m not sure how well these translate into other tools like GIMP):</p>
+
+<ul>
+  <li>Background layer is transparent</li>
+  <li>Create a new layer and fill it with a rusty auburn color that is darker than the theme’s background</li>
+  <li>Give the dark layer an Opacity Mask.</li>
+  <li>In the channels navigator, disable RGB and enable the Alpha layer.  Paste in the black and white image of Shakespeare and use the move tool and Transform (Win-CTRL / COMMAND – T) command to place the image as desired</li>
+  <li>Select the entire alpha layer (Win-CTRL / COMMAND – A) and then Menu &gt; Image &gt; Adjustments &gt; Invert to make the portrait a negative image.  The had image should now act as a masking layer so that only the white strokes making up Will’s face allow alpha opacity for the auburn color.  The rest is transparent.</li>
+  <li>Switch back to editing just the RGB channels and change the layer’s opacity o 39%.</li>
+  <li>Save as PNG, which preserves the alpha channel.</li>
+</ul>
+
+<p><a href="/wp-content/uploads/2011/12/alphas2.jpg"><img class="aligncenter size-full wp-image-248" title="alphas2" src="/wp-content/uploads/2011/12/alphas2.jpg" alt="" width="754" height="511" /></a></p>
+
+<p>I’ve also selected some fonts using <a href="http://www.google.com/webfonts">Google Web Fonts</a>.  With the font link copied, the theme exported to a zip file, and my extra transparent images ready to go, it’s now time to integrate the changes to our HTML5 template</p>
+
+<pre><code class="language-html html">&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+        
+&lt;link href='http://fonts.googleapis.com/css?family=Aguafina+Script|Vast+Shadow' rel='stylesheet' type='text/css'/&gt;
+&lt;link rel="stylesheet" href="/css/mobshake-jm.min.css"/&gt;
+&lt;link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile.structure-1.0rc2.min.css"/&gt;
+        
+&lt;link rel="stylesheet" href="/css/mobshake.css" /&gt;
+        
+&lt;script src="http://code.jquery.com/jquery-1.6.4.min.js"&gt;&lt;/script&gt;
+&lt;script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"&gt;&lt;/script&gt;</code></pre>
+
+<p>And some Media aware CSS3 to help layout the app slightly differently depending on the screen width of the mobile device</p>
+
+<pre><code class="language-css css">#homepage {
+	width:auto;
+	text-align:center;
+}
+
+h1 {
+	font-family: 'Aguafina Script', cursive; 
+	font-size:1.2em;
+}
+
+#homepage h1 {
+	font-family: 'Aguafina Script', cursive; 
+	font-size:3em;
+}	
+
+#mobshake h2, #mobshake h3 {
+	font-family: 'Vast Shadow', cursive;
+}	
+
+#play-search {
+	
+}
+
+@media only screen and (max-width: 300px) {
+	.ui-page {
+		background:#e3b778 url(../img/shaketranstiny.png) no-repeat top center fixed;
+	}
+	
+	#homepage h1 {
+		font-family: 'Aguafina Script', cursive; 
+		font-size:1.3em;	
+	}	
+	
+	#play-search{
+		margin-top:160px;	
+	}
+}
+
+
+
+@media only screen and (min-width:301px) and (max-width:789px){
+
+	.ui-page {
+		background:#e3b778 url(../img/shaketranssmall.png) no-repeat top center fixed;
+	}
+	
+	#homepage h1 {
+		font-family: 'Aguafina Script', cursive; 
+		font-size:2em;	
+	}	
+	
+	#play-search{
+		margin-top:250px;	
+	}
+
+}
+
+@media only screen and (min-width: 790px) {
+
+	.ui-page {
+		background:#e3b778 url(../img/shaketransbig.png) no-repeat top right fixed;
+	}
+
+}
+</code></pre>
+
+<p>I tend to keep a non-XQuery version of the template around so that I can work with a tool like Dreamweaver directly in HTML5.  The newest version of Dreamweaver has a WebKit browser directly embedded into the tool.  This allows a “Multiscreen” preview that mimics the behavior of 3 device sizes at a time, which can be a big productivity boost.</p>
+
+<p><a href="/wp-content/uploads/2011/12/dreamweaver.jpg"><img class="aligncenter size-large wp-image-195" title="dreamweaver" src="/wp-content/uploads/2011/12/dreamweaver-1024x734.jpg" alt="Dreamweaver Multiscreen" width="510" height="365" /></a></p>
+
+<p>I am really amazed at the wide range of mobile screen resolutions that we have to consider.  Dreamweaver’s default “Tablet” size is actually the “Portrait View” of an 768 by 1024 px iPad 1.  Because my CSS3 media query stylesheet switches to it’s desktop style area at 789px, the iPad will switch which stylesheet rules are applied when I rotate it’s orientation.  My 540 x 960 px Android phone will actually use a “Desktop” stylesheet if I am in “Landscape” view, so I’ll have to be careful not assume a user is on a computer at that resolution.  Perhaps a real desktop version of the app should start at 1280px?</p>
+
+<p>Well, I didn’t get to the Search API calls for easy full text search this time, but the site is looking much nicer.  <a href="http://www.front2backdev.com/2011/12/17/tutorial-mobile-shakespeare-part-3-adding-search/" title="Tutorial: Mobile Shakespeare (Part 3 – Adding Search)">See you in part three, where we use the MarkLogic api and even tune the search indices slightly for more relevant searches!</a></p>
+
+<p>–Dave</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Tutorial: Mobile Shakespeare (Part 2 &#8211; The Reskin)&url=http://localhost:4000/2011/12/14/tutorial-mobile-shakespeare-part-2-the-reskin/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2011/12/14/tutorial-mobile-shakespeare-part-2-the-reskin/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2011/12/14/tutorial-mobile-shakespeare-part-2-the-reskin/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#CSS3" class="tag">&#35; CSS3</a>
+          
+            <a href="/tags#Dreamweaver" class="tag">&#35; Dreamweaver</a>
+          
+            <a href="/tags#JQuery Mobile" class="tag">&#35; JQuery Mobile</a>
+          
+            <a href="/tags#Mobile" class="tag">&#35; Mobile</a>
+          
+            <a href="/tags#mobshake" class="tag">&#35; mobshake</a>
+          
+            <a href="/tags#pencil prot" class="tag">&#35; pencil prot</a>
+          
+            <a href="/tags#tutorial" class="tag">&#35; tutorial</a>
+          
+            <a href="/tags#web design" class="tag">&#35; web design</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

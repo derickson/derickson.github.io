@@ -2,12 +2,11 @@
 layout: post
 title:  "2016 Quantified Year in Review"
 date:   2016-12-24 12:00:00
-categories: quantified self, visualization
+tags: quantified-self visualization
 permalink: /2016/12/24/quantified-year-review/
+img: posts/2016-12-24-beerBar.jpg
 published: true
 ---
-
-![Beer Bar Graph](/images/posts/2016-12-24-beerBar.jpg)
 
 
 At the beginning of the year I set out on a [Quantified Self challenge](/2016/01/03/quantified-self-ifttt-zapier-elasticsearch/).  Some tracking activities dropped off after only a few weeks (like movie and tv tracking).  I blame the manual entry required during couch time when I don't feel like pulling out my phone. On the other hand, checking in all my beers to Untappd was easy to keep up, and the main reason was that I had a near-real-time visualization service running all year long to help reinforce the completionist part of my brain that wanted the visualization to be accurate ... or just funny due to the hilarious beer names.

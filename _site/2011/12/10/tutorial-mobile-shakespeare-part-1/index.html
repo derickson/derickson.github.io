@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Tutorial: Mobile Shakespeare (Part 1) - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>Software Engineer</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/about/">About</a>
+			  	
+				  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	          <li><a href="https://www.github.com/derickson" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Tutorial: Mobile Shakespeare (Part 1)</h1>
+        <div class="page-date"><span>Dec 10, 2011&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>The first MarkLogic tutorial I ever followed was <a href="http://developer.marklogic.com/learn/2009-01-get-started-apps">Clark Richey’s Shakespeare hands-on</a>, hosted from the MarkLogic developer website back in the MarkLogic Server 4.0 days.  I think it is only fitting / nostaligic that the first tutorial I write for Front2BackDev.com be a similar app but with a new twist.  Let’s make an application that helps a user access the complete works of Shakespeare, but let’s use some new tech, in MarkLogic and otherwise, that wasn’t available back in 2009 such as:</p>
+
+<ul>
+  <li><strong>The MarkLogic URL rewriter</strong>:  I’m going and Nuno Job’s <a href="https://github.com/dscape/rewrite">rewrite</a> library to implement a REST friendly URL scheme.</li>
+  <li><strong>Information Studio</strong>: loading the complete works of Shakespeare (in XML form) into a database should take us no more than a few minutes.  Because we don’t really have to do any upfront data modeling in MarkLogic, we often take a “Load First .. Damn the Schemas full speed ahead!” mentality that should be refreshing to even the most jaded Agile developer.</li>
+  <li>In later installments of this tutorial I am going to use the <strong>MarkLogic Search API</strong> to build some quick but professional search functionality … we’ll get to this later.</li>
+  <li>And lastly rather than building an XHTML website with XQuery we’re going to take a look at <strong><a href="http://jquerymobile.com/">JQuery Mobile</a></strong>, which takes a “markup only” approach to developing mobile web apps that have the same look and feel of a native iOS app.</li>
+</ul>
+
+<p>This is what we are going to build: <em>BROKEN LINK TO OLD DEMO</em></p>
+
+<p>Getting started:</p>
+
+<ul>
+  <li>Install MarkLogic 5 ( <a href="http://developer.marklogic.com/pubs/5.0/books/install.pdf">Install Guide</a> ).  This guide assumes you’ll be working from a developer machine that is running your MarkLogic Server.</li>
+  <li>From Application Services create a new database called “shake”</li>
+  <li>Application Services is located at http://localhost:8000/appservices/</li>
+  <li>
+    <p>At the top of the screen there is a “+ New Database” button.  Use it to create a new database called “shake”</p>
+  </li>
+  <li>Download the complete works of Shakespeare from <a href="http://www.ibiblio.org/xml/examples/shakespeare/">http://www.ibiblio.org/xml/examples/shakespeare/</a> to a folder on your desktop called “shake”</li>
+  <li>Use Application Services’ Information Studio to load the Shakespeare plays into the “shake” database</li>
+  <li>On the Application Services screen click the “+ New Flow”  button in the “Information Studio Flows” area</li>
+  <li>In the new flow, type the absolute file system path to the “shake” folder on your desktop in the “Collect” section with a “Filesystem Directory” collector.</li>
+  <li>Upload the files by selecting the “shake” database in the “Load” section and clicking “Start Loading”</li>
+  <li>
+    <p>37 files … should take a few seconds.</p>
+  </li>
+  <li>Check out the files you uploaded in Query Console</li>
+  <li>Go to http://localhost:8002/qconsole</li>
+  <li>Change the content source to “shake” and hit the explore button</li>
+  <li>Verify the shakespeare plays are there</li>
+  <li>
+    <p>Run a sample query like (/PLAY)<a href="http://developer.marklogic.com/learn/2009-01-get-started-apps">1</a>/TITLE/text()</p>
+  </li>
+  <li>Open your favorite code editor (I use the Eclipse IDE with the XQDT plugin).</li>
+  <li>Create a new project (the general “Project” in Eclipse) called shake, and create a new folder within that project called “xquery”</li>
+  <li>In the new project create a file located at /xquery/index.xqy with the content</li>
+</ul>
+
+<pre> "Hello World!"</pre>
+
+<ul>
+  <li>Back in the admin console, create a new HTTP server on port 9001.  Set it’s database to “shake”, modules to <filesystem>, and root to the absolute path of the project/xquery folder you made.  For me this is /Users/dave/Documents/workspace/shake/xquery</filesystem></li>
+  <li>Open up http://localhost:9001 in a browser and confim the hello world is working</li>
+</ul>
+
+<div>
+  Okay now for some quick REST URL design:
+</div>
+
+<div>
+  <ul>
+    <li>
+      / will be our home page.  We&#8217;ll list all the plays here.
+    </li>
+    <li>
+      /play/1 should bring up the Shakespeare play with id &#8220;1&#8221;
+    </li>
+    <li>
+      /play/1/characters should display all the characters in the play with id &#8220;1&#8221;
+    </li>
+    <li>
+      /play/1/act/1/scene/1 should bring up act 1 scene 1 of play &#8220;1&#8221;
+    </li>
+  </ul>
+  
+  <div>
+    But wait, the XML for the Shakespeare plays doesn&#8217;t have an &#8220;id&#8221;.  That&#8217;s cool, add one quickly with Query Console.  There isn&#8217;t a lot of data, so we can do it in a single transaction:
+  </div>
+  
+  <div>
+    
+      <pre><code class="language-xquery xquery">for $p at $id in /PLAY
+let $at := attribute id {$id}
+return
+xdmp:node-insert-child($p,$at)</code></pre>
+    
+  </div>
+  
+  <div>
+    We&#8217;ll now be editing the shake project.  So as not to confuse anyone, here is the file layout of my shake project when this tutorial is finished:
+  </div>
+  
+  <div>
+    <a href="/wp-content/uploads/2011/12/shakedirs.jpg"><img class="aligncenter size-full wp-image-171" title="shakedirs" src="/wp-content/uploads/2011/12/shakedirs.jpg" alt="Directory layout for shake project" width="189" height="222" /></a>
+  </div>
+  
+  <div>
+    Okay, now we are ready to program the REST handler.   Download the <a href="https://github.com/dscape/rewrite">rewrite library</a> from github.  In the Admin Console (port 8001) set the &#8220;url rewriter&#8221; setting of your HTTP server to &#8220;/rewrite.xqy&#8221; .  Now place the rewrite files in the following organization inside the project
+  </div>
+</div>
+
+<pre>/xquery/
+/xquery/lib/
+/xquery/lib/rewrite/
+/xquery/lib/rewrite/helper.xqy
+/xquery/lib/rewrite/routes.xqy</pre>
+
+<p>To implement the REST rules, I prefer using Nuno Job’s rewrite library, which has a Ruby on Rails-like routes specification for redirecting pattern based URLs to “controller” resource modules. Create the file /xquery/config.xqy with the following content:</p>
+
+<pre><code class="language-xquery xquery">xquery version "1.0-ml" ;
+
+(:  config.xqy
+    This library module holds configuration
+    variables for the application
+:)
+
+module  namespace cfg = "http://framework/lib/config";
+
+(:  The rewrite library route configuration
+    For documentation see: https://github.com/dscape/rewrite
+:)
+declare variable $ROUTES :=
+    &lt;routes&gt;
+        &lt;root&gt;home#get&lt;/root&gt;
+        &lt;get path="play/:id"&gt;
+          &lt;to&gt;play#get&lt;/to&gt;&lt;/get&gt;
+        &lt;get path="play/:id/characters"&gt;
+          &lt;to&gt;play#characters&lt;/to&gt;&lt;/get&gt;
+        &lt;get path="play/:id/act/:act"&gt;
+          &lt;to&gt;play#get&lt;/to&gt;&lt;/get&gt;
+        &lt;get path="play/:id/act/:act/scene/:scene"&gt;
+          &lt;to&gt;play#get&lt;/to&gt;&lt;/get&gt;
+    &lt;/routes&gt;;
+
+declare variable $TITLE := "Mobile Shakespeare";</code></pre>
+
+<p>Next we need to create the /xquery/rewrite.xqy file which will select resource “controllers” based on the ROUTES configuration.  This is the script that is called by MarkLogic for every incoming HTTP request to determine which main module should be called.  We configured it when we set the “url rewriter” setting in the Admin Console:</p>
+
+<pre><code class="language-xquery xquery">xquery version "1.0-ml" ;
+
+import module namespace shake-r =
+    "routes.xqy" at "/lib/rewrite/routes.xqy";
+import module namespace shake =
+    "http://framework/lib/config" at "/lib/config.xqy";
+
+    (: let rewrite library determine destination URL,
+       use routes configuration in config lib :)
+    let $selected-url    :=
+            shake-r:selectedRoute( $shake:ROUTES )
+    return
+            $selected-url</code></pre>
+
+<p>Now to get fancy with some JQuery Mobile.  First in a file located at /xquery/view/v-mob.xqy inside the project create a new MVC “view” template using the <a href="http://jquerymobile.com/">JQuery Mobile</a> framework.</p>
+
+<pre><code class="language-xquery xquery">xquery version "1.0-ml";
+
+module namespace v-mob = "http://framework/view/v-mob";
+
+(:  Stick this at the top of any module that generates HTML so that
+    empty tags don't get truncated to non-empty tags :)
+declare option xdmp:output "method=html";
+
+(:
+    HTML5 Template using JQuery Mobile
+    @author Dave http://www.front2backdev.com
+    XQuery adaptation Public Domain.
+        jQuery and jQuery Mobile: MIT/GPL license
+:)
+
+(:
+    JQuery Mobile Output Template
+    $title -- The html head title of the page
+    $html  -- HTML5 nodes to put in the body
+:)
+declare function v-mob:render(
+    $title as xs:string,
+    $html as node()*
+) {
+
+xdmp:set-response-content-type("text/html"),
+'&lt;!DOCTYPE html&gt;',
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;{$title}&lt;/title&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+        &lt;link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" /&gt;
+        &lt;script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt; 
+
+        &lt;div data-role="page" data-theme="b"&gt;
+
+            &lt;div data-role="header"&gt;
+                &lt;a data-rel="back"
+                   data-icon="back"
+                   data-iconpos="notext"
+                   data-transition="slide"
+                   data-direction="reverse"&gt;Back&lt;/a&gt;
+                &lt;h1&gt;{$title}&lt;/h1&gt;
+                &lt;a href="/"
+                   data-icon="home"
+                   data-iconpos="notext"
+                   data-transition="fade"&gt;Home&lt;/a&gt;
+            &lt;/div&gt;&lt;!-- /header --&gt;
+
+            &lt;div data-role="content"&gt;
+                {$html}
+            &lt;/div&gt;&lt;!-- /content --&gt;
+
+        &lt;/div&gt;&lt;!-- /page --&gt;
+
+    &lt;/body&gt;
+&lt;/html&gt;
+};</code></pre>
+
+<p>Next create a MVC “controller” for the home resource  in a file located at /resource/home.xqy with the content :</p>
+
+<pre><code class="language-xquery xquery">xquery version "1.0-ml";
+
+(: Home.  List all Shakespeare plays :)
+
+import module namespace cfg = "http://framework/lib/config" at "/lib/config.xqy";
+
+import module namespace h = "helper.xqy" at "/lib/rewrite/helper.xqy";
+import module namespace v-mob = "http://framework/view/v-mob" at "/view/v-mob.xqy";
+
+(: Don't forget to include this so script
+   tags in the VIEW are not collapsed :)
+declare option xdmp:output "method=html";
+
+declare function local:get()  {
+    v-mob:render(
+        $cfg:TITLE,
+        &lt;ul data-role="listview" data-inset="true" data-filter="true"&gt;
+        {
+            (: Note this code is inefficient at scale because we
+               are effectively retrieving the entire database
+               to generate these links.  It's only about 8MB of data
+               and it is coming out of cache, but maybe we can speed
+               it up later
+            :)
+            for $play in /PLAY
+            return
+                &lt;li&gt;
+                  &lt;a href="/play/{fn:string($play/@id)}"&gt;
+                    {$play/TITLE/text()}
+                  &lt;/a&gt;
+                &lt;/li&gt;
+        }
+        &lt;/ul&gt;
+    )
+};
+
+try          { xdmp:apply( h:function() ) }
+catch ( $e ) {  h:error( $e ) }</code></pre>
+
+<p>So once you are good with that resource, here is another more complex one to digest.  Lastly create a MVC “controller” for the play resource  in a file located at /resource/play.xqy with the following content (Sorry this one is kind-of long, but it is doing most of the work.  We can refactor the code into some Model and Util Library code later) :</p>
+
+<pre><code class="language-xquery xquery">xquery version "1.0-ml";
+
+(: Play detail  :)
+
+import module namespace cfg = "http://framework/lib/config" at "/lib/config.xqy";
+
+import module namespace h =
+    "helper.xqy" at "/lib/rewrite/helper.xqy";
+import module namespace v-mob =
+    "http://framework/view/v-mob" at "/view/v-mob.xqy";
+
+(: Don't forget to include this so script
+   tags in the VIEW are not collapsed :)
+declare option xdmp:output "method=html";
+
+declare function local:characters()  { 
+
+    let $id := h:id()
+    let $play := /PLAY[@id eq $id]
+    let $title := fn:string-join((
+            $play/TITLE/text(),
+            "Characters"
+        )," ")
+    return
+    v-mob:render(
+        $cfg:TITLE,
+            &lt;p&gt;
+                &lt;h2&gt;{$title}&lt;/h2&gt;
+                &lt;h3&gt;DRAMATIS PERSONAE&lt;/h3&gt;
+                {
+                for $node in $play/PERSONAE/node()
+                return
+                    typeswitch ($node)
+                    case element(TITLE) return
+                        ()
+                    case element(PGROUP) return
+                        &lt;ul data-role="listview"  data-inset="true"&gt;
+                        {
+                            for $p in $node/PERSONA
+                            let $name := $p/text()
+                            return
+                                &lt;li data-theme="d"&gt;{$name}&lt;/li&gt;,
+                            for $d in $node/GRPDESCR
+                            return
+                                &lt;li data-theme="c"&gt;{$d/text()}&lt;/li&gt;
+                        }
+                        &lt;/ul&gt;
+                    case element(PERSONA) return
+                    &lt;ul data-role="listview"  data-inset="true"&gt;
+                        {
+                            let $p := $node
+                            let $name := $p/text()
+                            return
+                                &lt;li data-theme="d"&gt;{$name}&lt;/li&gt;
+                        }
+                        &lt;/ul&gt;
+                    default return
+                        ()
+                }
+            &lt;/p&gt;
+    )
+};
+
+declare function local:get()  {
+    let $id := h:id()
+    let $act := xdmp:get-request-field("act",())[1]
+    let $scene := xdmp:get-request-field("scene",())[1]
+
+    let $act := if($act castable as xs:int) then
+                  xs:int($act)
+                else ()
+    let $scene := if($scene castable as xs:int) then
+                    xs:int($scene)
+                  else ()
+
+    let $play := /PLAY[@id eq $id]
+
+    return
+    v-mob:render(
+        $cfg:TITLE,
+        (
+            &lt;p&gt;
+                &lt;h2&gt;{$play/TITLE/text()}&lt;/h2&gt;
+                {
+                    if($act) then
+                      &lt;h3&gt;{($play/ACT)[$act]/TITLE/text()}&lt;/h3&gt;
+                    else (),
+
+                    if($act and $scene) then
+                      &lt;h3&gt;
+                        {(($play/ACT)[$act]/SCENE)[$scene]/TITLE/text()}
+                      &lt;/h3&gt;
+                    else (),
+
+                    if(fn:not( $act or $scene )) then
+                        &lt;ul data-role="listview" data-inset="true" &gt;
+                          &lt;li&gt;
+                            &lt;a href="/play/{$id}/characters"&gt;
+                              Characters
+                              &lt;span class="ui-li-count"&gt;
+                                {fn:count($play/PERSONAE/PERSONA)}
+                              &lt;/span&gt;
+                            &lt;/a&gt;
+                          &lt;/li&gt;
+                        &lt;/ul&gt;
+                    else
+                      ()
+                }
+            &lt;/p&gt;,
+
+            if($act and $scene) then (
+                let $paging :=
+                    &lt;div data-role="controlgroup" data-type="horizontal"&gt;
+                    {
+                        if($scene eq 1 and $act eq 1) then
+                            ()
+                        else if( $scene eq 1 and fn:exists( ($play/ACT)[$act -1] )) then
+                            &lt;a data-icon="arrow-l" href="/play/{$id}/act/{$act -1}/scene/{ fn:count(($play/ACT)[$act -1]/SCENE) }" data-role="button"&gt;Previous Scene&lt;/a&gt;
+                        else
+                            &lt;a data-icon="arrow-l"   href="/play/{$id}/act/{$act}/scene/{$scene -1}" data-role="button"&gt;Previous Scene&lt;/a&gt;,
+
+                        &lt;a  data-icon="grid" href="/play/{$id}" data-role="button"&gt;Back to Scene Selection&lt;/a&gt;,    
+
+                        if( fn:count(($play/ACT)[$act]/SCENE) gt $scene ) then
+                            &lt;a  data-icon="arrow-r"  href="/play/{$id}/act/{$act}/scene/{$scene +1}" data-role="button"&gt;Next Scene&lt;/a&gt;
+                        else if( fn:exists( ($play/ACT)[$act +1] )) then
+                            &lt;a  data-icon="arrow-r"  href="/play/{$id}/act/{$act +1}/scene/1" data-role="button"&gt;Next Scene&lt;/a&gt;
+                        else
+                            ()
+                    }
+                    &lt;/div&gt;
+                return (
+
+                    $paging,
+
+                    for $node in (($play/ACT)[$act]/SCENE)[$scene]/node()
+                    return
+                        typeswitch ($node)
+                        case element(TITLE) return
+                            &lt;p&gt;&lt;strong&gt;{$node/text()}&lt;/strong&gt;&lt;/p&gt;
+                        case element(STAGEDIR) return
+                            &lt;p&gt;&lt;em&gt;{$node/text()}&lt;/em&gt;&lt;/p&gt;
+                        case element(SPEECH) return
+                            &lt;div class="ui-body ui-body-b"
+                                 style="margin:20px 0px;"&gt;
+                            {
+                                $node/SPEAKER/text(),
+                                &lt;div style="margin-left:20px;"&gt;{
+                                    for $line in $node/LINE/text()
+                                    return
+                                        &lt;div&gt;{$line}&lt;/div&gt;
+                                }
+                                &lt;/div&gt;
+                            }
+
+                            &lt;/div&gt;
+                        default return
+                            ()
+
+                    ,
+
+                    $paging
+                )
+
+            )
+            else
+                &lt;ul data-role="listview"  data-inset="true" &gt;
+                {
+                    for $act at $a in $play/ACT
+                    return
+                    (
+                        &lt;li data-role="list-divider"&gt;{$act/TITLE/text()}&lt;/li&gt;,
+
+                        for $scene at $s in $act/SCENE
+                        return
+                            &lt;li data-theme="c"&gt;
+                                &lt;a href="/play/{$id}/act/{$a}/scene/{$s}"&gt;
+                                    {$scene/TITLE/text()}
+                                &lt;/a&gt;
+                            &lt;/li&gt;
+                    )
+                }
+                &lt;/ul&gt;
+        )
+    )
+};
+
+try          { xdmp:apply( h:function() ) }
+catch ( $e ) {  h:error( $e ) }</code></pre>
+
+<p>And now for our hard earned screenshots.  In the next part of the tutorial we’ll add a real search page to search within the text of the plays.</p>
+
+<p>A live demo of the app so far can be found at: <em>LINK TO OLD DEMO BROKEN</em></p>
+
+<p>Part 2 of this tutorial can be found <a href="http://www.front2backdev.com/2011/12/14/tutorial-mobile-shakespeare-part-2-the-reskin/" title="Tutorial: Mobile Shakespeare (Part 2 – The Reskin)">here</a>.</p>
+
+<p><a href="/wp-content/uploads/2011/12/shake.jpg"><img class="aligncenter size-large wp-image-128" title="shake" src="/wp-content/uploads/2011/12/shake-1024x992.jpg" alt="" width="510" height="494" /></a>Updates:</p>
+
+<p>12/16/2011 – links to apps changed<br />
+12/18/2011 – adding reminder to set rewriter in HTTP app server configuration</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Tutorial: Mobile Shakespeare (Part 1)&url=http://localhost:4000/2011/12/10/tutorial-mobile-shakespeare-part-1/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2011/12/10/tutorial-mobile-shakespeare-part-1/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2011/12/10/tutorial-mobile-shakespeare-part-1/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#JQuery Mobile" class="tag">&#35; JQuery Mobile</a>
+          
+            <a href="/tags#Mobile" class="tag">&#35; Mobile</a>
+          
+            <a href="/tags#mobshake" class="tag">&#35; mobshake</a>
+          
+            <a href="/tags#REST" class="tag">&#35; REST</a>
+          
+            <a href="/tags#rewrite" class="tag">&#35; rewrite</a>
+          
+            <a href="/tags#tutorial" class="tag">&#35; tutorial</a>
+          
+            <a href="/tags#XQuery" class="tag">&#35; XQuery</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

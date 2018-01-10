@@ -2,8 +2,9 @@
 layout: post
 title:  "Detecting Geo-Temporal Events with Elasticsearch Pipeline Aggregations"
 date:   2016-05-03 12:00:00
-categories: elasticsearch, bikeshare, washington dc, holt winters, anomaly detection, pipeline aggregations, predictions
+tags: elasticsearch bikeshare washington_dc holt_winters anomaly_detection pipeline_aggregations predictions
 permalink: /2016/05/03/geo-temporal-anomaly/
+img: posts/2016-05-03-geobucketed.jpg
 published: true
 ---
 

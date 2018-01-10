@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Software Engineering lessons I learned playing The Legend of Zelda - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>Software Engineer</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/about/">About</a>
+			  	
+				  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	          <li><a href="https://www.github.com/derickson" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Software Engineering lessons I learned playing The Legend of Zelda</h1>
+        <div class="page-date"><span>Jan 08, 2012&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p><a href="/wp-content/uploads/2012/01/The_Legend_of_Zelda_-_Golden_Catridge.jpg"><img class="alignleft size-medium wp-image-332" title="The_Legend_of_Zelda_-_Golden_Catridge" src="/wp-content/uploads/2012/01/The_Legend_of_Zelda_-_Golden_Catridge-300x166.jpg" alt="" width="300" height="166" /></a>24 years ago I was given a gem under the Christmas tree: <a href="http://en.wikipedia.org/wiki/The_Legend_of_Zelda_(video_game)">The Legend of Zelda</a>, (TLOZ) for the Nintendo Entertainment System (NES) which is  without a doubt my favorite video game of all time.  The game was innovative.  It had a persistent memory module and non-linear map exploration, which were both very rare for console games in 1987. The game itself had a number of cool computer science techniques buried in the assembly, but that is not what I want to focus on here.  I want to talk about how playing the game can inform Software Engineering.</p>
+
+<p>Here are my take-aways:</p>
+
+<h2 id="1-learn-from-others">1.) Learn from others</h2>
+
+<p>In the game:<br />
+The first time I beat TLOZ, it was on the original save-file started way back on the day I first put it in my NES.  After spending literally weeks of my life spread over more than two years I thought I was <strong><em>pretty good</em></strong>; right up until I went to a friend’s house and watched him beat the game in less than 90 minutes without dying once.  How did he get so good you may ask?  Well, his annoying cousin had poured a 20 oz. Coke into the NES and damaged the cartridge.  As a result his save feature stopped working so if he powered down the machine or even lost all his health he’d have to start over. As a result he had become <strong><em>very good</em></strong> at playing.  According to TwinGalaxies.com the world record is 31 min and 37 seconds.  For an idea of what this entails look up “Legend of Zelda speed run” on Youtube.</p>
+
+<p>In SW engineering:<br />
+As a professional software consultant working for a vendor, I get to travel around to lots of teams and I love being <strong><em>humbled</em></strong> by some of the real hackers out there.  Being ‘good’ at programming isn’t always the same thing as providing value for companies or customers, but it can’t be ignored.  Finding the talent around you and learning everything you can from them is critical to keeping up your skills.  Also, the second you feel comfortable with your skill level and think you are the best coder you know … watch out.  It’s probably a good sign you are out of touch.</p>
+
+<h2 id="2-acquiring-tools-early-pays-off-down-the-road">2.) Acquiring tools early pays off down the road</h2>
+
+<p><a href="/wp-content/uploads/2012/01/magicsword.png"><img class="alignnone" title="magicsword" src="/wp-content/uploads/2012/01/magicsword-300x206.png" alt="" width="240" height="165" /></a></p>
+
+<p>In the game:<br />
+Link, the protagonist, starts the game with three heart containers.  Once you have reached five containers the old man over the waterfall will allow you to take the magic sword, which does about twice the damage to monsters as the starting wooden sword.  Having the sword as early as possible will make the early portion of the game go much much faster.</p>
+
+<p>In SW engineering:<br />
+It is easy to start writing code the first day of a project, and often managers will push for this to claim “earned value” as early as possible.  However, getting organized and distributing / training the use of tool suites can be a huge productivity boost if you make the time to investment in them from the very beginning a project.  The cost to your schedule will be made back as long as the tool’s productivity boost is amortized over the length of the project.</p>
+
+<h2 id="3-work-on-tasks-in-the-order-that-makes-sense">3.) Work on tasks in the order that makes sense</h2>
+
+<p>In the game:<br />
+In TLOZ the eight dungeons are labeled 1 through 8 and go up in difficulty accordingly.  You have to collect a triforce fragment (piece of a magical artifact) from each dungeon in order to proceed into the final challenge and save princess Zelda.  However based on the location of the dungeons and the locations of other things you will need to collect in the over world, there are far more efficient orders that are absolutely necessary if you want to beat the game in less than an hour.</p>
+
+<p>In SW engineering:<br />
+I was <a href="http://www.waterfall2006.com/">taught</a> to 1) specify requirements up front, 2) data model, 3) write queries, 4) load data, and then finally 5) test.  It turns out the reverse order has big advantages and often leads to more successful projects.  Writing automated tests, loading data as-is into a flexible database that doesn’t enforce schemas in order to scale / perform, and then building a proof of concept and soliciting feedback from an early demo works far better.</p>
+
+<h2 id="4-the-manual-isnt-always-correct">4.) The manual isn’t always correct</h2>
+
+<p><a href="/wp-content/uploads/2012/01/pols.jpg"><img class="alignnone size-full wp-image-347" title="pols" src="/wp-content/uploads/2012/01/pols.jpg" alt="" width="304" height="48" /></a></p>
+
+<p>In the game:<br />
+The NES was the North American version of the slightly different Japanese Family Computer (Famicom) hardware which caused a tactics hint in the game’s manual to be lost in translation.  One of the hardware differences was that the NES lacked the Famicom’s microphone, which could be used for user input in gameplay.  In TLOZ there was a rabbit like monster called the Pols Voice which on the original Famicom version of the game could be killed by yelling or blowing into the microphone.  The North American manual for TLOZ included a misleading hint that the monster’s weakness was “loud noise”.  The only item / weapon you acquire in the game that made a loud noise is the Flute which, despite millions of North American player’s attempts, has no effect on the creature.</p>
+
+<p>In SW engineering:<br />
+RTFM is a beloved IT / Tech Support acronym, but it can get you into trouble.  I’ve run into plenty of documentation errors, undocumented quirks, and even preemptively documented features or API hooks that either don’t exist or don’t do anything in current release of products and systems.</p>
+
+<h2 id="5-use-features-for-what-they-do-not-how-they-are-marketed">5.) Use features for what they do, not how they are marketed</h2>
+
+<p><a href="/wp-content/uploads/2012/01/savescreen.png"><img class="size-full wp-image-343 alignnone" title="savescreen" src="/wp-content/uploads/2012/01/savescreen.png" alt="" width="256" height="240" /></a></p>
+
+<p>In the game:<br />
+The save feature in Zelda is meant for playing the game over several sessions.  Most players are only familiar with the Continue / Save / Retry screen after dying (going to down to zero hearts) in the game.  However, you can exit to this screen by hitting a combination of controls on the 2nd player NES controller after hitting start on the 1st player controller.  The Continue function was probably meant for continuing the current game state after dying without overwriting the current save file.  However the specifics of the Continue function are the following:</p>
+
+<ul>
+  <li>does not revert Link’s inventory to the last save file (that would be Retry)</li>
+  <li>moves Link instantly to the current dungeon entrance or over world stating point</li>
+  <li>set’s Link’s hearts to three</li>
+</ul>
+
+<div>
+  As a result, the Continue function is effectively a teleportation and limited healing option if your current health is less than three.  Jumping around a dungeon or to the game&#8217;s over world starting point is a key time save in most speed run strategies.
+</div>
+
+<p>In SW engineering:<br />
+I work primarily with a product that is marketed as a Big Data / unstructured information platform.  However, if you only apply what it does, not what it is sold as, it turns out that it also makes an excellent data warehouse for legacy structured information pulled out of mainframes and relational databases.</p>
+
+<p>In previous jobs I would often have software languages and platforms pushed on my team by well meaning architects and customers who had researched marketing materials.  I have found that technical evaluation of real features and use cases can often find hidden strengths and weaknesses specific to the problem at hand.  Checking yourself is invaluable.</p>
+
+<h2 id="6-perfectionism-and-completionist-tendencies-can-get-in-the-way-of-timely-success">6.) Perfectionism and Completionist tendencies can get in the way of timely success</h2>
+
+<p>In the game:<br />
+If you are attempting a speed run in TLOZ, the first thing to learn is that you don’t have to kill every monster in the game or traverse every room of every dungeon.  Big portions of the maze like dungeons can be skipped, and you can walk right past most enemies as long as defeating them isn’t a trigger for opening the next door and  you don’t need the treasure they drop.  Also if the goal is speed then taking a couple of hits shouldn’t really worry you.  Just keep moving, there are no points awarded for never taking damage.</p>
+
+<p>In SW engineering:<br />
+Hitting schedules and time to market advantage can be everything to a software project.  Just because code <strong>can</strong> be better doen’t meet it <strong>has</strong> to be better.  Keeping a close watch on perfectionist tendencies is important.  Whole features that are were envisioned in early designs might be discovered to be a lower priority and never need to be built.</p>
+
+<h2 id="7-performance-doesnt-always-matter">7.) Performance doesn’t always matter</h2>
+
+<p>In the game:<br />
+TLOZ has wretched performance problems when there are too many enemies on the screen or when scrolling between some over world map sections.  The game loop will slow down, and when scrolling there is screen tearing, which will be familiar to modern game players who have chosen not to enable monitor VSync.  While this can be nit-picked and criticized, the programmers of the game actually knew what they were doing an made difficult memory vs performance tradeoffs when delivering a very fun and stable software product that pushed the limits of the Famicom and NES hardware early in console’s life cycle, sold millions of copies, and started a successful Nintendo intellectual property which has driven customers to their products for decades.</p>
+
+<p>In SW engineering:<br />
+Sub-second response time is now the expected performance metric for quality web sites. Amazon.com’s performance vs. sales conversion anecdotes are becoming engineering dogma.  However, performance needs still need to be looked at on a case by case basis.  Fast code may be sexy and well tuned code can run orders of magnitude faster than a merely functional implementation, but sometimes none of this really matters.</p>
+
+<p>In a former life, I wrote a piece of Java to import a difficult custom legacy email archive into our project’s databases and search engines.  The code could convert millions of emails in a 24 hour period.  I have very clear memories of having a independent (paid by the hour) software reviewer spending hours reading code and writing up a criticism of the software’s design.  We had to inform him politely that while he was quite correct in his comments regarding Java best practice, the conversion was still orders of magnitude faster than either the search engine’s indexer or the destination storage medium and that no further improvement to code would affect the success of the project.  When he argued that we should still improve the software so that we wouldn’t be handing slow code to the operations and maintenance team we had to inform him that after the official run of the converter on the legacy data there would never be a need to run the code again and there would be nothing to maintain.</p>
+
+<h2 id="8-sometimes-the-hard-parts-take-skill">8.) Sometimes the hard parts take skill</h2>
+
+<p><a href="/wp-content/uploads/2012/01/darknut.png"><img class="alignnone size-medium wp-image-351" title="darknut" src="/wp-content/uploads/2012/01/darknut-300x206.png" alt="" width="300" height="206" /></a></p>
+
+<p>In the game:<br />
+Some rooms of enemies can be skipped, but others can not.  One of the toughest enemies in TLOZ that often can’t be skipped are the Darknuts. (Where do they get these names?) These shielded evil knights have to be attacked from the side or rear which is made more difficult by their agressive and unpredictable turning logic.  Quickly clearing a room of Darknuts without taking damage either takes lots of bombs or true video game skill.  Manual dexterity with the controller, timing, and reflexes are all required.</p>
+
+<p>In SW engineering:<br />
+Sometimes all the tools, agile process, people skills, teamwork, and fancy new technology are no replacement for an actually talented and knowledgeable programmer.  The ability quickly master a new language or real skill in an old language often trumps whatever buzz words and newest fads are being slung around a software project.  Most of the code we write professionally is not that exciting and isn’t doing anything that complicated or difficult.  However, assigning the rare complex parts of a project to a “bad programmer” (not sure how to define that better) is usually a one way ticket to disaster.</p>
+
+<hr />
+
+<p>What other engineering lessons have <strong><em>you</em></strong> learned from playing your favorite games?  I’d be interested to hear what you think?</p>
+
+<p>— Dave</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Software Engineering lessons I learned playing The Legend of Zelda&url=http://localhost:4000/2012/01/08/software-engineering-lessons-i-learned-playing-the-legend-of-zelda/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2012/01/08/software-engineering-lessons-i-learned-playing-the-legend-of-zelda/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2012/01/08/software-engineering-lessons-i-learned-playing-the-legend-of-zelda/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#lessons learned" class="tag">&#35; lessons learned</a>
+          
+            <a href="/tags#software engineering" class="tag">&#35; software engineering</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

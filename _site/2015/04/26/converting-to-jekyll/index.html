@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Converting To Jekyll - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>Software Engineer</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/about/">About</a>
+			  	
+				  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	          <li><a href="https://www.github.com/derickson" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Converting To Jekyll</h1>
+        <div class="page-date"><span>Apr 26, 2015&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>This blog started life as a Wordpress site backed by a LAMP server over at Hostmonster.  While the service was awesome, I decided to get more onboard with what the cool kids were doing and convert to a “compiled” static site rather than one backed by a database and CMS tool that would need constant patching, etc.  While that database was certainly useful five years ago for:</p>
+
+<ul>
+  <li>collaboration between multiple authors</li>
+  <li>having snapshots of the site in case I messed something up</li>
+  <li>caching frequently used content in RAM rather than having go to disk every time</li>
+</ul>
+
+<p>honestly, having to triage spam commenters, update the Wordpress software, and the fear of losing access to the content was pretty annoying. The annoyance was compounded by the fact that flat text files + git + someone else automating a distributed webcache would do just about the same thing if not better as every commit would be recoverable and all my content would be in markdown in a simple folder structure, which for my needs is fine for archival purposes.</p>
+
+<h3 id="step-zero-picking-a-tool">Step zero: Picking a Tool</h3>
+
+<p>I looked around for a bit, but settled on <a href="https://pages.github.com/">Github Pages</a> + <a href="http://jekyllrb.com/">Jekyll</a>.  I wanted good version control, which alternatives that worked off of Dropbox didn’t really provide.  While I’m not familiar with the CSS compiler used by Jekyll, it wasn’t too hard to control after playing around for a bit.</p>
+
+<h3 id="step-one-export-wordpress-content">Step one: Export Wordpress Content</h3>
+
+<p>By installing a <a href="https://wordpress.org/plugins/jekyll-exporter/">Jekyll Exporter</a> as a plugin to my wordpress site I was able to convert the entire site with photos, code samples, etc over into a fully contained Jekyll site, which downloaded to my desktop as a zip file.</p>
+
+<h3 id="step-two-cleaning-up-the-html-and-escaped-javascript">Step two: Cleaning up the HTML and escaped Javascript</h3>
+
+<p>So my old Wordpress site used <a href="https://gist.github.com/">gists</a> to neatly embed code samples.  While Jekyll did support embedding gists, the exporter had basically just rendered the final product out to Markdown. My code samples included enough The code samples in my blog, especially the HTML that contained code samples of <a href="https://html5boilerplate.com/">HTML5 Boilerplate</a> with javascript escaped within two levels of HTML given that the Jekyll export had added its own outer envelope that I needed to go and clean up some things.  Luckily it was all fairly straightforward to fix using TextMate’s Find &amp; Replace across an entire project.</p>
+
+<h3 id="step-three-branding">Step three: Branding</h3>
+
+<p>Some <a href="https://github.com/derickson/derickson.github.io/commit/6141a22308e7b6e488796bd9c81b03d594513ed6">quick CSS work</a> carried over the graph paper background from the old site.</p>
+
+<p>I uploaded to my username.github.io project on github, <a href="https://github.com/derickson/derickson.github.io/commit/b38d95f96ea0c2e512da048721c69d9d61bcba3a">added google analytics</a> to the footer, gave <a href="https://help.github.com/articles/adding-a-cname-file-to-your-repository/">Github a CNAME</a> project entry, and switched my DNS settings to point my domain to the github project hosting the page.</p>
+
+<h3 id="step-four-pagination-and-archive">Step four: Pagination and Archive</h3>
+
+<p>I found jekyll’s explanation of adding pagination to the site frustrating.  The key code to get it working is currently in my <a href="https://github.com/derickson/derickson.github.io/blob/master/index.html">index.html</a> and <a href="https://github.com/derickson/derickson.github.io/blob/master/_includes/header.html">_includes/header.hmtl</a> page where I had to tag items I wanted in my navigation header so the rendered pagination pages wouldn’t show up there.  Note the <code class="highlighter-rouge">page.useInNav</code> check.  To get a 50 character preview, I shamelessly stole code from my <a href="http://peter.mistermoo.com/">co-worker Peter’s Jekyll blog</a>.  I also added an article archive to make it easier for me to find older posts.  Code thanks to <a href="http://reyhan.org/2013/03/jekyll-archive-without-plugins.html">Reyhan</a>.</p>
+
+<p>And that’s it.  I might mess around a bit more to get a tag cloud or a preferred way to embed gists, but I’m fairly satisfied.  To post, all I have to do is add a page to my _posts folder, preview it with a quick <code class="highlighter-rouge">jekyll serve</code>, and then upload with a git add + commit + push.  Certainly faster than dealing with the underpowered LAMP hosting.</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Converting To Jekyll&url=http://localhost:4000/2015/04/26/converting-to-jekyll/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2015/04/26/converting-to-jekyll/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2015/04/26/converting-to-jekyll/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#work" class="tag">&#35; work</a>
+          
+            <a href="/tags#tech" class="tag">&#35; tech</a>
+          
+            <a href="/tags#jekyll" class="tag">&#35; jekyll</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

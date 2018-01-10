@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Using KML to define Geofences - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>Software Engineer</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/about/">About</a>
+			  	
+				  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	          <li><a href="https://www.github.com/derickson" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Using KML to define Geofences</h1>
+        <div class="page-date"><span>Feb 14, 2013&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>I’ve written about <a href="http://www.front2backdev.com/2012/01/06/geo-reverse-query-performance/" title="Geo Reverse Query Performance">geospatial alerting</a> in previous posts.  Here’s a fun example where we drive <a href="http://www.front2backdev.com/2013/02/03/controlling-philips-hue-with-xquery/" title="Controlling Philips Hue with XQuery">Philips Hue lighting changes</a> based on geofence definitions driven by a mobile device’s GPS.</p>
+
+<p>Demo Overview:</p>
+
+<ul>
+  <li>MarkLogic will be configured to accept KML with colored polygons as a description of geofences</li>
+  <li>Each supplied geofence will be used to create an alerting rule</li>
+  <li><span style="line-height: 13px;">An HTML5 mobile app will poll the GPS device of my phone to send “ping” messages to MarkLogic</span></li>
+  <li>MarkLogic will insert a “ping” document containing the lat/lon of the phone</li>
+  <li>MarkLogic will detect whether the ping document exists within a saved geofence using reverse queries and the alerting framework.</li>
+  <li>If we have a hit, the demo will change the lights in my living-room to the color of the KML polygon which defined the geofence.</li>
+</ul>
+
+<p>Results:</p>
+<iframe width="420" height="315" src="https://www.youtube.com/embed/-A598bnDT6g" frameborder="0" allowfullscreen=""></iframe>
+
+<p>App Install:</p>
+
+<ol>
+  <li>Create a marklogic database with an assigned triggers database</li>
+  <li>Turn on fast reverse query for the database</li>
+  <li>Create a new HTTP app server, pointing it’s modules to the xquery code in the following <a href="https://github.com/derickson/kmlfence">Source code</a></li>
+  <li>from qconsole, with the dropdown set to the primary db (not the trigger db) run the <a href="https://github.com/derickson/kmlfence/blob/master/script/installAlert.xqy">installAlert.xqy</a> script</li>
+</ol>
+
+<p>Creating some geofences:</p>
+
+<p><a href="/wp-content/uploads/2013/02/kml.jpg"><img class="alignnone size-medium wp-image-516" alt="kml" src="/wp-content/uploads/2013/02/kml-300x248.jpg" width="300" height="248" /></a></p>
+
+<ol>
+  <li><span style="line-height: 13px;">Using the “My Places” feature of Google Maps, create a new map</span></li>
+  <li>draw some polygons on the map and give each a different color</li>
+  <li>I placed a red polygon on the right side of my front lawn, and a blue polygon on the left side of my front lawn so that as I cross the walkway to my apartment, I move from one region to another.</li>
+  <li>Copy and paste the “sharing” link to the map.  By adding “&amp;output=kml” to the end of the URL, google will provide a KML view of the map.</li>
+</ol>
+
+<p>Now we inert this record into MarkLogic as a geo fence from qconsole.  This code will download the KML, parse it into polygons, and create alerts:</p>
+
+<pre><code class="language-xquery xquery">xquery version "1.0-ml";
+import module namespace mkf = "http://derickson/kmlalert/model/m-kf" at "/model/m-kmlfence.xqy";
+import module namespace lk = "http://derickson/kmlalert/lib/kml" at "/lib/l-kml.xqy";
+
+declare namespace kml ="http://www.opengis.net/kml/2.2";
+declare namespace gx ="http://www.google.com/kml/ext/2.2";
+
+mkf:insert-fence(
+lk:get-google-map("https://maps.google.com/maps/ms?msid=2041XXXXXX Your URL GOES HERE")
+)
+</code></pre>
+
+<p>A quick test of the alert by manually inserting a ping:</p>
+
+<pre><code class="language-xquery xquery">xquery version "1.0-ml";
+import module namespace mp = "http://derickson/kmlalert/model/m-ping" at "/model/m-ping.xqy";
+
+
+mp:store( mp:gen-ping( cts:point(38.XXXX,-77.XXX) ) )</code></pre>
+
+<p>For the video above, I’m driving the geo alert from my phone with a quick Ember.js + HTML5 geo alerting + JQuery.ajax application.  The main code to look at is the <a href="https://github.com/derickson/kmlfence/blob/master/xquery/static/js/Geo.js">Geo.js</a> file (which I stripped from something else I’m working on, so pardon the strange variable names)</p>
+
+<p> </p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Using KML to define Geofences&url=http://localhost:4000/2013/02/14/using-kml-to-define-geofences/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2013/02/14/using-kml-to-define-geofences/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2013/02/14/using-kml-to-define-geofences/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#alerting" class="tag">&#35; alerting</a>
+          
+            <a href="/tags#geofence" class="tag">&#35; geofence</a>
+          
+            <a href="/tags#HTML5" class="tag">&#35; HTML5</a>
+          
+            <a href="/tags#KML" class="tag">&#35; KML</a>
+          
+            <a href="/tags#MarkLogic" class="tag">&#35; MarkLogic</a>
+          
+            <a href="/tags#Mobile" class="tag">&#35; Mobile</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

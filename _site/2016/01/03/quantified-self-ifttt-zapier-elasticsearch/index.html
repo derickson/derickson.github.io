@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Quantified Self: IFTTT, Zapier, and Elasticsearch - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>Software Engineer</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/about/">About</a>
+			  	
+				  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	          <li><a href="https://www.github.com/derickson" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Quantified Self: IFTTT, Zapier, and Elasticsearch</h1>
+        <div class="page-date"><span>Jan 03, 2016&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p><img src="/images/posts/2016-01-03-arch.jpg" alt="Architecture" title="Basic Architecture diagram linking IFTTT Zapier Heroku, and Found" /></p>
+
+<p>As a new years resolution I’m embarking on a Quantified Self project.</p>
+
+<p>It is known that I love tracking things.  As an example: 3 years of my beer drinking history from Untappd exported to CSV as a static dataset and loaded into Kibana:</p>
+
+<p><img src="/images/posts/2016-01-03-beer.jpg" alt="Untappd visualization" title="3 Years of Untappd data in Kibana" /></p>
+
+<p>Dashboards and visualizations are fun, but in order to truly embrace life logging (and to eat a bit more dogfood at work) I need these feeds to be <em>real time</em> rather than static data sets manually loaded when I happen to have the time.</p>
+
+<p>##Inspiration</p>
+
+<p>Last year for new years I built an infographic at <a href="http://piktochart.com/">Piktochart</a> [1] to show my year’s accomplishments.  This is pretty easy for me given that most of my life is recorded in a google calendar somewhere or inside a dashboard for one of the services I use like Tripit, Untappd, or Fitbit.  I started a new visualization and it became really obvious that</p>
+
+<ul>
+  <li>Manually combining all these datasources was a pain in the ass</li>
+  <li>I spent most of last year working and my life was way out of balance</li>
+  <li>What’s the point of setting a new years resolution if you can’t track how well things are going in Real Time.</li>
+</ul>
+
+<p>Searching around people’s blogs and the various life logging apps, I stumbled upon a movement / fixation out there called “<a href="http://quantifiedself.com/">Quantified Self</a>” [2] that is related to the recent tech trends of personal data, wearables, and internet of things.  I found some tools that I liked, but rather than spend a whole bunch of time wrangling static data sets at the end of the year I set a challenge for myself:</p>
+
+<ul>
+  <li>Quantify as many things as possible in a centralized place</li>
+  <li>Have as much of the data as possible loaded in real time</li>
+  <li>Host as many things as possible in the cloud (don’t run a server in my apartment)</li>
+</ul>
+
+<p>##Getting Started: Centralizaing Data</p>
+
+<p>I wanted to get going quickly managing real time data and building dashboards.  No better tool combination than Elasticsearch and Kibana, and no easier place to host that than <a href="https://found.elastic.co">Found</a> [3].</p>
+
+<p>Setting up a new 1 node of the latest Elasticsearch with SSL, basic authentication, automated snapshots and the with the latest build of Kibana was point and click easy.  Best part is that I’ll never have to worry about upgrade automation etc as Found handles all of that.</p>
+
+<p>##Some Starting Data Sources</p>
+
+<p>I actually had quite a large number of datasources already available to me, rather than start with custom API pollers I decided to build integration to tools like <em>If This Then That</em> (<a href="http://ifttt.com/">IFTTT</a>) [4] and <a href="https://zapier.com">Zapier</a> [5] which act as <em>codeless</em> service brokers on the public web.  These two tools combined had out of the box integration to useful data sources and trigger management.</p>
+
+<p>My top two desires for data sources were my Fitbit step counter stats and the local weather.  Both occur every day and are simple to work with numeric metrics and text categories.</p>
+
+<p>The problem with these ‘consumer’ oriented data hubs is that they are meant for human consumption and not clean data integrations. IFTTT added a “Maker” channel recently which allows it to make outbound REST calls, which is excellent. And Zapier has a pretty rich weather data source with a JSON output, but both offer very little in the way of transformation or normalization of things like dates, which is essential to centralized dashboarding.</p>
+
+<p>To solve the problem I built a custom Heroku REST Service (<a href="https://github.com/derickson/metrics-rest-service">code here</a>) [6] to manage and transform my data coming from IFTTT and Zapier into Elasticsearch.    I also wanted to keep a full log of all the raw data in case I changed my mind on index settings for Elasticsearch and wanted to quickly regenerate. data can be posted to /raw or /metric endpoints.  /raw will just capture data that isn’t ready for centralized idnexing.  /metic will both record the raw feed as well as do normalization and centralized indexing.  /metricOnly will only do the normalization transform and central indexing.  By doing a scan and scroll off of the raw-* index target and resubmitting data to /metricOnly the data can be quickly reindexed.</p>
+
+<p>IFTTT Fitbit recipe:</p>
+
+<p><img src="/images/posts/2016-01-03-ifttt.jpg" alt="IFTTT Fitbit" title="IFTTT recipe" /></p>
+
+<p>Zapier Weather recipe:</p>
+
+<p><img src="/images/posts/2016-01-03-zapier.jpg" alt="Zapier Weather" title="Zapier recipe" /></p>
+
+<p>##Tougher Questions</p>
+
+<p>A new tool that I picked up is a custom QS app called <a href="https://itunes.apple.com/us/app/reporter-app/id779697486?mt=8">Reporter App</a> [7] from Nicholas Feltron, who does some pretty impressive end of year <a href="http://feltron.com/">infographics</a> [8].  It does JSON formatted randomly timed surveys using both phone entry and the various sensors on my phone.  It can do live updates to Dropbox, so it would be something useful for tracking # of coffee’s, sodas, days spent working, etc for later analaysis.  Also, given that the data is well formed JSON I’ll be able to rig a script to mine the dropbox folder incrementally, which will be a good task for later.</p>
+
+<p>##Next Steps</p>
+
+<p>I used some gift cards from the holidays to pick up an <a href="https://www.automatic.com/home/">Automatic</a> [9] car IOT device.   I’ve already got IFTTT logging car trips I make to a Google spreadsheet, I think that will be a fun one to put into Elasticsearch next.</p>
+
+<p>Links:</p>
+
+<ul>
+  <li>[1] <a href="http://piktochart.com/">Piktochart</a></li>
+  <li>[2] <a href="http://quantifiedself.com/">Quantified Self</a></li>
+  <li>[3] <a href="https://found.elastic.co">Found</a></li>
+  <li>[4] <a href="http://ifttt.com/">IFTTT</a></li>
+  <li>[5] <a href="https://zapier.com">Zapier</a></li>
+  <li>[6] <a href="https://github.com/derickson/metrics-rest-service">Heroku REST Serivice source code (Github)</a></li>
+  <li>[7] <a href="https://itunes.apple.com/us/app/reporter-app/id779697486?mt=8">Reporter App</a></li>
+  <li>[8] <a href="http://feltron.com/">Feltron Infographics</a></li>
+  <li>[9] <a href="https://www.automatic.com/home/">Automatic</a></li>
+</ul>
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Quantified Self: IFTTT, Zapier, and Elasticsearch&url=http://localhost:4000/2016/01/03/quantified-self-ifttt-zapier-elasticsearch/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2016/01/03/quantified-self-ifttt-zapier-elasticsearch/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2016/01/03/quantified-self-ifttt-zapier-elasticsearch/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#tech" class="tag">&#35; tech</a>
+          
+            <a href="/tags#iot" class="tag">&#35; iot</a>
+          
+            <a href="/tags#projects" class="tag">&#35; projects</a>
+          
+            <a href="/tags#quantified-self" class="tag">&#35; quantified-self</a>
+          
+            <a href="/tags#elasticsearch" class="tag">&#35; elasticsearch</a>
+          
+            <a href="/tags#found" class="tag">&#35; found</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

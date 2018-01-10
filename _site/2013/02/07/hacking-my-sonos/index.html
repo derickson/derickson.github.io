@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Hacking my Sonos - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>Software Engineer</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/about/">About</a>
+			  	
+				  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	          <li><a href="https://www.github.com/derickson" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Hacking my Sonos</h1>
+        <div class="page-date"><span>Feb 07, 2013&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>The previous project of <a href="http://www.front2backdev.com/2013/02/03/controlling-philips-hue-with-xquery/" title="Controlling Philips Hue with XQuery">controlling the lights in my living room with REST calls</a> has given me an idea for a home automation project which will probably get written up here over a few more posts.  Next step … controlling my sound system!  As reverse-engineering practice, I decided to do this without documentation or Google.</p>
+
+<p>My home stereo is hooked up to a <a href="http://www.sonos.com/shop/products/connect">Sonos CONNECT</a>, which is an internet audio hub that aggregates all my various Pandora, Spotify and other streaming services.  It’s awesome, and just like the Philips Hue lights it is controlled by desktop and mobile apps across your home WiFi network.  Because I’m doing this without documentation, first step is to pull out <a href="http://www.wireshark.org/">Wireshark</a>, a packet monitoring tool to see what’s going on in the TCP/IP traffic.  With a Wireshark recording session active, I clear my Sonos queue, enqueue a playlist from Spotify, and then hit play.</p>
+
+<p><a href="/wp-content/uploads/2013/02/wireshark.jpg"><img class="alignnone size-medium wp-image-487" alt="wireshark" src="/wp-content/uploads/2013/02/wireshark-300x237.jpg" width="300" height="237" /></a></p>
+
+<p> </p>
+
+<p>Filtering the recording with the Sonos’ IP address we can see from the above screenshot that the Sonos is controlled with UPnP SOAP messages, so not that much more complicated than the REST and JSON I sent to the Philips Hue.  Wireshark exports detailed packet extracts to an XML file type called PDML.  I load that file into a text editor and take a look.</p>
+
+<pre><code class="language-xml xml">    &lt;proto name="fake-field-wrapper"&gt;
+      &lt;field name="data" value="474554202f67657461613f733d3126753d782d736f6e6f732d73706f7469667925336173706f746966792532353361747261636b2532353361324f5a525278714f736f704b32764250515630794f642533667369642533643132253236666c6167732533643020485454502f312e310d0a434f4e4e454354494f4e3a20636c6f73650d0a4143434550543a202a2f2a0d0a4143434550542d454e434f44494e473a20677a69700d0a484f53543a2031302e302e312e323a313430300d0a555345522d4147454e543a20536f6e6f730d0a0d0a"&gt;
+  &lt;field name="data.data" showname="Data: 474554202f67657461613f733d3126753d782d736f6e6f73..." size="210" pos="66" show="47:45:54:20:2f:67:65:74:61:61:3f:73:3d:31:26:75:3d:78:2d:73:6f:6e:6f:73:2d:73:70:6f:74:69:66:79:25:33:61:73:70:6f:74:69:66:79:25:32:35:33:61:74:72:61:63:6b:25:32:35:33:61:32:4f:5a:52:52:78:71:4f:73:6f:70:4b:32:76:42:50:51:56:30:79:4f:64:25:33:66:73:69:64:25:33:64:31:32:25:32:36:66:6c:61:67:73:25:33:64:30:20:48:54:54:50:2f:31:2e:31:0d:0a:43:4f:4e:4e:45:43:54:49:4f:4e:3a:20:63:6c:6f:73:65:0d:0a:41:43:43:45:50:54:3a:20:2a:2f:2a:0d:0a:41:43:43:45:50:54:2d:45:4e:43:4f:44:49:4e:47:3a:20:67:7a:69:70:0d:0a:48:4f:53:54:3a:20:31:30:2e:30:2e:31:2e:32:3a:31:34:30:30:0d:0a:55:53:45:52:2d:41:47:45:4e:54:3a:20:53:6f:6e:6f:73:0d:0a:0d:0a" value="474554202f67657461613f733d3126753d782d736f6e6f732d73706f7469667925336173706f746966792532353361747261636b2532353361324f5a525278714f736f704b32764250515630794f642533667369642533643132253236666c6167732533643020485454502f312e310d0a434f4e4e454354494f4e3a20636c6f73650d0a4143434550543a202a2f2a0d0a4143434550542d454e434f44494e473a20677a69700d0a484f53543a2031302e302e312e323a313430300d0a555345522d4147454e543a20536f6e6f730d0a0d0a"/&gt;
+	&lt;field name="data.len" showname="Length: 210" size="0" pos="66" show="210"/&gt;
+      &lt;/field&gt;
+    &lt;/proto&gt;</code></pre>
+
+<p>The payload of the data is HEX-ified.  This makes sense given that the TCP/IP traffic could be binary.  Knowing that all the SOAP data is most likely UTF-8 encoded, I’ll just write a quick XQuery to de-hexify the data.</p>
+
+<pre><code class="language-xquery xquery">xquery version("1.0-ml");
+
+let $d := fn:doc("/wireshark.xml")
+for $p in $d//packet
+let $hex :=  fn:string($p//proto[@name eq "fake-field-wrapper"]/field[@name eq "data"]/@value)
+let $len := fn:string-length($hex)
+return
+
+  fn:string-join((
+		for $i in (1 to $len)
+		where $i mod 2 eq 1
+		return
+		let $char := fn:substring($hex, $i, 2)
+		return
+			fn:codepoints-to-string( xdmp:hex-to-integer( $char )))
+	,"")</code></pre>
+
+<p>Digging through a bunch of service calls to get album covers etc, there are three important SOAP calls that actually do the work I want to repeat.</p>
+
+<pre><code class="language-text text">POST /MediaRenderer/AVTransport/Control HTTP/1.1
+CONNECTION: close
+ACCEPT-ENCODING: gzip
+HOST: 10.0.1.2:1400
+USER-AGENT: Linux UPnP/1.0 Sonos/19.4-59140 (MDCR_MacBookPro6,2)
+CONTENT-LENGTH: 290
+CONTENT-TYPE: text/xml; charset="utf-8"
+SOAPACTION: "urn:schemas-upnp-org:service:AVTransport:1#RemoveAllTracksFromQueue"
+
+&lt;s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"&gt;&lt;s:Body&gt;&lt;u:RemoveAllTracksFromQueue xmlns:u="urn:schemas-upnp-org:service:AVTransport:1"&gt;&lt;InstanceID&gt;0&lt;/InstanceID&gt;&lt;/u:RemoveAllTracksFromQueue&gt;&lt;/s:Body&gt;&lt;/s:Envelope&gt;
+
+
+POST /MediaRenderer/AVTransport/Control HTTP/1.1
+CONNECTION: close
+ACCEPT-ENCODING: gzip
+HOST: 10.0.1.2:1400
+USER-AGENT: Linux UPnP/1.0 Sonos/19.4-59140 (MDCR_MacBookPro6,2)
+CONTENT-LENGTH: 1246
+CONTENT-TYPE: text/xml; charset="utf-8"
+SOAPACTION: "urn:schemas-upnp-org:service:AVTransport:1#AddURIToQueue"
+
+&lt;s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"&gt;&lt;s:Body&gt;&lt;u:AddURIToQueue xmlns:u="urn:schemas-upnp-org:service:AVTransport:1"&gt;&lt;InstanceID&gt;0&lt;/InstanceID&gt;&lt;EnqueuedURI&gt;x-rincon-cpcontainer:1006006cspotify%3auser%3adavejunk1%3aplaylist%3a1OzDDLJ98nincl2cbREWiT&lt;/EnqueuedURI&gt;&lt;EnqueuedURIMetaData&gt;&lt;DIDL-Lite xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot; xmlns:r=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot; xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot;&gt;&lt;item id=&quot;1006006cspotify%3auser%3adavejunk1%3aplaylist%3a1OzDDLJ98nincl2cbREWiT&quot; parentID=&quot;100a0064playlists&quot; restricted=&quot;true&quot;&gt;&lt;dc:title&gt;Electrofunkish Soul&lt;/dc:title&gt;&lt;upnp:class&gt;object.container.playlistContainer&lt;/upnp:class&gt;&lt;desc id=&quot;cdudn&quot; nameSpace=&quot;urn:schemas-rinconnetworks-com:metadata-1-0/&quot;&gt;SA_RINCON3079_davejunk1&lt;/desc&gt;&lt;/item&gt;&lt;/DIDL-Lite&gt;&lt;/EnqueuedURIMetaData&gt;&lt;DesiredFirstTrackNumberEn
+queued&gt;0&lt;/DesiredFirstTrackNumberEnqueued&gt;&lt;EnqueueAsNext&gt;0&lt;/EnqueueAsNext&gt;&lt;/u:AddURIToQueue&gt;&lt;/s:Body&gt;&lt;/s:Envelope&gt;
+
+
+POST /MediaRenderer/AVTransport/Control HTTP/1.1
+CONNECTION: close
+ACCEPT-ENCODING: gzip
+HOST: 10.0.1.2:1400
+USER-AGENT: Linux UPnP/1.0 Sonos/19.4-59140 (MDCR_MacBookPro6,2)
+CONTENT-LENGTH: 266
+CONTENT-TYPE: text/xml; charset="utf-8"
+SOAPACTION: "urn:schemas-upnp-org:service:AVTransport:1#Play"
+
+&lt;s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"&gt;&lt;s:Body&gt;&lt;u:Play xmlns:u="urn:schemas-upnp-org:service:AVTransport:1"&gt;&lt;InstanceID&gt;0&lt;/InstanceID&gt;&lt;Speed&gt;1&lt;/Speed&gt;&lt;/u:Play&gt;&lt;/s:Body&gt;&lt;/s:Envelope&gt;
+
+</code></pre>
+
+<p>SOAP is in general annoying in that the XML payload is actually passed as an escaped string rather than just embedded XML, making it confusing to read and parse.  I believe this practice goes back to early XML web service processors doing a horrible job serializing and deserializing the XML just to  proxy it around.</p>
+
+<p>BOOM! (<a href="https://github.com/derickson/ml-utils/blob/master/xquery/lib/l-sonos.xqy">source code</a>) I can now play Funk music from qconsole (I’ll spare you the Youtube video until the full project is done)</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Hacking my Sonos&url=http://localhost:4000/2013/02/07/hacking-my-sonos/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2013/02/07/hacking-my-sonos/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2013/02/07/hacking-my-sonos/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#Hex" class="tag">&#35; Hex</a>
+          
+            <a href="/tags#SOAP" class="tag">&#35; SOAP</a>
+          
+            <a href="/tags#Sonos" class="tag">&#35; Sonos</a>
+          
+            <a href="/tags#Wireshark" class="tag">&#35; Wireshark</a>
+          
+            <a href="/tags#XQuery" class="tag">&#35; XQuery</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

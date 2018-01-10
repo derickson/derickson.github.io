@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Introducing Developers to XQuery in MarkLogic - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>Software Engineer</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/about/">About</a>
+			  	
+				  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	          <li><a href="https://www.github.com/derickson" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Introducing Developers to XQuery in MarkLogic</h1>
+        <div class="page-date"><span>May 03, 2012&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>In the last few month’s I have helped a number of developers enter the world of XQuery.  Here are the first three websites that I point people to on their first day as well as some discussions on sequences and FWLOR statements that often occur.</p>
+
+<h3 id="intro-sites">Intro Sites</h3>
+
+<p><a href="http://www.w3schools.com/xpath/xpath_intro.asp">W3School.com’s XPath Tutorial </a>and <a href="http://w3schools.com/xquery/default.asp">W3Schools.com’s XQuery Tutorial</a> — While not directly related to the W3C, the XPath and XQuery tutorials here are a pretty good non-intimidating introduction.  (There is even a link to an XML tutorial for those who need some work on fundamentals)  Teaching XPath before XQuery is essential to stop people from overusing the “<em>where</em>” clause of FLWOR statements that could otherwise be done with an XPath predicate.  You can try out W3School’s code snippets first by inserting their  XML into MarkLogic under “books.xml” by copying something like the following into the Query Console</p>
+
+<pre><code class="language-xquery xquery">let $books := 
+  &lt;bookstore&gt;
+    &lt;book category="COOKING"&gt;
+      &lt;title lang="en"&gt;Everyday Italian&lt;/title&gt;
+      &lt;author&gt;Giada De Laurentiis&lt;/author&gt;
+      &lt;year&gt;2005&lt;/year&gt;
+      &lt;price&gt;30.00&lt;/price&gt;
+    &lt;/book&gt;
+    ... other books from W3Schools example ...
+  &lt;/bookstore&gt;
+
+return
+  xdmp:document-insert("books.xml", $books)</code></pre>
+
+<p>Once the person is comfortable with the basics, I almost always plunge them into the excellent <a href="http://community.marklogic.com/try/ninja/index">Ninja Tutorial</a> on the MarkLogic community site.  This tutorial reinforces XPath and XQuery while also expanding to things like JSON and search, which are nice to have on your radar early.</p>
+
+<p>The next thing I do is make sure the developer has the most recent <a href="http://community.marklogic.com/pubs/5.0/apidocs/All.html">MarkLogic XQuery functions reference</a> bookmarked.</p>
+
+<h3 id="the-everything-is-a-sequence-discussion">The “Everything is a Sequence” Discussion</h3>
+
+<p>I can usually skip this discussion with people who enjoy reading <a href="http://www.w3.org/TR/xquery/#nt-bnf">language specifications with formal grammars</a> or <a href="http://railroad.my28msec.com/rr/ui">railroad diagrams</a> (you can generate railroad diagrams for XQuery 1.0 with this excellent tool, use the tabs to page through the interface), but understanding sequences and where they fit into XQuery can really help new developers when they are reading and writing code their first day.</p>
+
+<p>All literals are sequences, and don’t need parenthesis if there is only one item or if the expression is the Query Body of the Main Module</p>
+
+<pre><code class="language-text text">1                 (: a sequence of 1 xs:integer literal :)
+"Hello World"     (: a sequence of 1 xs:string literal :)</code></pre>
+
+<p>Sequences collapse.  Sequences don’t nest like Arrays in other languages. The following evaluate to equivalent sequences:</p>
+
+<pre><code class="language-text text">("a", "b", "c, "d")
+("a", (), "b", "c", "d")
+("a", ( "b", "c"), "d")</code></pre>
+
+<p>All expressions are sequences.  Literals, Path Expressions, FLWOR statements, IF/ELSEs , TYPESWITCHes, and COMPARISON all evaluate to sequences, even if they are just returning a sequence of count 1.  These language structures all return sequences, combine into sequences, and even have sequences inside of them:</p>
+
+<pre><code class="language-xquery xquery">(: returns a sequence of perfect squares :)
+for $i in (1 to 10)
+return
+  $i * $i</code></pre>
+
+<pre><code class="language-xquery xquery">(: Two statements expressed as a sequence :)
+(
+  for $book in fn:doc("books.xml")//book
+  return
+    fn:concat( $book/title, ": ", $book/author), 
+
+  if(fn:exists(//book[fn:contains(./title, "SQL")]) then
+    "Yuck"
+  else
+    "Hooray!"
+)</code></pre>
+
+<pre><code class="language-text text">(: Some of the locations in FWLOR that could be considered sequences :)
+for $x in SEQUENCE
+let $y := SEQUENCE
+return
+  SEQUENCE
+
+(: Sequences inside IF/ELSEs :)
+if( BooleanExpression ) then
+  SEQUENCE
+else
+  SEQUENCE</code></pre>
+
+<p>Because FLWOR statements both contain and <em>are</em> sequences, you can quickly compose them:</p>
+
+<pre><code class="language-xquery xquery">(: IF statement inside FLWOR statements :)
+for $x in (1 to 10)
+return
+  if($x ne 2) then
+    $x * $x
+  else
+    "the number of years I have loved XQuery"</code></pre>
+
+<p>Composing expressions of course quickly turns into the next discussion:</p>
+
+<h3 id="the-think-like-functions-discussion">The “Think Like Functions” Discussion</h3>
+
+<p>When I see developers doing the following I usually start the discussion about functions and functional languages:</p>
+
+<pre><code class="language-xquery xquery">(: I assume local mathematical functions
+   functionA, functionB, and functionC are
+   defined above :)
+
+(: this is too procedural :)
+let $accumulator := 1
+let $accumulator := functionA($accumulator)
+let $accumulator := functionB($accumulator)
+let $accumulator := functionC($accumulator)
+return
+  $accumulator</code></pre>
+
+<p>The problem is that XQuery is a functional language and variables like $accumulator are immutable.  That means that new memory is allocated for each assignment of an expression to the variable unlike Assembly or C which alter the actual memory address on assignment.  XQuery is just making multiple redundant copies.  The above code will work, but following this practice tends to lead to unnecessary performance problems if not simply inelegant code.  I try to get people to think of the XQuery syntax more like the math they learned in high school where functions can compose f( g( x ) ) :</p>
+
+<pre><code class="language-xquery xquery">(: now you're thinking with functions :)
+functionC( functionB( functionA( 1 )))</code></pre>
+
+<p>Though eventually for style and maintainability purposes I’ll try to lead the developer to write the following:</p>
+
+<pre><code class="language-xquery xquery">(: maybe more maintainable, 
+   especially when IF and FLWOR statements 
+   get mixed in :)
+functionC (
+  functionB (
+    functionA (
+      1
+    )
+  )
+)</code></pre>
+
+<h3 id="the-xpath-first-discussion">The “XPath first” Discussion</h3>
+
+<p>XPath expressions evaluate to sequences, like just about everything else in XQuery.  XPath also allows quick filtering with XPath predicates, the thing in the square brackets.  As a result many simple FLWOR statements can just be reduced to a single XPath expression which I think encourages developers to move away from XQuery code that is limited to previous experiences with SQL.</p>
+
+<pre><code class="language-xquery xquery">for $book in //book
+where $book/author eq "J K. Rowling"
+return
+  $book</code></pre>
+
+<p>I take issue with two things in the above code.  First, the FLWOR statement just returns the the iterator without doing anything with it or to it.  Second, the <em>where</em> clause could just as easily be done in a predicate.  In early versions of many XQuery interpreters (not just MarkLogic) predicates were significantly faster than <em>where</em> clauses.  This isn’t really true any more but I still suggest the following one line aleternative:</p>
+
+<pre><code class="language-xquery xquery">//book[author eq "J K. Rowling"]</code></pre>
+
+<hr />
+
+<p>Updates:<br />
+Fixed URL link to Ninja tutorial (2012-05-04)</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Introducing Developers to XQuery in MarkLogic&url=http://localhost:4000/2012/05/03/introducing-developers-to-xquery-in-marklogic/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2012/05/03/introducing-developers-to-xquery-in-marklogic/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2012/05/03/introducing-developers-to-xquery-in-marklogic/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#introduction" class="tag">&#35; introduction</a>
+          
+            <a href="/tags#learning" class="tag">&#35; learning</a>
+          
+            <a href="/tags#MarkLogic" class="tag">&#35; MarkLogic</a>
+          
+            <a href="/tags#XPath" class="tag">&#35; XPath</a>
+          
+            <a href="/tags#XQuery" class="tag">&#35; XQuery</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

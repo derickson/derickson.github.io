@@ -1,16 +1,35 @@
-# Site settings
 title: Front2BackDev
-description: The Full Stack tech explorations of Dave Erickson.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://www.front2backdev.com" # the base hostname & protocol for your site
-##url: "http://localhost:4000" # the base hostname & protocol for your site
-##url: "http://derickson.github.io/" # the base hostname & protocol for your site
-twitter_username: davebenigno
-github_username:  derickson
+description: >  
+  The Full Stack tech explorations of Dave Erickson.  
+permalink: ':title/'
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://www.front2backdev.com" # the base hostname & protocol for your site, e.g. http://example.com
 
-paginate: 5
+# Author Settings
+author: Dave Erickson # add your name
+author-img: caricature.png # add your photo
+about-author: Software Engineer # add description
+twitter: davebenigno # add your Twitter handle
+github: derickson  
 
-# Build settings
+# paging
+paginate: 8
+paginate_path: "/blog/page:num/"
+
+
+# Disqus
+# discus-identifier: azathought
+
+# Tracker
+analytics: UA-27466203-1 # Google Analytics
+
+# Build Settings
 markdown: kramdown
+plugins:
+  - jekyll-sitemap
 
-gems: [jekyll-paginate]
+gems: 
+  - jekyll-paginate
+  - jekyll-feed
+
+exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock", "tumblr_files"]

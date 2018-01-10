@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Label-based Access Control in Elasticsearch - Front2BackDev</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="http://localhost:4000/assets/img/posts/2017-08-02-flight.jpg">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="alternate" type="application/atom+xml" title="Azathought Blog" href="/feed.xml" />
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+
+	  <aside class="sidebar">
+	  	<header>
+	    <div class="about">
+	      <div class="cover-author-image">
+	        <a href="/"><img src="/assets/img/caricature.png" alt="Dave Erickson"></a>
+	      </div>
+	      <div class="author-name">Dave Erickson</div>
+	      <p>Software Engineer</p>
+
+			<div class="navigation">
+				<input type="text" class="st-default-search-input page-link">
+				<br/>
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/about/">About</a>
+			  	
+				  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/archive/">Archive</a>
+			  	
+				  
+			
+			  
+			
+			  
+			  	
+			  		<a class="page-link tag" href="/tags/">Tags</a>
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			  	
+				  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+			  
+			
+
+			</div>
+
+			 <script type="text/javascript">
+			  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+			  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+			  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+			  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+			  
+			  _st('install','yWp_Lhv9nqdDCanwfz6H','2.0.0');
+			</script>
+	    </div>
+	  </header> <!-- End Header -->
+	  <footer>
+	    <section class="contact">
+	      <h3 class="contact-title">Contact me</h3>
+	      <ul>
+	        
+	          <li><a href="https://twitter.com/davebenigno" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	          <li><a href="https://www.github.com/derickson" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+	        
+	        
+	        
+	      </ul>
+	    </section> <!-- End Section Contact -->
+	    <div class="copyright">
+	      <p>2018 &copy; Dave Erickson</p>
+	    </div>
+	  </footer> <!-- End Footer -->
+		  
+	  </aside> <!-- End Sidebar -->
+
+      <div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    <div class="page-cover-image">
+      <img class="page-image" src=/images/posts/2017-08-02-flight.jpg alt="Label-based Access Control in Elasticsearch">
+    </div> <!-- End Page Cover Image -->
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Label-based Access Control in Elasticsearch</h1>
+        <div class="page-date"><span>Aug 02, 2017&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p><strong>Update</strong>: <strong>Elasticsearch added many of the tools needed (and mentioned in the Further Work section below) to implement very clean ABAC policies in Elasticsearch 6.1.  This method below is out of date</strong></p>
+
+<div class="post-image">
+	<img src="/assets/img/posts/2017-08-02-beforeafter.jpg" alt="Securing Sensitive Data" /><br />
+	<em>Securing Sensitive Data</em>
+</div>
+
+<p>RBAC is great, but doesn’t fit the security policies I deal with at work.  HIPAA, Financial Services portfolio management, and multi-tenanted SaaS products all generate data that is sensitive enough to deserve Mandatory Access Controls (MAC) at the data layer and basic access control policies often don’t cut it.  This isn’t just a problem at work though …</p>
+
+<p>The tech we wear, bolt to the walls of our homes, and even just walk by on the street generates a large amount of personalized infromation about our lives.  I aggregate a good amount of that in my Quantified Self project and have been showing my Untappd beer dashboard around now for a few years as a fun basic example of logging personal data in Elasticsearch and visualizing that data with Kibana.  It’s fun and makes for a good demo!  However, one of the big challenges people face once all this data is aggregated is that it is now that much more publicly visible than when it was a csv file sitting on my private hard drive.  Not only can someone presumably glance around and learn things about me that I didn’t want them to (my favorite bars, that I’m not a fan of IPAs) but they can learn things that I consider sensitive such as my exact home address. Even worse are the potential for misinterpretations.  In my beer dashboard when I check-in a flight of small-sized taster beers, it looks like I’ve had 4 whole pints of beer.</p>
+
+<div class="post-image">
+	<img src="/assets/img/posts/2017-08-02-flight.jpg" alt="Flight" /><br />
+	<em>Throwing off my analytics with it's deliciousness (Freemont Brewing Company in Seattle, WA)</em>
+</div>
+
+<p>Okay, I’m not so worried about flights of beer, but let’s use this as a test data set for creating a fine grained access control policy in Elasticsearch that will enforce data protection in any analytic app or UI, including unmodified Kibana.  Rather that working to create a complex Document-level security query that secures data (remember the RDBMS stored procedures that secured data and how difficult to maintain they were) let’s take a Label-based approach with my beer data as a way of explaining the how and why this approach is so important to some users of data systems like Elasticsearch.</p>
+
+<h2 id="label-based-vs-document-level-rbac">Label-based vs. Document-level RBAC</h2>
+
+<p>Document-Level Role Based Access Control (RBAC) can be expressed with a simple forward query in X-Pack Security (<a href="https://www.elastic.co/blog/getting-started-with-shield-document-level-security-in-elasticsearch">Example</a>, <a href="https://www.elastic.co/guide/en/x-pack/current/field-and-document-access-control.html">Documentation</a>)</p>
+
+<p>This is fine, but is error prone and hard to maintain or modify if you aren’t a developer.  The number of RDBMS data silos that exist in this world for no reason other than no one still employed at the company knows how to modify the PL/SQL that secures the data is shameful.</p>
+
+<p>Label-based controls (LBAC) are a specific implementation of Mandatory Access Control (MAC) that takes the principle of least privilege (no label –&gt; no access) and allows security policies that reqire a user to have an AND (union) and possilbly and AND of OR’s.  A basic example</p>
+
+<p>Imagine I have a document with sensitive health information for a patient.  To access that data, a user must be on the medical team that cares for that specific patient AND someone on the team that has a need to see personal health information.  Just one of these being true isn’t enough.  A user needs both to be able to search, retrieve, and aggregate this data in our use case.</p>
+
+<pre>
+POST /health_sensors/temp/1
+{
+  "@timestamp": "2017-08-02T00:00:12Z",
+  "patientId": "123456789",
+  "bodyTempF": 98.5,
+  "tags": ["patientId_123456789", "EPHI"]
+}
+</pre>
+
+<p>In an LBAC model, I now can grant the “patientId_123456789” and “EPHI” roles to a users and this information should be accessible.  Having a role-per-label in RBAC won’t work because roles are implicitly OR’d and any single role will give access to the document.  Equally policies my have other restrictions or dimension in some cases.  If you want a complex example, check out all the complex different dimentions of <a href="https://www.dni.gov/files/documents/FOIA/Public_CAPCO_Register%20and%20Manual%20v5.1.pdf">CAPCO markings</a> which can be simplied down to</p>
+
+<pre>
+SECURITY_LEVEL//COMPARTMENT1/COMPARTMENT2//REL TO Country1, Country2
+</pre>
+
+<p>or logically</p>
+
+<p>To access this document, the user must satisfy:</p>
+
+<pre>
+user.security_level &gt;= SECURITY_LEVEL
+AND
+user.security_compartments must contain both 
+    COMPARTMENT1 AND COMPARTMENT2
+AND
+user.nationality must be either Country1 OR Country2
+</pre>
+
+<p>Notice this is a <a href="https://en.wikipedia.org/wiki/Logical_conjunction">logical conjuction</a> (aka a big AND) of smaller AND, OR, and scalar comparison statments.</p>
+
+<h2 id="annotating-beer-with-percolator">Annotating Beer With Percolator</h2>
+
+<p>To secure my beer data I’ll want to annotate each document with labels that manufacture some categories for the sensitivity of the data.   I’d define 3 tags.</p>
+
+<ul>
+  <li><strong>Beer</strong> - this is a ganeric label that will exist on all beer checkins.  Every beer will have it.  Without access to the BEER lablel, Elasticsearch will not admit that I’ve ever checked in a beer.</li>
+  <li><strong>DomesticBeer</strong> – all beers manufactured in the United States.  A good test label to validate that LBAC filtering is working as it will show up plainly in all my dashboards.</li>
+  <li><strong>HomeDrinking</strong> – Beers checkedin near my home address.</li>
+</ul>
+
+<p>I’ll now define three pecolation queries and reload my beer data tagging the data model with security lavels.  The full source code for my python data loader is <a href="https://gist.github.com/derickson/ff0aeb22630433008372d19487725f89">here</a>, but the key percolation queries look like this:</p>
+
+<pre>
+allBeerMatcher = {
+    SECURITY_TAGS_FIELD: "Beer",
+    PERCOLATE_FIELD: {
+        "match_all": {}
+    }
+}
+
+domesticMatcher = {
+    SECURITY_TAGS_FIELD: "DomesticBeer",
+    PERCOLATE_FIELD : {
+        "match": { 
+            "brewery_country": "United States"
+        }
+    }
+}
+
+homeLocation = [LON, LAT]  ## the thing I am trying to protect
+
+homeMatcher = {
+    SECURITY_TAGS_FIELD: "HomeDrinking",
+    PERCOLATE_FIELD : {
+        "geo_distance": {
+            "distance": "100m",
+            "location": homeLocation
+        }
+    }
+}
+</pre>
+
+<p>When the data is ingested, it looks like this</p>
+
+<pre>
+{
+    "beer_ibu": 10,
+    "serving_type": "",
+    "venue_name": "Colony Club",
+    "beer_name": "Oberon Ale",
+    "beer_url": "https://untappd.com/beer/16581",
+    "flavor_profiles": "",
+    "venue_state": "D.C.",
+    "securityTags": [
+      "Beer",
+      "DomesticBeer"
+    ],
+    "venue_city": "Washington",
+    "brewery_state": "MI",
+    "created_at": "2016-08-11 20:10:18",
+    "beer_abv": 5.8,
+    "brewery_name": "Bell's Brewery",
+    "rating_score": "",
+    "comment": "",
+    "@timestamp": "2016-08-11T20:10:18",
+    "venue_lat": "38.9296",
+    "venue_country": "United States",
+    "checkin_url": "https://untappd.com/c/347180969",
+    "purchase_venue": "",
+    "beer_type": "Pale Wheat Ale - American",
+    "brewery_city": "Galesburg",
+    "location": [
+      -77.0236,
+      38.9296
+    ],
+    "brewery_url": "https://untappd.com/brewery/2507",
+    "securityTag_Count": 2,
+    "brewery_country": "United States",
+    "venue_lng": "-77.0236"
+  }
+</pre>
+
+<h2 id="the-missing-array-match-query">The Missing Array Match Query</h2>
+
+<p>The next step is to build a simple test query.  If a user has rights to “Beer” and “DomesticBeer” but not “HomeDrinking” then the query needs to check that the user’s labels provide full coverage of the required tags per-document.  Unfortunately no such query operator exists in Elasticsearch’s query DSL, so we’ll have to create it with some extra data modeling and combinatorial logic.  I call this the combinatorial array match query.</p>
+
+<p>Inside the data we encoded an extra piece of information, the length of the security tag array:</p>
+
+<pre>
+"securityTag_Count": 2
+</pre>
+
+<p>this allows us to write the basic logical expression</p>
+
+<pre>
+(Beer AND securityTag_Count == 1)
+OR
+(DomesticBeer AND securityTag_Count == 1)
+OR
+(Beer AND DomesticBeer securityTag_Count == 2)
+</pre>
+
+<p>If the user had all three tags the logic would look like this:</p>
+
+<pre>
+(Beer AND securityTag_Count == 1)
+OR
+(DomesticBeer AND 
+    securityTag_Count == 1)
+OR
+(HomeDrinking AND 
+    securityTag_Count == 1)
+OR
+(Beer AND 
+    DomesticBeer AND 
+    securityTag_Count == 2)
+OR
+(Beer AND 
+    HomeDrinking AND 
+    securityTag_Count == 2)
+OR
+(DomesticBeer AND 
+    HomeDrinking AND 
+    securityTag_Count == 2)
+OR
+(Beer AND 
+    DomesticBeer AND 
+    HomeDrinking AND 
+    securityTag_Count == 3)
+</pre>
+
+<p>Our lives would be easier if there was some syntactic sugar (and later in-server optimization) for an array coverage query, but we can do the above logic with Elasticsearch’s bool query</p>
+
+<p>{‘bool’: {‘should’: [[{‘bool’: {‘must’: [[{‘term’: {‘securityTags’: ‘Beer’}}, {‘term’: {‘securityTag_Count’: 1}}]]}}, {‘bool’: {‘must’: [[{‘term’: {‘securityTags’: ‘DomesticBeer’}}, {‘term’: {‘securityTag_Count’: 1}}]]}}, {‘bool’: {‘must’: [[{‘term’: {‘securityTags’: ‘HomeDrinking’}}, {‘term’: {‘securityTag_Count’: 1}}]]}}, {‘bool’: {‘must’: [[{‘term’: {‘securityTags’: ‘Beer’}}, {‘term’: {‘securityTags’: ‘DomesticBeer’}}, {‘term’: {‘securityTag_Count’: 2}}]]}}, {‘bool’: {‘must’: [[{‘term’: {‘securityTags’: ‘Beer’}}, {‘term’: {‘securityTags’: ‘HomeDrinking’}}, {‘term’: {‘securityTag_Count’: 2}}]]}}, {‘bool’: {‘must’: [[{‘term’: {‘securityTags’: ‘DomesticBeer’}}, {‘term’: {‘securityTags’: ‘HomeDrinking’}}, {‘term’: {‘securityTag_Count’: 2}}]]}}, {‘bool’: {‘must’: [[{‘term’: {‘securityTags’: ‘Beer’}}, {‘term’: {‘securityTags’: ‘DomesticBeer’}}, {‘term’: {‘securityTags’: ‘HomeDrinking’}}, {‘term’: {‘securityTag_Count’: 3}}]]}}]]}}</p>
+
+<p>or with nice json indenting: <a href="https://gist.github.com/derickson/ef9c25fdc325340df034856b52b5806e">pretty json version</a></p>
+
+<p>Here is the recursive python code for quickly creating the combinatorial set query: <a href="https://gist.github.com/derickson/5fd8bda0172382753d2f13baba8b4dd8">code link</a></p>
+
+<h2 id="creating-a-per-person-x-pack-security-role">Creating a Per-Person X-Pack Security Role</h2>
+
+<p>For the person with these roles we then create a role that represents the combo of the two document.  Technically you only need to create a role for each unique combination of tags that exists in your user base.  People implementing this in production generally create a per-user role or per-distinct combination role when the user logs in after checking the central authority story for user rights.</p>
+
+<pre>
+POST /_xpack/security/role/beer_safe_for_work
+{
+    "cluster": [],
+    "indices": [
+      {
+        "names": [
+          "beer"
+        ],
+        "privileges": [
+          "read"
+        ],
+        "query": {
+            "bool": {
+                "should": [
+                    [
+                        {
+                            "bool": {
+                                "must": [
+                                    [
+                                        {
+                                            "term": {
+                                                "securityTags": "Beer"
+                                            }
+                                        },
+                                        {
+                                            "term": {
+                                                "securityTag_Count": 1
+                                            }
+                                        }
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "bool": {
+                                "must": [
+                                    [
+                                        {
+                                            "term": {
+                                                "securityTags": "DomesticBeer"
+                                            }
+                                        },
+                                        {
+                                            "term": {
+                                                "securityTag_Count": 1
+                                            }
+                                        }
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "bool": {
+                                "must": [
+                                    [
+                                        {
+                                            "term": {
+                                                "securityTags": "Beer"
+                                            }
+                                        },
+                                        {
+                                            "term": {
+                                                "securityTags": "DomesticBeer"
+                                            }
+                                        },
+                                        {
+                                            "term": {
+                                                "securityTag_Count": 2
+                                            }
+                                        }
+                                    ]
+                                ]
+                            }
+                        }
+                    ]
+                ]
+            }
+        }
+      }
+    ],
+    "run_as": [],
+    "metadata": {},
+    "transient_metadata": {
+      "enabled": true
+    }
+}
+</pre>
+
+<h2 id="future-work-and-reading">Future Work and Reading</h2>
+
+<p>To make this as easy as possible for implementers I’d love to see the combinatorial set code built into Elasticsearch itself so that we can use the role query templating function to generate all roles dynamically from a single templated role.  (That will make the CAPCO example a lot easier)</p>
+
+<p>My queries could probably use some tuning work to make sure filter caches are kicking in (there aren’t as many distinct combinations of user rights as the possbible combinatorial explosion) and I’m not wasting time scoring documents etc.</p>
+
+<p>Clever people reading this may have realized it’s faster to check for ‘must_not’ have HomeDriking than it is to check for all the combiantions of the other tags.  A good discussion of use-case by use-case optimization of LDAP using knowledge of the tags, tag cardnality etc can be found here:  <a href="https://discuss.elastic.co/t/matching-by-array-elements/39530/2">Discuss conversation from 2016</a></p>
+
+<p>My general hope is that LBAC can help people implement better security controls in Elasticsearch.  It’s important to keep private data under control in an easy to maintain fashion and I’m going to continue working on this example in the future to make operationalizing LBAC easier and easier for implementers.</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Label-based Access Control in Elasticsearch&url=http://localhost:4000/2017/08/02/label-based-access-control/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2017/08/02/label-based-access-control/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/2017/08/02/label-based-access-control/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#elasticsearch" class="tag">&#35; elasticsearch</a>
+          
+            <a href="/tags#percolator" class="tag">&#35; percolator</a>
+          
+            <a href="/tags#security" class="tag">&#35; security</a>
+          
+            <a href="/tags#lbac" class="tag">&#35; lbac</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-27466203-1', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

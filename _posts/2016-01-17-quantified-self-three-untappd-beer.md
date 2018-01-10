@@ -2,7 +2,7 @@
 layout: post
 title:  "Quantified Self: Week three progress and real time beer events using Untappd"
 date:   2016-01-17 00:00:00
-categories: projects, untappd
+tags: projects untappd
 permalink: /2016/01/17/quantified-self-three-untappd-beer/
 published: true
 ---

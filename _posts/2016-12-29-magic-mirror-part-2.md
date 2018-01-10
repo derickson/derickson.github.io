@@ -2,12 +2,11 @@
 layout: post
 title:  "Magic Mirror Part 2"
 date:   2016-12-29 12:00:00
-categories: nodejs, electron, quantified-self, diy, maker
+tags: nodejs electron quantified-self diy maker
 permalink: /2016/12/29/magic-mirror-part-2/
+img: posts/2016-12-29-mirrordisplay.jpg
 published: true
 ---
-
-![Mirror Display](/images/posts/2016-12-29-mirrordisplay.jpg "mirror")
 
 *The completed project along with a screenshot of the software display behind my Magic Mirror*
 
@@ -32,4 +31,6 @@ Here's a cleaned-up diagram of what's going on behind all that electrical tape. 
 ![Kibana](/images/posts/2016-12-29-kibana.jpg "kibana metrics")
 
 As the mirror is pulling some interesting data that I want in my quantified-self dashboard project, I wrote some quick nodejs request code to POST commands to my [generic REST metrics endpoint](https://github.com/derickson/metrics-rest-service) for visualizing data from my Magic Mirror in kibana (hosted in [Elastic Cloud](cloud.elastic.co) of course.)
+
+![Mirror Display](/images/posts/2016-12-29-mirrordisplay.jpg "mirror")
 

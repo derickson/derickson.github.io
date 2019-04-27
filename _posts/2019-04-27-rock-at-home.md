@@ -52,6 +52,9 @@ As I won't be actively hunting I'm not looking to do full packet capture, which 
 
 Because my network tap setup between two fully router created subnets, something called its vantage point, ROCK can't actually tell which device on the Asus home wireless router is the origin of traffic to the internet.  I'm not impressed by the required router that came from my ISP, so I'll have to pick something else up and switch the Asus into access point mode to distinguish the traffic on my home.   I see playing with pfSense in my future.
 
+![Weather](/images/posts/2019-04-27-nsm5.jpg)
+
+*My cat approves of running a small server at home*
 
 # Future Work
 

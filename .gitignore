@@ -1,3 +1,5 @@
 _site
 tumblr_files
 **.DS_Store
+.DS_Store
+images/.DS_Store
